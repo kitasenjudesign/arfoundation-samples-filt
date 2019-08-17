@@ -43,8 +43,6 @@ namespace NatCorder {
         /// <param name="recordingCallback">Recording callback</param>
         [Doc(@"GIFRecorderCtor")]
         public GIFRecorder (int imageWidth, int imageHeight, float frameDuration, Action<string> recordingCallback) {
-            imageWidth = imageWidth >> 1 << 1;
-            imageHeight = imageHeight >> 1 << 1;
             var recordingDirectory = Application.persistentDataPath;
             var recordingFilename = string.Format("recording_{0}.gif", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff"));
             switch (Application.platform) {

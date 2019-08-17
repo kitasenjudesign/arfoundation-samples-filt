@@ -34,6 +34,7 @@ namespace NatCorder.Internal {
         }
 
         public void Dispose () {
+            AndroidJNI.AttachCurrentThread();
             recorder.Call(@"stopRecording");
             recorder.Dispose();
             nativeBuffer.Dispose();
@@ -46,6 +47,7 @@ namespace NatCorder.Internal {
         }
 
         public void CommitFrame (IntPtr pixelBuffer, long timestamp) {
+            AndroidJNI.AttachCurrentThread();
             var dstPtr = ByteBufferAddress(nativeBuffer.GetRawObject());
             memcpy(dstPtr, pixelBuffer, (UIntPtr)(pixelWidth * pixelHeight * 4));
             using (var clearedBuffer = nativeBuffer.Call<AndroidJavaObject>("clear"))

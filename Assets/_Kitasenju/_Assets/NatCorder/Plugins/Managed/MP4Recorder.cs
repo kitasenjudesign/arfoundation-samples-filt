@@ -46,8 +46,6 @@ namespace NatCorder {
         /// <param name="videoKeyframeInterval">Keyframe interval in seconds</param>
         [Doc(@"MP4RecorderCtor")]
         public MP4Recorder (int videoWidth, int videoHeight, int videoFramerate, int audioSampleRate, int audioChannelCount, Action<string> recordingCallback, int videoBitrate = (int)(960 * 540 * 11.4f), int videoKeyframeInterval = 3) {
-            videoWidth = videoWidth >> 1 << 1;
-            videoHeight = videoHeight >> 1 << 1;
             var recordingDirectory = Application.persistentDataPath;
             var recordingFilename = string.Format("recording_{0}.mp4", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff"));
             switch (Application.platform) {

@@ -11,8 +11,7 @@ Shader "effects/hatch/SingleObjectHatch"
 		_Hatch0("Hatch 0", 2D) = "white" {}
 		_Hatch1("Hatch 1", 2D) = "white" {}
 
-
-        _DepthTh("_DepthTh",Range(0,1)) = 0.5
+        _Th("_Th",Vector) = (0,0,0,0)
         _StencilTex ("_StencilTex", 2D) = "white" {}   
 
 	}
@@ -30,6 +29,7 @@ Shader "effects/hatch/SingleObjectHatch"
 			#pragma fragment frag
 						
             #include "../noise/SimplexNoise3D.hlsl"
+			#include "../util/StencilUV.hlsl"
 
 			struct appdata
 			{
@@ -54,6 +54,8 @@ Shader "effects/hatch/SingleObjectHatch"
 			sampler2D _Hatch1;
 			float4 _LightColor0;
 			
+			float4 _Th;
+
 			v2f vert (appdata v)
 			{
 				v2f o;
@@ -134,12 +136,11 @@ Shader "effects/hatch/SingleObjectHatch"
 				fixed4 col0 = tex2D(_MainTex, i.uv);
 
 				//stencil
-                float2 stencilUV = i.uv;
-                stencilUV.y = 1 - stencilUV.y;
-                float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
+                float2 stencilUV = GetStencilUV( i.uv );//, _Th.x-0.5 );
+                //stencilUV.y = 1 - stencilUV.y;
+                //float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
+                //stencilUV.y = stencilUV.y*bai + (1-bai)/2;
 
-				
-                stencilUV.y = stencilUV.y*bai + (1-bai)/2;
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 				
 				fixed4 outCol = lerp( col0, color, step(0.5,stencil.r) );

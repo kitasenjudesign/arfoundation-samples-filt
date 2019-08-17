@@ -85,7 +85,10 @@ namespace NatCorder.Inputs {
             var timestamp = clock.Timestamp;
             if (mediaRecorder is MP4Recorder || mediaRecorder is HEVCRecorder) // GIFRecorder can't use this trick
                 using (var dispatcher = new RenderDispatcher())
-                    dispatcher.Dispatch(() => nativeRecorder.Call(@"encodeFrame", textureID, timestamp));
+                    dispatcher.Dispatch(() => {
+                        AndroidJNI.AttachCurrentThread();
+                        nativeRecorder.Call(@"encodeFrame", textureID, timestamp);
+                    });
             else
                 CommitSync(framebuffer); // For GIFRecorder, do standard readback
         }

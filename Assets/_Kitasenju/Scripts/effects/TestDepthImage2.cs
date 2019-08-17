@@ -8,13 +8,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class TestDepthImage2 : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("The ARHumanBodyManager which will produce frame events.")]
-    ARHumanBodyManager m_HumanBodyManager;
+    [SerializeField] ARHumanBodyManager m_HumanBodyManager;
 
-     /// <summary>
-    /// Get or set the <c>ARHumanBodyManager</c>.
-    /// </summary>
     public ARHumanBodyManager humanBodyManager
     {
         get { return m_HumanBodyManager; }
@@ -23,21 +18,14 @@ public class TestDepthImage2 : MonoBehaviour
 
     [SerializeField] RawImage m_RawImage;
 
-    /// <summary>
-    /// The UI RawImage used to display the image on screen.
-    /// </summary>
     public RawImage rawImage
     {
         get { return m_RawImage; }
         set { m_RawImage = value; }
     }
 
-    [SerializeField]
-    Text m_ImageInfo;
+    [SerializeField] Text m_ImageInfo;
 
-    /// <summary>
-    /// The UI Text used to display information about the image on screen.
-    /// </summary>
     public Text imageInfo
     {
         get { return m_ImageInfo; }
@@ -56,6 +44,8 @@ public class TestDepthImage2 : MonoBehaviour
     [SerializeField,Space(10)] private Image _targetImg;
     [SerializeField] private MeshRenderer _meshRenderer;    
     [SerializeField] private ImageEffectBase _imageEffect;
+
+
 
     void Start(){ 
         _updateMat();
@@ -108,24 +98,6 @@ public class TestDepthImage2 : MonoBehaviour
         // non-disabled value.
         m_RawImage.texture = humanStencil;//stencilを使う場合
 
-        // To use the depth, be sure the HumanSegmentationDepthMode property on the ARHumanBodyManager is set to a
-        /// non-disabled value.
-        //m_RawImage.texture = eventArgs.humanDepth;
-        
-
-        //humanStencilを使用
-      
-
-
-        //カメラのテクスチャを使用
-        //Graphics.Blit(null, m_MyRenderTexture, _arBackground.material);
-        //_arBackground.material;
-
-        //上記の二つを混ぜ 
-        //_outputMat
-
-        //CameraTexに書き出す
-        //Graphics.Blit(null, _cameraTex, _arBackground.material);
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {

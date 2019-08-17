@@ -1,16 +1,17 @@
 
-float2 GetStencilUV(float2 uv)
+float2 GetStencilUV(float2 uv, float oy=0.002)
 {
   
   float2 stencilUV = uv;
   stencilUV.y = 1 - stencilUV.y;
 
+  float bai = 1/1.62;
+  //float bai = 1/1.333333;
 
-  
-  float bai = 1/1.62;// 9.0/12.0 * 0.8;//4;3 16;12 16;9
-  stencilUV.y = stencilUV.y*bai + (1-bai)/2;
-  
-  return stencilUV;//x - y * floor(x / y);
+  float offsetY = (1-bai)/2+oy;
+  stencilUV.y = stencilUV.y*bai + offsetY;
+
+  return stencilUV;
 
 }
 
