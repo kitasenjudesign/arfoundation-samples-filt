@@ -16,6 +16,7 @@ public class EffectControlMain : MonoBehaviour
     [SerializeField] private ImageEffectBase _imageEffect;
     [SerializeField,Space(10)] private List<FilterBase> _filters;
     [SerializeField,Space(10)] public Menu _menu;
+    [SerializeField] private FilterMenu _filterMenu;
 
     private FilterBase _currentFilter;
     private int _index = 0;
@@ -25,11 +26,26 @@ public class EffectControlMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _filters = new List<FilterBase>();
+        foreach (Transform child in transform)
+        {
+            
+            _filters.Add( child.GetComponent<FilterBase>() );
+
+        }
+        _filterMenu.Init( _filters );
         _next();
     }
 
-    public void SetFilter(){
-
+    public void SetFilter(int idx){
+        
+        for(int i=0;i<_filters.Count;i++){
+            _filters[i].Hide();
+        }
+        _index = idx;
+        _currentFilter = _filters[_index % _filters.Count];
+        _currentFilter.Show( this );
+        
     }
 
     // Update is called once per frame
@@ -43,13 +59,15 @@ public class EffectControlMain : MonoBehaviour
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
-            _next();
+            //_next();
         }
 
-        _currentFilter.UpdateFilter(
-            //_humanBodyManager,
-            //_menu        
-        );
+        if(_currentFilter){
+            _currentFilter.UpdateFilter(
+                //_humanBodyManager,
+                //_menu        
+            );
+        }
 
     }
 

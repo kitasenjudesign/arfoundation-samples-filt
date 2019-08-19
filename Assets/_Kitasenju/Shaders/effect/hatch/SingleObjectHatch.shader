@@ -14,6 +14,7 @@ Shader "effects/hatch/SingleObjectHatch"
         _Th("_Th",Vector) = (0,0,0,0)
         _StencilTex ("_StencilTex", 2D) = "white" {}   
 
+        [Toggle] _Revert("_Revert", Float) = 0
 	}
 	SubShader
 	{
@@ -52,6 +53,7 @@ Shader "effects/hatch/SingleObjectHatch"
 
 			sampler2D _Hatch0;
 			sampler2D _Hatch1;
+			float _Revert;
 			float4 _LightColor0;
 			
 			float4 _Th;
@@ -123,10 +125,15 @@ Shader "effects/hatch/SingleObjectHatch"
 				//fixed2 rotUV1 = rotate( i.uv * scl, floor( snoise( float3(i.uv*detail+intensity, tt ) ) * 20 ) / 20 * 2*3.14 );
 				//fixed2 rotUV2 = rotate( i.uv * scl, floor( snoise( float3(i.uv*detail+intensity, tt ) ) * 20 ) / 20 * 2*3.14 );
 
-				fixed2 rotUV1 = rotate( i.uv * scl, floor( snoise( float3(i.uv.x*detail,i.uv.y*detail+intensity*0.1, tt ) ) * 20 ) / 20 * 2*3.14 );
-				fixed2 rotUV2 = rotate( i.uv * scl, floor( snoise( float3(i.uv.y*detail,i.uv.y*detail+intensity*0.1, tt ) ) * 20 ) / 20 * 2*3.14 );
-
-
+				float2 fuv = i.uv * float2( 1, _ScreenParams.y/_ScreenParams.x );
+				fixed2 rotUV1 = rotate(
+					 fuv * scl, 
+					 floor( snoise( float3(fuv.x*detail,fuv.y*detail+intensity*0.1, tt ) ) * 20 ) / 20 * 2*3.14 
+				);
+				fixed2 rotUV2 = rotate(
+					 fuv * scl, 
+					 floor( snoise( float3(fuv.y*detail,fuv.y*detail+intensity*0.1, tt ) ) * 20 ) / 20 * 2*3.14 
+				);
 
 				color.rgb =  Hatching( rotUV1, rotUV2, intensity);
 
@@ -136,15 +143,17 @@ Shader "effects/hatch/SingleObjectHatch"
 				fixed4 col0 = tex2D(_MainTex, i.uv);
 
 				//stencil
-                float2 stencilUV = GetStencilUV( i.uv );//, _Th.x-0.5 );
-                //stencilUV.y = 1 - stencilUV.y;
-                //float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                //stencilUV.y = stencilUV.y*bai + (1-bai)/2;
-
+                float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 				
 				fixed4 outCol = lerp( col0, color, step(0.5,stencil.r) );
 				
+				if( _Revert == 1 ){
+					//col0.rgb = (col0.r+col0.g+col0.b)/3;
+                    outCol = lerp( col0, color, step(0.5,1-stencil.r) );
+                }
+
+
 
 				return outCol;
 			}

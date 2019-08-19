@@ -65,12 +65,13 @@
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
                 fixed4 col = _EdgeColor * step(0.5,edge - _Threshold);
-
+                col = 1-col;
 
 
                 float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 
+                col0.rgb = (col0.r+col0.g+col0.b)*0.33333;
                 fixed4 outputCol = lerp(col,col0,stencil.r);
 
 

@@ -22,7 +22,7 @@ public class DuplicationFilter : FilterBase
     public override void Show(EffectControlMain main){
         
         base.Show(main);
-        
+        //_main._arBackground.enabled=false;
 
     }
 
@@ -31,8 +31,6 @@ public class DuplicationFilter : FilterBase
         //初期化が必要な時
         //Debug.Log( _main._arBackground );
         //Debug.Log("init >> " + _main._arBackground.material);
-
-    
         _renderTex      = new RenderTexture(512,256,0);
         _slitRecMat     = new Material( _slitRecShader );
         _fillMat        = new Material( _fillShader );

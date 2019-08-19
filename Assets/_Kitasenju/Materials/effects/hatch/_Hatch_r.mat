@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: _Hatch
+  m_Name: _Hatch_r
   m_Shader: {fileID: 4800000, guid: 044ffd85111bc41e8a223bfb550accf3, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _REVERT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -80,7 +80,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Revert: 0
+    - _Revert: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

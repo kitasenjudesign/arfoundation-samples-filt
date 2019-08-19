@@ -7,6 +7,7 @@ using NatShareU;
 #endif
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Video;
+using DG.Tweening;
 
 public class ReplayPlayer : MonoBehaviour
 {
@@ -18,12 +19,13 @@ public class ReplayPlayer : MonoBehaviour
     [SerializeField,Space(10)] private ARSession _arSession;
     [SerializeField] public VideoPlayer _videoPlayer;
     private string _path = "";
-
+    private RectTransform _rectTrans;
 
     // Start is called before the first frame update
     void Awake()
     {
 
+        _rectTrans = GetComponent<RectTransform>();
         _saveBtn.onClick.AddListener( _saveVideo );
         _closeBtn.onClick.AddListener( _hideVideo );
         gameObject.SetActive(false);
@@ -37,6 +39,10 @@ public class ReplayPlayer : MonoBehaviour
         //replayを開始する
         _path = path;
         gameObject.SetActive(true);
+
+
+        _rectTrans.localPosition = new Vector3(0,-Screen.height,0);
+        _rectTrans.DOLocalMoveY(0,0.5f);
 
         if(_arSession!=null){
             _arSession.enabled=false;

@@ -73,7 +73,7 @@
                 float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 
-                fixed4 outputCol = lerp(col0,col,stencil.r);
+                fixed4 outputCol = lerp(col,col0,stencil.r);
 
 
                 return outputCol;

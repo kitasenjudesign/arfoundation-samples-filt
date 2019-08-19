@@ -58,7 +58,8 @@ namespace NatCorder.Examples {
                 30,
                 recordMicrophone ? AudioSettings.outputSampleRate : 0,
                 recordMicrophone ? (int)AudioSettings.speakerMode : 0,
-                OnReplay
+                OnReplay,
+                Mathf.FloorToInt( 5909760*1.5f )
             );
             // Create recording inputs
             cameraInput = new CameraInput(videoRecorder, recordingClock, Camera.main);
