@@ -22,12 +22,14 @@ public class EffectControlMain : MonoBehaviour
 
     private FilterBase _currentFilter;
     private int _index = 0;
-
+    private RenderTexture _camTex;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _camTex=new RenderTexture( Screen.width, Screen.height, 0);
+
         _filters = new List<FilterBase>();
         foreach (Transform child in transform)
         {
@@ -65,6 +67,7 @@ public class EffectControlMain : MonoBehaviour
         }
 
         if(_currentFilter){
+            
             _currentFilter.UpdateFilter(
                 //_humanBodyManager,
                 //_menu        
@@ -85,10 +88,17 @@ public class EffectControlMain : MonoBehaviour
 
     }
 
+    public void SetCamToMainTex(Material mat){
+        if(_arBackground.material){
+            Graphics.Blit(null,_camTex,_arBackground.material);
+            mat.SetTexture("_MainTex",_camTex);
+        }
+    }
+
     public void SetImageEffect(Material mat){
         
-        _imageEffect.material = mat;
-
+        //_imageEffect.material = mat;
+        _fullScreenQuad.SetMaterial(mat);
     }
 
 

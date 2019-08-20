@@ -20,6 +20,7 @@ public class ReplayPlayer : MonoBehaviour
     [SerializeField] public VideoPlayer _videoPlayer;
     private string _path = "";
     private RectTransform _rectTrans;
+    private bool _isMoving = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -40,7 +41,7 @@ public class ReplayPlayer : MonoBehaviour
         _path = path;
         gameObject.SetActive(true);
 
-
+        //animation
         _rectTrans.localPosition = new Vector3(0,-Screen.height,0);
         _rectTrans.DOLocalMoveY(0,0.5f);
 
@@ -71,11 +72,24 @@ public class ReplayPlayer : MonoBehaviour
 
     private void _hideVideo(){
         
+        if(_isMoving)return;
+        _isMoving=true;
+
         if(_arSession){
             _arSession.enabled=true;
         }
-        gameObject.SetActive(false);
+
+        
+        _rectTrans.DOLocalMoveY(-Screen.height,0.5f).OnComplete(()=>{
+            
+            _isMoving=false;
+            gameObject.SetActive(false);
+
+        });
+
     }
+
+
 
     public IEnumerator startPreview (string path){
         Debug.Log("Playing Preview: " + path);
@@ -106,6 +120,8 @@ public class ReplayPlayer : MonoBehaviour
 
         //Assign the Texture from Movie to RawImage to be displayed
         _rawImage.texture = _videoPlayer.texture;
+
+
 
         _videoPlayer.enabled=true;
         _videoPlayer.Play();

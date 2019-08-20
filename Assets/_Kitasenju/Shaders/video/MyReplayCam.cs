@@ -42,6 +42,7 @@ namespace NatCorder.Examples {
 
         [SerializeField,Space(10)] private ReplayPlayer _player;
         [SerializeField] private RawImage rawImage;
+        [SerializeField,Space(10)] private Camera cam;
         private string _path = "";
 
         void Awake(){
@@ -62,7 +63,7 @@ namespace NatCorder.Examples {
                 Mathf.FloorToInt( 5909760*1.5f )
             );
             // Create recording inputs
-            cameraInput = new CameraInput(videoRecorder, recordingClock, Camera.main);
+            cameraInput = new CameraInput(videoRecorder, recordingClock, cam);//Camera.main);
             if (recordMicrophone) {
                 StartMicrophone();
                 audioInput = new AudioInput(videoRecorder, recordingClock, microphoneSource, true);

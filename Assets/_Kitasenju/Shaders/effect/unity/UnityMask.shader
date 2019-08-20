@@ -1,10 +1,10 @@
-﻿Shader "effects/duplication/SimpleOutput"
+﻿Shader "effects/unity/UnityMask"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _OutputTex ("_OutputTex", 2D) = "white" {}
-        
+        _StencilTex ("_StencilTex", 2D) = "white" {}
+        [Toggle] _Revert("_Revert", Float) = 0 
     }
     SubShader
     {
@@ -18,6 +18,7 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "../util/StencilUV.hlsl"
 
             struct appdata
             {
@@ -40,16 +41,25 @@
             }
 
             sampler2D _MainTex;
-            sampler2D _OutputTex;
-
+            sampler2D _StencilTex;
+            float _Revert;
+            //simple
             fixed4 frag (v2f i) : SV_Target
             {
-                
-                fixed4 col = tex2D(_OutputTex, i.uv);
-                // just invert the colors
-                //col.rgb = 1 - col.rgb;
-                return col;
+                fixed4 col = tex2D(_MainTex, i.uv);
 
+                float2 stencilUV = GetStencilUV( i.uv );
+                fixed4 stencil = tex2D(_StencilTex, stencilUV);
+
+
+                // just invert the colors
+                if(_Revert==0){
+                    if(stencil.r < 0.5) discard;
+                }else{
+                    if(stencil.r > 0.5) discard;
+                }   
+
+                return col;
             }
             ENDCG
         }

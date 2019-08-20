@@ -117,11 +117,12 @@ Shader "effects/hatch/SingleObjectHatch"
 				fixed intensity = dot(diffuse, fixed3(0.2326, 0.7152, 0.0722));
 				
 				//
-				float scl = 4;
+				float scl = 8;
 				//fixed2 rotUV1 = rotate( i.uv * scl, sin( floor(_Time.y*2.0) * 999.9 )*0.8  );
 				//fixed2 rotUV2 = rotate( i.uv * scl, sin( floor(_Time.y*2.0) * 999.9 )*1.1  );
 				float tt = floor(_Time.y * 4)*10;
 				float detail = 0.005+4*(0.5 + 0.5*sin(tt));
+				//detail*=0.5;
 				//fixed2 rotUV1 = rotate( i.uv * scl, floor( snoise( float3(i.uv*detail+intensity, tt ) ) * 20 ) / 20 * 2*3.14 );
 				//fixed2 rotUV2 = rotate( i.uv * scl, floor( snoise( float3(i.uv*detail+intensity, tt ) ) * 20 ) / 20 * 2*3.14 );
 

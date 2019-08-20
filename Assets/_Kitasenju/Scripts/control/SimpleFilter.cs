@@ -18,6 +18,7 @@ public class SimpleFilter : FilterBase
         Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
         Texture2D humanDepth    = _main._humanBodyManager.humanDepthTexture;
 
+        _main.SetCamToMainTex(_material);
         _material.SetTexture("_DepthTex", humanDepth );
 
         if(_main._menu){

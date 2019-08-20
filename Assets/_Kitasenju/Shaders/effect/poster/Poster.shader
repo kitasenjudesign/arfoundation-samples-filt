@@ -54,6 +54,10 @@
                 return o;
             }
             
+            float rand(float2 co){
+                return frac(sin(dot(co.xy ,float2(12.9898,78.233))) * 43758.5453);
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 duv = _MainTex_TexelSize.xy;
@@ -64,10 +68,12 @@
 
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
-                fixed4 col = floor( col0 * 3 ) / 3;
+                float rr = rand( floor( i.uv * 300 + floor( _Time.x*100 )*100 ) );
+                fixed4 col = floor( ( col0 + 0.2 * rr ) * 3 ) / 3;
+
+
 
                 col = col - _EdgeColor * step(0.5,edge - _Threshold);
-
 
 
                 float2 stencilUV = GetStencilUV( i.uv );
