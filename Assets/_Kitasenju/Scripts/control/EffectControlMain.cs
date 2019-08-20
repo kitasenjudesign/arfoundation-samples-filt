@@ -13,7 +13,9 @@ public class EffectControlMain : MonoBehaviour
 {
     [SerializeField] public ARCameraBackground _arBackground;
     [SerializeField] public ARHumanBodyManager _humanBodyManager;
-    [SerializeField] private ImageEffectBase _imageEffect;
+    [SerializeField,Space(10)] private ImageEffectBase _imageEffect;
+    [SerializeField] private FullScreenQuad _fullScreenQuad;
+
     [SerializeField,Space(10)] private List<FilterBase> _filters;
     [SerializeField,Space(10)] public Menu _menu;
     [SerializeField] private FilterMenu _filterMenu;

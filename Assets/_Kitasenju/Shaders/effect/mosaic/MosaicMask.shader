@@ -2,6 +2,8 @@
 {
     Properties
     {
+        [KeywordEnum(POSTEFFECT,QUAD)]
+        _VERT("VERT KEYWORD", Float) = 0
         _MainTex ("_MainTex", 2D) = "white" {}
         _StencilTex ("_StencilTex", 2D) = "white" {}
         _DepthTex ("_DepthTex", 2D) = "white" {}
@@ -24,6 +26,8 @@
 
             #include "UnityCG.cginc"
             #include "../util/StencilUV.hlsl"
+            #include "../util/FullScreen.hlsl"
+            #pragma multi_compile _VERT_POSTEFFECT _VERT_QUAD
 
             struct appdata
             {
@@ -46,7 +50,14 @@
             v2f vert (appdata v)
             {
                 v2f o;
+
+                //POSTエフェクトに使うか、フルスクリーン用quadに使うか
+                #ifdef _VERT_POSTEFFECT
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                #elif _VERT_QUAD
+                o.vertex = GetFullScreenVert( v.vertex );
+                #endif
+
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
                 return o;

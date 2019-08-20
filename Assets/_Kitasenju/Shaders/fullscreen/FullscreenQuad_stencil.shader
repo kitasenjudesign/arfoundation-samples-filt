@@ -45,11 +45,15 @@
 			{
 				v2f o;
 				
+				/*
 				o.vertex = v.vertex;// + float4(0.5,0.5,0,0);//UnityObjectToClipPos(v.vertex);
 				o.vertex.x *= 2.0;
 				o.vertex.y *= 2.0;
 				o.vertex.z = 0.00001;
 				o.vertex.w = 1.0;
+				*/
+				
+				o.vertex = UnityObjectToClipPos(v.vertex);
 
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				UNITY_TRANSFER_FOG(o,o.vertex);

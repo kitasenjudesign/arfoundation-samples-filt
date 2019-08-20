@@ -550,7 +550,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282840810}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b5fc4e0fd26b481c94746124eda212d, type: 3}
   m_Name: 
@@ -2506,6 +2506,7 @@ MonoBehaviour:
   _arBackground: {fileID: 282840812}
   _humanBodyManager: {fileID: 1335839536}
   _imageEffect: {fileID: 282840817}
+  _fullScreenQuad: {fileID: 1871011841}
   _filters: []
   _menu: {fileID: 785619057}
   _filterMenu: {fileID: 1204305542}
@@ -4387,13 +4388,14 @@ GameObject:
   - component: {fileID: 1871011840}
   - component: {fileID: 1871011839}
   - component: {fileID: 1871011838}
+  - component: {fileID: 1871011841}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1871011837
 Transform:
   m_ObjectHideFlags: 0
@@ -4467,6 +4469,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871011836}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1871011841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871011836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267cb2eaaab974b58a2458694185ceb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885557430
 GameObject:
   m_ObjectHideFlags: 0
