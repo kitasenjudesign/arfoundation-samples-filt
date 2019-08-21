@@ -31,8 +31,8 @@ public class FilterMenu : MonoBehaviour
 
     private Vector3 GetPositionByIndex(int idx){
         return new Vector3(
-            0,
-            (float)idx*200
+            (float)idx*200,//0,
+            0//(float)idx*200
             ,0
         );
     }
@@ -42,10 +42,12 @@ public class FilterMenu : MonoBehaviour
         
         _containerRect = _container.GetComponent<RectTransform>();
 
+        /*
         var v = GetPositionByIndex(idx);
         _containerRect.DOLocalMoveY(
             -v.y,0.5f
         ).SetEase( Ease.OutCubic );
+        */
 
         _control.SetFilter(idx);
 
