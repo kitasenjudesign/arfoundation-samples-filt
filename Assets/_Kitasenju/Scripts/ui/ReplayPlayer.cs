@@ -119,6 +119,7 @@ public class ReplayPlayer : MonoBehaviour
         Debug.Log("Done Preparing Movie");
 
         //Assign the Texture from Movie to RawImage to be displayed
+        _rawImage.gameObject.SetActive(true);
         _rawImage.texture = _videoPlayer.texture;
 
 

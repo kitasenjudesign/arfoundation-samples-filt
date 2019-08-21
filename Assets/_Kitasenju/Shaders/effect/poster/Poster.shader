@@ -22,6 +22,7 @@
            #pragma multi_compile _ RobertsCross
 
             #include "UnityCG.cginc"
+            #include "../noise/SimplexNoise3D.hlsl"
             #include "../util/Edge.hlsl"
             #include "../util/StencilUV.hlsl"
 
@@ -62,18 +63,19 @@
             {
                 float2 duv = _MainTex_TexelSize.xy;
 
-                float cg = GetEdge(_MainTex,i.uv,duv);
-
-                half4 edge = cg * _Sensitivity;
 
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
-                float rr = rand( floor( i.uv * 300 + floor( _Time.x*100 )*100 ) );
+                float cg = GetEdge(_MainTex, i.uv+(col0.rg-0.5)*0.02, duv);
+                half4 edge = cg * _Sensitivity;
+
+
+                float rr = snoise( float3(i.uv*300,floor( _Time.z*5 ) ) );//rand( floor( i.uv * 300 + floor( _Time.x*100 )*100 ) );
                 fixed4 col = floor( ( col0 + 0.2 * rr ) * 3 ) / 3;
 
 
 
-                col = col - _EdgeColor * step(0.5,edge - _Threshold);
+                col = col - _EdgeColor * step(0.5+rr*0.1,edge - _Threshold);
 
 
                 float2 stencilUV = GetStencilUV( i.uv );

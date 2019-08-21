@@ -1,0 +1,78 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using GodTouches;
+
+public class TouchTester : MonoBehaviour
+{
+
+    [SerializeField] private RectTransform _filterMenu;
+    private float _yy = 0;
+    private Vector3 past = new Vector3();
+    private Vector3 velocity= new Vector3();
+    private bool _isDrag = false;
+    [SerializeField,Range(0,1f)] private float _speed = 0.2f;
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        past = GodTouch.GetPosition();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+			//if (ClickLongPressDrag.IsRunning) return; // 他のサンプルが動作してる時は無効
+
+			// タッチを検出して動かす
+			var phase = GodTouch.GetPhase ();
+
+            //if(phase == GodPhase)
+
+            if (phase == GodPhase.Began) 
+			{
+                _isDrag=true;
+                past = GodTouch.GetPosition();
+				//startPos = Move.position;
+			}
+            else if (phase == GodPhase.Moved) 
+			{
+				//完全についてくる
+                //_filterMenu.position = GodTouch.GetPosition();
+
+                
+//				Move.position += GodTouch.GetDeltaPosition(); 
+			}
+            else if (phase == GodPhase.Ended) 
+			{
+				//Move.position = startPos;
+                _isDrag=false;
+			}
+            
+
+            if(_isDrag){
+                var now = GodTouch.GetPosition();
+                velocity += _speed * (now - past);
+                past = GodTouch.GetPosition();
+            }
+
+            velocity *= 0.95f;
+            
+
+            var p = _filterMenu.localPosition;
+            p.y += velocity.y;
+
+            if(p.y>0){
+                p.y += (0-p.y)/10f;
+                velocity.y=0;
+            }
+            if(p.y<-3000){
+                p.y += (-3000-p.y)/10f;
+                velocity.y=0;
+            }
+
+            _filterMenu.localPosition = p;
+
+    }
+}
