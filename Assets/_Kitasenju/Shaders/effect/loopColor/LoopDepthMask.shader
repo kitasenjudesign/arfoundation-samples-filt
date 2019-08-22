@@ -24,7 +24,8 @@
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
-            #include "./noise/SimplexNoise3D.hlsl"
+            //#include "./noise/SimplexNoise3D.hlsl"
+            #include "../util/StencilUV.hlsl"
 
             struct appdata
             {
@@ -68,28 +69,16 @@
                 fixed4 col0 = tex2D(_MainTex,i.uv);
 
                 //i.uv.x = 1 - i.uv.x;
-                float2 stencilUV = i.uv;
-                stencilUV.y = 1 - stencilUV.y;
-
-                float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                stencilUV.y = stencilUV.y*bai + (1-bai)/2;
+                float2 stencilUV = GetStencilUV(i.uv);
 
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
                 fixed4 depth    = tex2D( _DepthTex, stencilUV );
-
-                float2 mosaicUV = float2(
-                    snoise(float3(i.uv*_Detail, depth.r*2.0 + _Time.y*1.0)),
-                    snoise(float3(i.uv*_Detail, depth.r*2.0 + _Time.y*1.5))
-                );
 
                 //mosaic
                 fixed4 col = tex2D(_MainTex,  i.uv );
                 //col = 0.5 + 0.5*sin( col * 50 * _DepthTh + _Time.z * 2.0 );
                 col = frac( col * 10 + _Time.z * 2.0 );
                 
-
-
-
                 //マスク
                 col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
 

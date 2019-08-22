@@ -9,7 +9,9 @@ public class TouchTester : MonoBehaviour
     [SerializeField] private RectTransform _filterMenu;
     private float _yy = 0;
     private Vector3 past = new Vector3();
-    private Vector3 velocity= new Vector3();
+    [SerializeField] private Vector3 velocity= new Vector3();
+    private Vector3 startTapPos = new Vector3();
+    private Vector3 startObjPos = new Vector3();
     private bool _isDrag = false;
     [SerializeField,Range(0,1f)] private float _speed = 0.3f;
     [SerializeField] private float _width = 2500f;
@@ -25,8 +27,9 @@ public class TouchTester : MonoBehaviour
     {
         
 			//if (ClickLongPressDrag.IsRunning) return; // 他のサンプルが動作してる時は無効
-
+            //ドラッグしてる時
             if(_isDrag){
+                velocity *= 0.8f;
                 var now = GodTouch.GetPosition();
                 velocity += _speed * (now - past);
                 past = GodTouch.GetPosition();
@@ -38,7 +41,9 @@ public class TouchTester : MonoBehaviour
             if (phase == GodPhase.Began) 
 			{
                 _isDrag=true;
-                past = GodTouch.GetPosition();
+                past        = GodTouch.GetPosition();
+                startTapPos    = GodTouch.GetPosition();
+                startObjPos = _filterMenu.localPosition;
 				//startPos = Move.position;
 			}
             else if (phase == GodPhase.Moved) 
@@ -46,6 +51,9 @@ public class TouchTester : MonoBehaviour
 				//完全についてくる
                 //_filterMenu.position = GodTouch.GetPosition();                
 //				Move.position += GodTouch.GetDeltaPosition(); 
+                var pp = _filterMenu.localPosition;
+                pp.x = startObjPos.x - (startTapPos-GodTouch.GetPosition()).x;
+                _filterMenu.localPosition = pp;
 			}
             else if (phase == GodPhase.Ended) 
 			{
@@ -54,22 +62,26 @@ public class TouchTester : MonoBehaviour
 			}
             
 
-            
-
-            velocity *= 0.95f;
-            
-
             var p = _filterMenu.localPosition;
-            p.x += velocity.x;
 
-            if(p.x>0){
-                p.x += (0-p.x)/10f;
-                velocity.x=0;
+            //ドラッグしてない時、速度を反映させる
+            if(!_isDrag){
+                velocity *= 0.95f;
+                p.x += velocity.x;
+
+                //ドラッグしてない時　行き過ぎを補正する
+                if(p.x>0){
+                    p.x += (0-p.x)/10f;
+                    velocity.x*=0.7f;
+                }
+                if(p.x<-_width){
+                    p.x += (-_width-p.x)/10f;
+                    velocity.x*=0.7f;
+                }
+
             }
-            if(p.x<-_width){
-                p.x += (-_width-p.x)/10f;
-                velocity.x=0;
-            }
+
+
 
             _filterMenu.localPosition = p;
 

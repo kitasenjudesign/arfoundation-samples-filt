@@ -10,6 +10,8 @@ public class FilterMenu : MonoBehaviour
     [SerializeField] private List<FilterBtn> _btns;
     [SerializeField] private EffectControlMain _control;
     [SerializeField] private GameObject _container;
+    [SerializeField] private float _width = 0;
+
     private RectTransform _containerRect;
 
 
@@ -42,12 +44,16 @@ public class FilterMenu : MonoBehaviour
         
         _containerRect = _container.GetComponent<RectTransform>();
 
-        /*
+        
         var v = GetPositionByIndex(idx);
-        _containerRect.DOLocalMoveY(
-            -v.y,0.5f
+        var tgt = -v.x + 430f;
+        if(tgt>0) tgt = 0;
+        if(tgt<-_width) tgt = -_width; 
+
+        _containerRect.DOLocalMoveX(
+            tgt,0.5f
         ).SetEase( Ease.OutCubic );
-        */
+        
 
         _control.SetFilter(idx);
 

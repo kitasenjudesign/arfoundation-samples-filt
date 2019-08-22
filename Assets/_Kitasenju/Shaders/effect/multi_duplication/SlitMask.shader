@@ -4,6 +4,7 @@
     {
         _MainTex ("_MainTex", 2D) = "white" {}
         _StencilTex ("_StencilTex", 2D) = "white" {}
+        _Index("_Index",float) = 0
         //_DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
         //_Detail("_Detail",Range(0,5)) = 0.5
@@ -47,6 +48,7 @@
             float _Detail;
             float4 _MainTex_ST;
             float _Revert;
+            float _Index;
 
             v2f vert (appdata v)
             {
@@ -60,18 +62,21 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
                 
-                //float2 mosaicUV = round(i.uv*aspect*40)/(aspect*40);
-                //noiseuv
+                /*
+                float2 noiseUV = float2(
+                    snoise(float3(i.uv*10+_Index, 2.0 + _Time.y*1.0)),
+                    snoise(float3(i.uv*10+_Index, 2.0 + _Time.y*1.5))
+                );*/
 
 
+                float2 uvv = i.uv;
 
-                fixed4 col0 = tex2D(_MainTex,i.uv);
 
-                //i.uv.x = 1 - i.uv.x;
-                float2 stencilUV = i.uv;
+                fixed4 col0 = tex2D(_MainTex, uvv);
+
+                float2 stencilUV = uvv;
                 stencilUV.y = 1 - stencilUV.y;
 
                 float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
@@ -80,13 +85,11 @@
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
                 //fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
-                //float2 mosaicUV = float2(
-                //    snoise(float3(i.uv*_Detail, depth.r*2.0 + _Time.y*1.0)),
-                //    snoise(float3(i.uv*_Detail, depth.r*2.0 + _Time.y*1.5))
-                //);
-
-                fixed4 col = tex2D(_MainSlitTex, i.uv );//
                 
+
+                fixed4 col = tex2D(_MainSlitTex, uvv );//
+                
+
                 //マスク
                 if(_Revert==0){
                     col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                

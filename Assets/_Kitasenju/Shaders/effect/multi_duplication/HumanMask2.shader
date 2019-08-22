@@ -4,11 +4,7 @@
     {
         _MainColTex ("_MainColTex", 2D) = "white" {}
         _StencilTex ("_StencilTex", 2D) = "white" {}
-        _Bai("_Bai",float) = 0
-        _Bai2("_Bai2",float) = 0
-
-        [Toggle] _Revert("_Revert", Float) = 0
-
+        _Strength ("_Strength",float) = 0
     }
     SubShader
     {
@@ -40,9 +36,7 @@
 
             sampler2D _MainColTex;
             sampler2D _StencilTex;
-            float _Revert;
-            float _Bai;
-            float _Bai2;
+            float _Strength;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -58,14 +52,19 @@
             {
                 // sample the texture
                 
-                float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
-                float2 mosaicUV = round(i.uv*aspect*120)/(aspect*120);
+                float2 noiseUV = float2(
+                    _Strength * 0.1 * snoise(float3(i.uv*3, 2.0 + _Time.y*1.0)),
+                    _Strength * 0.1 * snoise(float3(i.uv*3, 2.0 + _Time.y*1.5))
+                );   
+                float2 uvv = i.uv + noiseUV;
 
-                fixed4 col = tex2D(_MainColTex, mosaicUV);//mosaic
-                fixed4 col0 = tex2D(_MainColTex,i.uv);//normal
+                float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
+                //float2 mosaicUV = i.uv;//round(i.uv*aspect*120)/(aspect*120);
+                //fixed4 col = tex2D(_MainColTex, mosaicUV);//mosaic
+                fixed4 col0 = tex2D(_MainColTex,uvv);//normal
 
                 //i.uv.x = 1 - i.uv.x;
-                float2 stencilUV = GetStencilUV( i.uv );
+                float2 stencilUV = GetStencilUV( uvv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
                 clip( stencil.r - 0.5 );
 

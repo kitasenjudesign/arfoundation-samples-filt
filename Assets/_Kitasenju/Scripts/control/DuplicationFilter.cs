@@ -49,14 +49,14 @@ public class DuplicationFilter : FilterBase
         );
 
         _slitscanColor = new SimpleSlitScan(
-            640,
-            480,
+            480,//640,
+            640,//480,
             RenderTextureFormat.ARGB32,
             _slitRecMat
         );
         _slitscanStencil = new SimpleSlitScan(
-            960,
-            720,
+            720,//960,
+            960,//720,
             RenderTextureFormat.R8,
             _slitRecMat
         );
@@ -86,8 +86,8 @@ public class DuplicationFilter : FilterBase
             }
 
             //フレームを保存する、これをコピーさせておく
-            _slitscanColor.UpdateFrame(_inputTex);
-            _slitscanStencil.UpdateFrame(humanStencil);
+            _slitscanColor.UpdateFrame(     _inputTex);
+            _slitscanStencil.UpdateFrame(   humanStencil);
 
             //そのうち２フレームを抜粋する
             var camIdx = new int[]{0,5,10,15,20,25,30,35,40,45,50,59};
@@ -105,6 +105,7 @@ public class DuplicationFilter : FilterBase
 
                 _fillMat.SetTexture("_MainColTex", _slitscanColor.GetFrame(camIdx[len-i-1]) );
                 _fillMat.SetTexture("_StencilTex", _slitscanStencil.GetFrame(stencilIdx[len-i-1]) );
+                _fillMat.SetFloat("_Strength", 1f - (float)i/(float)len);
 
                 Graphics.Blit( null, _outputTex, _fillMat );
 

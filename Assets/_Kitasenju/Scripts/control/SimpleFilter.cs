@@ -10,7 +10,7 @@ public class SimpleFilter : FilterBase
         
         base.Show(main);
         _main.SetImageEffect(_material);
-
+        UpdateFilter();
     }
     
     public override void UpdateFilter(){

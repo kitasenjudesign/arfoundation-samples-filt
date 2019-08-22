@@ -36,6 +36,7 @@ public class SimpleSlitScan
         }
     }
 
+    //コピーするだけ
     public void UpdateFrame(Texture inputTex){
 
         var tgt =_frames[_frames.Count-1];
@@ -58,6 +59,7 @@ public class SimpleSlitScan
             var end  = ( (float)i+1f ) / num;
 
             _material.SetTexture("_MainTex",_frames[i]);
+            _material.SetFloat("_Index",(float)i/(float)_frames.Count);
             _material.SetVector("_Pos",new Vector4(start,end,0,0) );
             Graphics.Blit(null,_outputTex,_material);//出力
 
