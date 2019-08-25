@@ -55,10 +55,7 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 stencilUV = i.uv;
-                stencilUV.y = 1 - stencilUV.y;
-                float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                stencilUV.y = stencilUV.y*bai + (1-bai)/2;
+                float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 
                 fixed4 col0 = tex2D(_MainTex,i.uv);//normal
@@ -68,8 +65,8 @@
 
 				//モザイクを何分割するか
 				float2 mosaicSize = float2(
-					40,
-					40 * _ScreenParams.y / _ScreenParams.x
+					30,
+					30 * _ScreenParams.y / _ScreenParams.x
 				);
 				float2 roundedUv = floor(i.uv*mosaicSize) / mosaicSize;
 

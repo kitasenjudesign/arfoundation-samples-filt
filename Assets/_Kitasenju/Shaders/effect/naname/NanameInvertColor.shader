@@ -29,6 +29,7 @@
 
             #include "UnityCG.cginc"
             #include "../noise/SimplexNoise3D.hlsl"
+            #include "../util/StencilUV.hlsl"
 
             struct appdata
             {
@@ -71,17 +72,10 @@
                 //float2 mosaicUV = round(i.uv*aspect*40)/(aspect*40);
                 //noiseuv
 
-
-
                 fixed4 col0 = tex2D(_MainTex,i.uv);
 
                 //i.uv.x = 1 - i.uv.x;
-                float2 stencilUV = i.uv;
-                stencilUV.y = 1 - stencilUV.y;
-
-                float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                stencilUV.y = stencilUV.y*bai + (1-bai)/2;
-
+                float2 stencilUV = GetStencilUV(i.uv);
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
                 fixed4 depth    = tex2D( _DepthTex, stencilUV );
 

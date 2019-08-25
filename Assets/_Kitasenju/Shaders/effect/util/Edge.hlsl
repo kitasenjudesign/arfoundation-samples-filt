@@ -1,4 +1,4 @@
-float GetEdge(sampler2D tex, float2 uv, float2 duv){
+half3 GetEdge(sampler2D tex, float2 uv, float2 duv){
 
 
                 half2 uv0 = uv + half2(-duv.x, -duv.y);
@@ -22,9 +22,9 @@ float GetEdge(sampler2D tex, float2 uv, float2 duv){
                 half3 col8 = tex2D(tex, uv8);
  
 //#ifdef Sobel
-                float cgx = col0 * -1 + col2 * 1 + col3 * -2 + col5 * 2 + col6 * -1 + col8 * 1;
-                float cgy = col0 * -1 + col1 * -2 + col2 * -1 + col6 * 1 + col7 * 2 + col8 * 1;
-                float cg = sqrt(cgx * cgx + cgy * cgy);
+                half3 cgx = col0 * -1 + col2 * 1 + col3 * -2 + col5 * 2 + col6 * -1 + col8 * 1;
+                half3 cgy = col0 * -1 + col1 * -2 + col2 * -1 + col6 * 1 + col7 * 2 + col8 * 1;
+                half3 cg = sqrt(cgx * cgx + cgy * cgy);
 //#elif Prewitt
 //                float cgx = col0 * -1 + col2 * 1 + col3 * -1 + col5 * 1 + col6 * -1 + col8 * 1;
 //                float cgy = col0 * -1 + col1 * -1 + col2 * -1 + col6 * 1 + col7 * 1 + col8 * 1;

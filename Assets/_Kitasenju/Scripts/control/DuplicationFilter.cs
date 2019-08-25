@@ -92,6 +92,8 @@ public class DuplicationFilter : FilterBase
             //そのうち２フレームを抜粋する
             var camIdx = new int[]{0,5,10,15,20,25,30,35,40,45,50,59};
             var stencilIdx = new int[]{0,5,10,15,20,25,30,35,40,45,50,59};
+            //var camIdx = new int[]{0,10,20,30,40,50,59};
+            //var stencilIdx = new int[]{0,10,20,30,40,50,59};
 
             //一番背景に、カメラを塗る
             //Graphics.Blit( _cameraTex, _renderTex );
@@ -102,6 +104,8 @@ public class DuplicationFilter : FilterBase
             Graphics.Blit( _inputTex, _outputTex );
 
             for(int i=0;i<len;i++){
+                //_fillMat.SetTexture("_MainColTex", _slitscanColor.GetFrame(camIdx[i]) );
+                //_fillMat.SetTexture("_StencilTex", _slitscanStencil.GetFrame(stencilIdx[i]) );
 
                 _fillMat.SetTexture("_MainColTex", _slitscanColor.GetFrame(camIdx[len-i-1]) );
                 _fillMat.SetTexture("_StencilTex", _slitscanStencil.GetFrame(stencilIdx[len-i-1]) );

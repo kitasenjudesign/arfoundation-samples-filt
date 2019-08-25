@@ -67,8 +67,8 @@
 
 				//モザイクを何分割するか
 				float2 mosaicSize = float2(
-					50,
-					50 * _ScreenParams.y / _ScreenParams.x
+					20,
+					20 * _ScreenParams.y / _ScreenParams.x
 				);
 				float2 roundedUv = floor(i.uv*mosaicSize) / mosaicSize;
 

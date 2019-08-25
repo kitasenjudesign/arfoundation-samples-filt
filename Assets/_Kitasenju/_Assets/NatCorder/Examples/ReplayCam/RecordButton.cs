@@ -18,8 +18,11 @@ namespace NatCorder.Examples {
 		public Image button, countdown;
 		public UnityEvent onTouchDown, onTouchUp;
 		private bool pressed;
-		private const float MaxRecordingTime = 10f; // seconds
+		private bool isRecording = false;
 
+		private const float MaxRecordingTime = 10f; // seconds
+		public System.Action _staticImageCaptureCallback;
+		private float _startTime = 0;
 		private void Start () {
 			Reset();
 		}
@@ -32,18 +35,29 @@ namespace NatCorder.Examples {
 
 		void IPointerDownHandler.OnPointerDown (PointerEventData eventData) {
 			// Start counting
+			_startTime=Time.time;
 			StartCoroutine (Countdown());
 		}
 
 		void IPointerUpHandler.OnPointerUp (PointerEventData eventData) {
 			// Reset pressed
+			if(Time.time - _startTime<0.2f){
+				_staticImageCaptureCallback();
+			}
+
 			pressed = false;
+			//2byou mimanだったら
 		}
 
 		private IEnumerator Countdown () {
+			
 			pressed = true;
 			// First wait a short time to make sure it's not a tap
 			yield return new WaitForSeconds(0.2f);
+
+
+
+
 			if (!pressed) yield break;
 			// Start recording
 			if (onTouchDown != null) onTouchDown.Invoke();
@@ -58,6 +72,7 @@ namespace NatCorder.Examples {
 			Reset();
 			// Stop recording
 			if (onTouchUp != null) onTouchUp.Invoke();
+
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿Shader "effects/MosaicMask"
+﻿Shader "effects/mosaic/MosaicMask"
 {
     Properties
     {
@@ -68,17 +68,13 @@
                 // sample the texture
                 
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
-                float2 mosaicUV = round(i.uv*aspect*40)/(aspect*40);
+                float2 mosaicUV = round(i.uv*aspect*20)/(aspect*20);
 
                 fixed4 col = tex2D(_MainTex, mosaicUV);
                 fixed4 col0 = tex2D(_MainTex,i.uv);
 
                 //i.uv.x = 1 - i.uv.x;
                 float2 stencilUV = GetStencilUV(i.uv);
-                //stencilUV.y = 1 - stencilUV.y;
-
-                //float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                //stencilUV.y = stencilUV.y*bai + (1-bai)/2;
 
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
                 //fixed4 depth    = tex2D( _DepthTex, stencilUV );

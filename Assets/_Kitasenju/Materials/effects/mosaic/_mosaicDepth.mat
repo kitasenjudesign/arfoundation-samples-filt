@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: _mosaicDepth
-  m_Shader: {fileID: 4800000, guid: e9614193499514091845d1915993950f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5fa51442a5bb547bfaa8a5cfc38a10c8, type: 3}
   m_ShaderKeywords: _VERT_POSTEFFECT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

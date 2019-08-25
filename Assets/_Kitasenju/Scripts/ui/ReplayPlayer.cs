@@ -8,19 +8,25 @@ using NatShareU;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Video;
 using DG.Tweening;
+using TMPro;
+using NatCorder.Examples;
 
 public class ReplayPlayer : MonoBehaviour
 {
-
+    [SerializeField] private RecordButton _recordBtn;
     [SerializeField] private Button _saveBtn;
     [SerializeField] private Button _closeBtn;
     [SerializeField] private RawImage _rawImage;
 
     [SerializeField,Space(10)] private ARSession _arSession;
     [SerializeField] public VideoPlayer _videoPlayer;
+    [SerializeField] public TMP_Text _savedTxt;
+    [SerializeField] private ImageCapture _imageCapture;
     private string _path = "";
     private RectTransform _rectTrans;
     private bool _isMoving = false;
+    private bool _isImageMode = false;
+    private Texture2D _capturedImage;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,7 +36,8 @@ public class ReplayPlayer : MonoBehaviour
         _saveBtn.onClick.AddListener( _saveVideo );
         _closeBtn.onClick.AddListener( _hideVideo );
         gameObject.SetActive(false);
-
+        _savedTxt.gameObject.SetActive(false);
+        _recordBtn._staticImageCaptureCallback = ShowImage;
     }
 
 
@@ -40,7 +47,7 @@ public class ReplayPlayer : MonoBehaviour
         //replayを開始する
         _path = path;
         gameObject.SetActive(true);
-
+        _isImageMode=false;
         //animation
         _rectTrans.localPosition = new Vector3(0,-Screen.height,0);
         _rectTrans.DOLocalMoveY(0,0.5f);
@@ -56,22 +63,47 @@ public class ReplayPlayer : MonoBehaviour
             //System.WriteLine(v);
         }
         Debug.Log("finish all");
+    }
 
-        
 
+    public void ShowImage(){
+        //画像用に作ったが今は使わない
+        _isImageMode=true;
+        _imageCapture.Capture(_ShowImage2);
         
     }
 
+    private void _ShowImage2(Texture2D tex){
+        _capturedImage=tex;
+        gameObject.SetActive(true);
+        _rawImage.gameObject.SetActive(true);
+        _rawImage.texture=tex;
+        //animation
+        _rectTrans.localPosition = new Vector3(0,-Screen.height,0);
+        _rectTrans.DOLocalMoveY(0,0.5f);
+
+    }
+
     private void _saveVideo(){
+        
+        _savedTxt.gameObject.SetActive(true);
+
         #if UNITY_IOS
-        NatShare.SaveToCameraRoll(_path);
+            if(_isImageMode){
+                NatShare.SaveToCameraRoll(_capturedImage);
+            }else{
+                NatShare.SaveToCameraRoll(_path);
+            }
         #endif
 
-        _hideVideo();
+        //_hideVideo();
+        Invoke("_hideVideo",0.5f);
     }
 
     private void _hideVideo(){
         
+        _savedTxt.gameObject.SetActive(false);
+
         if(_isMoving)return;
         _isMoving=true;
 
@@ -122,6 +154,12 @@ public class ReplayPlayer : MonoBehaviour
         _rawImage.gameObject.SetActive(true);
         _rawImage.texture = _videoPlayer.texture;
 
+        var saveBtnRect = _saveBtn.GetComponent<RectTransform>();
+        var closeBtnRect = _closeBtn.GetComponent<RectTransform>();
+        saveBtnRect.localScale=Vector3.zero;
+        closeBtnRect.localScale=Vector3.zero;
+        saveBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.3f);
+        closeBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.4f);
 
 
         _videoPlayer.enabled=true;

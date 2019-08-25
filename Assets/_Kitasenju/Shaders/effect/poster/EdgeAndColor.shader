@@ -58,14 +58,16 @@
             {
                 float2 duv = _MainTex_TexelSize.xy;
 
-                float cg = GetEdge(_MainTex,i.uv,duv);
+                half3 cg = GetEdge(_MainTex,i.uv,duv);
 
-                half4 edge = cg * _Sensitivity;
+                half3 edge = cg * _Sensitivity;
 
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
-                fixed4 col = _EdgeColor * step(0.5,edge - _Threshold);
-                col = 1-col;
+                fixed4 col = fixed4( frac(edge*3+_Time.zzz) ,1) * step(0.5,length(edge.rgb) - _Threshold);
+                //fixed4 col = fixed4(edge,1);//_EdgeColor * step(0.5,edge - _Threshold);
+
+                //col = 1-col;
 
 
                 float2 stencilUV = GetStencilUV( i.uv );

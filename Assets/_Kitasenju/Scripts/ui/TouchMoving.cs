@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using GodTouches;
 
-public class TouchTester : MonoBehaviour
+public class TouchMoving : MonoBehaviour
 {
 
-    [SerializeField] private RectTransform _filterMenu;
+    [SerializeField] private FilterMenu _filterMenu;
+    [SerializeField] private RectTransform _container;
     private float _yy = 0;
     private Vector3 past = new Vector3();
     [SerializeField] private Vector3 velocity= new Vector3();
@@ -25,7 +26,7 @@ public class TouchTester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+            
 			//if (ClickLongPressDrag.IsRunning) return; // 他のサンプルが動作してる時は無効
             //ドラッグしてる時
             if(_isDrag){
@@ -40,10 +41,11 @@ public class TouchTester : MonoBehaviour
 
             if (phase == GodPhase.Began) 
 			{
+                _filterMenu.KillTween();
                 _isDrag=true;
                 past        = GodTouch.GetPosition();
                 startTapPos    = GodTouch.GetPosition();
-                startObjPos = _filterMenu.localPosition;
+                startObjPos = _container.localPosition;
 				//startPos = Move.position;
 			}
             else if (phase == GodPhase.Moved) 
@@ -51,9 +53,9 @@ public class TouchTester : MonoBehaviour
 				//完全についてくる
                 //_filterMenu.position = GodTouch.GetPosition();                
 //				Move.position += GodTouch.GetDeltaPosition(); 
-                var pp = _filterMenu.localPosition;
+                var pp = _container.localPosition;
                 pp.x = startObjPos.x - (startTapPos-GodTouch.GetPosition()).x;
-                _filterMenu.localPosition = pp;
+                _container.localPosition = pp;
 			}
             else if (phase == GodPhase.Ended) 
 			{
@@ -62,7 +64,7 @@ public class TouchTester : MonoBehaviour
 			}
             
 
-            var p = _filterMenu.localPosition;
+            var p = _container.localPosition;
 
             //ドラッグしてない時、速度を反映させる
             if(!_isDrag){
@@ -83,7 +85,7 @@ public class TouchTester : MonoBehaviour
 
 
 
-            _filterMenu.localPosition = p;
+            _container.localPosition = p;
 
     }
 }
