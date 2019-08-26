@@ -10,7 +10,7 @@ public class TouchMoving : MonoBehaviour
     [SerializeField] private RectTransform _container;
     private float _yy = 0;
     private Vector3 past = new Vector3();
-    [SerializeField] private Vector3 velocity= new Vector3();
+    [SerializeField] public Vector3 velocity= new Vector3();
     private Vector3 startTapPos = new Vector3();
     private Vector3 startObjPos = new Vector3();
     private bool _isDrag = false;

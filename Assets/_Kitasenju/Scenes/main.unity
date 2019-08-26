@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.07497215, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4038ca2e96d468296a450b561ca650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 65b782067570948f39821027cfc39a96, type: 3}
   filterName: multi
   _slitRecShader: {fileID: 4800000, guid: c39904c5e77064c87a1b9b9379c82310, type: 3}
   _fillShader: {fileID: 4800000, guid: bcc2a808ee43144b5a98276b8ee14d84, type: 3}
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 87b6e3b07435a44fea84b4b72b1e4e3a, type: 3}
   filterName: mosaic
   _material: {fileID: 2100000, guid: 13c21281c21af42d8b89031a85067b30, type: 2}
 --- !u!1 &762821914
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: f62ad0215597a4668a96a64e79afe694, type: 3}
   filterName: perlin
   _material: {fileID: 2100000, guid: b8b4edc1c5a71465c898fe002db29817, type: 2}
 --- !u!1 &854068597
@@ -2455,7 +2455,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1f614f59584eb4829a0c7c26a0f0accf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f62ad0215597a4668a96a64e79afe694, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2485,6 +2485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dot: {fileID: 1590856754}
+  _icon: {fileID: 993690066}
 --- !u!1 &997686903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 98f828551423c48fb8d6bc507a7639f8, type: 3}
   filterName: mono
   _material: {fileID: 2100000, guid: 8c5df80c5ffaf46df8b161423a50d749, type: 2}
 --- !u!4 &1158289410
@@ -3131,6 +3132,8 @@ MonoBehaviour:
   _control: {fileID: 1141330382}
   _container: {fileID: 138622922}
   _width: 2320
+  _touch: {fileID: 1204305543}
+  _velocityLimit: 0.05
 --- !u!114 &1204305543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,7 +3339,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -322, y: -930}
+  m_AnchoredPosition: {x: -322, y: -935}
   m_SizeDelta: {x: 131, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279334625
@@ -4301,6 +4304,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1651830316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651830318}
+  - component: {fileID: 1651830317}
+  m_Layer: 0
+  m_Name: VibeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1651830317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651830316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1c6934cfb924a3ca0f37f78e320c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1651830318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651830316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 478.36346, y: 157.4636, z: 113.81537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1678622607
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,7 +5062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: fbcad67a51edb42859a05f8d2cd99092, type: 3}
   filterName: perlin
   _material: {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
 --- !u!1 &2017182821

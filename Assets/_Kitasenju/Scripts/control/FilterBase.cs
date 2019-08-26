@@ -6,7 +6,7 @@ using UnityEngine.XR.ARFoundation;
 public class FilterBase : MonoBehaviour
 {
 
-    [SerializeField] Sprite _icon;
+    [SerializeField] public Sprite _icon;
     protected EffectControlMain _main;
     public string filterName;
 

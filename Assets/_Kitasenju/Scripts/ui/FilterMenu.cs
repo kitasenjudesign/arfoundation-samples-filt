@@ -11,6 +11,8 @@ public class FilterMenu : MonoBehaviour
     [SerializeField] private EffectControlMain _control;
     [SerializeField] private GameObject _container;
     [SerializeField] private float _width = 0;
+    [SerializeField,Space(10)] private TouchMoving _touch;
+    [SerializeField] private float _velocityLimit = 0.1f;
 
     private RectTransform _containerRect;
 
@@ -23,7 +25,11 @@ public class FilterMenu : MonoBehaviour
 
             var b = Instantiate(_btnPrefab,_container.transform,false);
             var rect = b.GetComponent<RectTransform>();
-            b.Init( i, OnClick );
+            b.Init( 
+                i, 
+                list[i]._icon,
+                OnClick
+            );
             _btns.Add(b);
             rect.localPosition = GetPositionByIndex(i);
 
@@ -42,7 +48,10 @@ public class FilterMenu : MonoBehaviour
 
     private void OnClick(int idx){
 
-        
+        if( Mathf.Abs( _touch.velocity.x ) >_velocityLimit ){
+            return;
+        }
+
         _containerRect = _container.GetComponent<RectTransform>();
 
 
@@ -57,6 +66,7 @@ public class FilterMenu : MonoBehaviour
         if(tgt>0) tgt = 0;
         if(tgt<-_width) tgt = -_width; 
 
+        //click
         _containerRect.DOLocalMoveX(
             tgt,0.5f
         ).SetEase( Ease.InOutSine );

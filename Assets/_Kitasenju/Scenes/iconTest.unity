@@ -239,7 +239,7 @@ MeshCollider:
   m_GameObject: {fileID: 1249495180}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -261,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 13c21281c21af42d8b89031a85067b30, type: 2}
+  - {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -313,8 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580755410}
   - component: {fileID: 1580755409}
-  - component: {fileID: 1580755408}
-  - component: {fileID: 1580755411}
+  - component: {fileID: 1580755412}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -322,14 +321,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1580755408
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580755407}
-  m_Enabled: 1
 --- !u!20 &1580755409
 Camera:
   m_ObjectHideFlags: 0
@@ -387,19 +378,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1580755411
+--- !u!114 &1580755412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580755407}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5fc4e0fd26b481c94746124eda212d, type: 3}
+  m_Script: {fileID: 11500000, guid: 82fcf7f5f626f4853aadc30bae586d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
+  size: {x: 512, y: 512}
+  filename: hogehgoe.jpg
 --- !u!1 &1657146146
 GameObject:
   m_ObjectHideFlags: 0

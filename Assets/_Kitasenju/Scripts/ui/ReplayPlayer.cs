@@ -87,7 +87,7 @@ public class ReplayPlayer : MonoBehaviour
     private void _saveVideo(){
         
         _savedTxt.gameObject.SetActive(true);
-
+        
         #if UNITY_IOS
             if(_isImageMode){
                 NatShare.SaveToCameraRoll(_capturedImage);
@@ -103,6 +103,7 @@ public class ReplayPlayer : MonoBehaviour
     private void _hideVideo(){
         
         _savedTxt.gameObject.SetActive(false);
+        _videoPlayer.Pause();
 
         if(_isMoving)return;
         _isMoving=true;
@@ -111,13 +112,12 @@ public class ReplayPlayer : MonoBehaviour
             _arSession.enabled=true;
         }
 
-        
         _rectTrans.DOLocalMoveY(-Screen.height,0.5f).OnComplete(()=>{
             
             _isMoving=false;
             gameObject.SetActive(false);
-
-        });
+            
+        }).SetDelay(0.2f);
 
     }
 

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class FilterBtn : MonoBehaviour
 {
     [SerializeField] private Image _dot;
+    [SerializeField] private Image _icon;
+
     private System.Action<int> _callback;
     private Button _btn;
     private int _index = 0;
@@ -18,7 +20,11 @@ public class FilterBtn : MonoBehaviour
 
     }
 
-    public void Init(int idx, System.Action<int> callback){
+    public void Init(
+        int idx,
+        Sprite texture,
+        System.Action<int> callback
+    ){
 
         
         if(_btn == null ){
@@ -28,6 +34,11 @@ public class FilterBtn : MonoBehaviour
 
         _index = idx;
         _callback = callback;
+
+        if(texture!=null){
+            _icon.sprite = texture;
+        }
+
         _dot.gameObject.SetActive(false);
     }
 

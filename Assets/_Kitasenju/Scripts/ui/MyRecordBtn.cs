@@ -38,11 +38,17 @@
 		void IPointerDownHandler.OnPointerDown (PointerEventData eventData) {
             Debug.Log("start");
 			// Start counting
+			
 
             if(_isRecording){
-                
+
                 _stopRec();
+
             }else{
+
+				VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
+
+
                 if( sq ) sq.enabled=true;
                 if( circle ) circle.enabled = false; 
 
@@ -67,6 +73,9 @@
 		}
 
         private void _stopRec(){
+
+			VibeManager.Instance.PlaySystemSound(VibeManager.Vibe02);
+
             _isRecording=false;
             _replayCam.StopRecording();
             
