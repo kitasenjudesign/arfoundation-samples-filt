@@ -261,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
+  - {fileID: 2100000, guid: f91f43d5a8447430082da6f447230dc7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 512, y: 512}
-  filename: hogehgoe.jpg
+  filename: ascii.jpg
 --- !u!1 &1657146146
 GameObject:
   m_ObjectHideFlags: 0

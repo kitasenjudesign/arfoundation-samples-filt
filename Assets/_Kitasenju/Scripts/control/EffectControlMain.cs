@@ -33,9 +33,9 @@ public class EffectControlMain : MonoBehaviour
         _filters = new List<FilterBase>();
         foreach (Transform child in transform)
         {
-            
-            _filters.Add( child.GetComponent<FilterBase>() );
-
+            if( child.gameObject.activeSelf ){ 
+                _filters.Add( child.GetComponent<FilterBase>() );
+            }
         }
         _filterMenu.Init( _filters );
         _next();

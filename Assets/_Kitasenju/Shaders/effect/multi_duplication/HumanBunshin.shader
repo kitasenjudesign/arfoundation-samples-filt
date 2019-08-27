@@ -56,7 +56,12 @@
                     _Strength * 0.3 * snoise(float3(i.uv*3, 2.0 + _Time.y*1.0)),
                     _Strength * 0.3 * snoise(float3(i.uv*3, 2.0 + _Time.y*1.5))
                 );  */
-                float2 uvv = frac( i.uv + float2(_Strength,0) );
+
+                float2 dd = float2(
+                    _Strength,0
+                );
+
+                float2 uvv = frac( i.uv + dd );
 
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
                 //float2 mosaicUV = i.uv;//round(i.uv*aspect*120)/(aspect*120);

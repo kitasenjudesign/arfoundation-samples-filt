@@ -121,6 +121,7 @@ public class ReplayPlayer : MonoBehaviour
 
     }
 
+    //height 直す。
 
 
     public IEnumerator startPreview (string path){

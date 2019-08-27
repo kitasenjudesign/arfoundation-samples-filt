@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 8704171305400832197, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: emoji
   _material: {fileID: 2100000, guid: bab5756109d6b4b01b706fae6864971f, type: 2}
 --- !u!4 &210078993
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 1620823216107830769, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: perlin
   _material: {fileID: 2100000, guid: 2731c8fa59ac445869a4ae52cc4e999d, type: 2}
 --- !u!1 &427002218
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: df20912ae2c1448d29621d40dc50822e, type: 3}
   filterName: mosaicDisplace
   _material: {fileID: 2100000, guid: f91f43d5a8447430082da6f447230dc7, type: 2}
 --- !u!1 &524863694
@@ -985,7 +985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524863695}
-  - component: {fileID: 524863696}
+  - component: {fileID: 524863697}
   m_Layer: 0
   m_Name: 17_Multi__2
   m_TagString: Untagged
@@ -1007,7 +1007,7 @@ Transform:
   m_Father: {fileID: 1141330383}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &524863696
+--- !u!114 &524863697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1016,12 +1016,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 524863694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb4038ca2e96d468296a450b561ca650, type: 3}
+  m_Script: {fileID: 11500000, guid: 38bfa1f87d8aa4a68b5200cf11765a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  filterName: multi
-  _slitRecShader: {fileID: 4800000, guid: c39904c5e77064c87a1b9b9379c82310, type: 3}
+  _icon: {fileID: 5786624601717946163, guid: 44d394470064846debd929eb52f04f8f, type: 3}
+  filterName: 
   _fillShader: {fileID: 4800000, guid: 2cb6a8c8fd31544de87477791a0dc2bd, type: 3}
   _outputShader: {fileID: 4800000, guid: f2f3ecb7b9cbd4db0b1b528eca347bcc, type: 3}
 --- !u!1 &608678791
@@ -1064,12 +1063,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 608678791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb4038ca2e96d468296a450b561ca650, type: 3}
+  m_Script: {fileID: 11500000, guid: 38bfa1f87d8aa4a68b5200cf11765a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 65b782067570948f39821027cfc39a96, type: 3}
-  filterName: multi
-  _slitRecShader: {fileID: 4800000, guid: c39904c5e77064c87a1b9b9379c82310, type: 3}
+  _icon: {fileID: 5786624601717946163, guid: 44d394470064846debd929eb52f04f8f, type: 3}
+  filterName: 
   _fillShader: {fileID: 4800000, guid: bcc2a808ee43144b5a98276b8ee14d84, type: 3}
   _outputShader: {fileID: 4800000, guid: f2f3ecb7b9cbd4db0b1b528eca347bcc, type: 3}
 --- !u!1 &626852232
@@ -1565,7 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 87b6e3b07435a44fea84b4b72b1e4e3a, type: 3}
+  _icon: {fileID: 21300000, guid: 3b48d84785bca4c1191bf5617685d06c, type: 3}
   filterName: mosaic
   _material: {fileID: 2100000, guid: 13c21281c21af42d8b89031a85067b30, type: 2}
 --- !u!1 &762821914
@@ -1921,7 +1919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: f62ad0215597a4668a96a64e79afe694, type: 3}
+  _icon: {fileID: 1747370874640036263, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: perlin
   _material: {fileID: 2100000, guid: b8b4edc1c5a71465c898fe002db29817, type: 2}
 --- !u!1 &854068597
@@ -1953,7 +1951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 1747370874640036263, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: color
   _material: {fileID: 2100000, guid: ae8ca81fccaa84234b53fe7c840dc1b7, type: 2}
 --- !u!4 &854068599
@@ -2811,7 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 98f828551423c48fb8d6bc507a7639f8, type: 3}
+  _icon: {fileID: -2461405462128906930, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: mono
   _material: {fileID: 2100000, guid: 8c5df80c5ffaf46df8b161423a50d749, type: 2}
 --- !u!4 &1158289410
@@ -2871,7 +2869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: -2919381225683057706, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: colorLoop
   _material: {fileID: 2100000, guid: b9c49968ee6c04800b2a23310cdd41fb, type: 2}
 --- !u!1 &1168434884
@@ -3621,7 +3619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: -7063388237116788486, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: perlin
   _material: {fileID: 2100000, guid: f297dec71317f4ab09c0e93c3fdc60d9, type: 2}
 --- !u!4 &1369086503
@@ -3648,6 +3646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1423606481}
   - component: {fileID: 1423606480}
+  - component: {fileID: 1423606482}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -3681,6 +3680,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423606482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423606479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb16719425214111b22d70d66f61172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1445543885
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,7 +4120,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 190, y: 190}
+  m_SizeDelta: {x: 175, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526544819
 MonoBehaviour:
@@ -4177,7 +4188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: f7a73234ec4354830bfa86c744cd8b2c, type: 3}
   filterName: color
   _material: {fileID: 2100000, guid: 53fb4f0bd4a7b4023bfb566e1309631c, type: 2}
 --- !u!4 &1555315994
@@ -4883,7 +4894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 8704171305400832197, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: ascii
   _material: {fileID: 2100000, guid: aea958d13825c4f0aa90feab2d1d1ded, type: 2}
 --- !u!4 &1885557432
@@ -5062,7 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: fbcad67a51edb42859a05f8d2cd99092, type: 3}
+  _icon: {fileID: 2622788328075499590, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: perlin
   _material: {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
 --- !u!1 &2017182821
@@ -5305,8 +5316,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'segf
-
+  m_text: 'Meisai
 
     by kitasenjudesign.com'
   m_isRightToLeft: 0
@@ -5377,12 +5387,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2042552940}
-    characterCount: 28
+    characterCount: 29
     spriteCount: 0
-    spaceCount: 3
+    spaceCount: 2
     wordCount: 4
     linkCount: 0
-    lineCount: 4
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -5540,7 +5550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 646422853617712624, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   filterName: gold
   _material: {fileID: 2100000, guid: 1bd3cdd0045634040a2f55d15242bc54, type: 2}
 --- !u!1 &2121889912
@@ -5952,7 +5962,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224991662539429481
 RectTransform:
