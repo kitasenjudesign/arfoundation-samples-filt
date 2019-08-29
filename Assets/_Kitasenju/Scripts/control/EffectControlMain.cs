@@ -23,6 +23,7 @@ public class EffectControlMain : MonoBehaviour
     private FilterBase _currentFilter;
     private int _index = 0;
     private RenderTexture _camTex;
+    [SerializeField] private bool _Invert = false;
 
 
     // Start is called before the first frame update
@@ -38,7 +39,8 @@ public class EffectControlMain : MonoBehaviour
             }
         }
         _filterMenu.Init( _filters );
-        _next();
+        //_next();
+        SetFilter(0);
     }
 
     public void SetFilter(int idx){
@@ -49,19 +51,19 @@ public class EffectControlMain : MonoBehaviour
         _index = idx;
         _currentFilter = _filters[_index % _filters.Count];
         _currentFilter.Show( this );
-        
+        SetInvert(_Invert);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //Texture2D humanStencil  = _humanBodyManager.humanStencilTexture;
-        //Texture2D humanDepth    = _humanBodyManager.humanDepthTexture;
-        if(Input.GetKeyDown(KeyCode.Space)){
-            _next();
+        var subsystem = _humanBodyManager.subsystem;
+        if (subsystem == null)
+        {
+            //"Human Segmentation not supported."
+            return;
         }
-
+        
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
             //_next();
         }
@@ -76,17 +78,15 @@ public class EffectControlMain : MonoBehaviour
 
     }
 
-    void _next(){
+
+
+    public void SetInvert(bool b){
         
-        for(int i=0;i<_filters.Count;i++){
-            _filters[i].Hide();
-        }
-        
-        _currentFilter = _filters[_index % _filters.Count];
-        _currentFilter.Show( this );
-        _index++;
+        _Invert = b;
+        _currentFilter.SetInvert(_Invert);
 
     }
+
 
     public void SetCamToMainTex(Material mat){
         if(_arBackground.material){

@@ -33,4 +33,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DepthTh: 0.5
+    - _Invert: 0
     m_Colors: []

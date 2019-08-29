@@ -1,17 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class Main : MonoBehaviour
 {
     private Vector2Int baseScale = new Vector2Int();
     private int _index = 0;
+    [SerializeField] private GameObject NGPanel;
+    [SerializeField] private ARSession _arSession;
+    [SerializeField] private ARSessionOrigin _arSessionOrigin;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
         baseScale=new Vector2Int(Screen.width,Screen.height);
         //Screen.height
+
+        if( !DeviceChecker.GetAvailable() ){
+            //使用不能
+            NGPanel.gameObject.SetActive(true);
+        }else{
+            //いける
+            _arSession.gameObject.SetActive(true);
+            _arSessionOrigin.gameObject.SetActive(true);
+        }
+
 
     }
 

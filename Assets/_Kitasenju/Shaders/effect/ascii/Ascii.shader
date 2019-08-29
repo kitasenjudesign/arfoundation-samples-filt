@@ -6,7 +6,10 @@
         _AsciiTex ("_AsciiTex", 2D) = "white" {}
 
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
-        _StencilTex ("_StencilTex", 2D) = "white" {}        
+        _StencilTex ("_StencilTex", 2D) = "white" {} 
+
+        [Toggle] _Invert("_Invert", Float) = 0
+
     }
     SubShader
     {
@@ -42,6 +45,7 @@
 			sampler2D _AsciiTex;
             sampler2D _StencilTex;
             float _DepthTh;
+            float _Invert;
 
             v2f vert (appdata v)
             {
@@ -102,7 +106,7 @@
                 ascii = lerp( srcPixel*0.8, srcPixel+fixed4(0.6,0.6,0.6,1), step(0.5,ascii.x) );
                 //ascii = lerp( colNoise, srcPixel+fixed4(0.6,0.6,0.6,1), step(0.5,ascii.x) );
 
-
+                if(_Invert==1) stencil.r = 1 - stencil.r;
 				fixed4 col = lerp( 
                     col0,
                     ascii,//ascii

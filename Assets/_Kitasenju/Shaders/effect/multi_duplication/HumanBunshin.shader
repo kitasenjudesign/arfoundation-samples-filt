@@ -58,7 +58,8 @@
                 );  */
 
                 float2 dd = float2(
-                    _Strength,0
+                    0.2 * cos( _Time.z ),
+                    _Strength
                 );
 
                 float2 uvv = frac( i.uv + dd );

@@ -5,7 +5,7 @@ public class SimpleFilter : FilterBase
 {
     
     [SerializeField] public Material _material;
-
+    [SerializeField] private bool _invert = false;
     public override void Show(EffectControlMain main){
         
         base.Show(main);
@@ -13,10 +13,19 @@ public class SimpleFilter : FilterBase
         UpdateFilter();
     }
     
+    public override void SetInvert(bool b){
+
+        _invert = b;
+        
+
+    }
+
     public override void UpdateFilter(){
 
         Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
         Texture2D humanDepth    = _main._humanBodyManager.humanDepthTexture;
+
+        _material.SetFloat("_Invert",_invert?1f:0);
 
         _main.SetCamToMainTex(_material);
         _material.SetTexture("_DepthTex", humanDepth );

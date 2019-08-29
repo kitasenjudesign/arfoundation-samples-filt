@@ -5,9 +5,9 @@ public class VibeManager : MonoBehaviour
 {
     public static VibeManager Instance; 
 
-    public static int Vibe01 = 1519;
-    public static int Vibe02 = 1520;
-    public static int Vibe03 = 1521;
+    public static int Vibe01 = 1519;//弱め1
+    public static int Vibe02 = 1520;//弱め2
+    public static int Vibe03 = 1521;//強め
 
 
     void Awake(){

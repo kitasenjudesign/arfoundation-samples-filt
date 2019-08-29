@@ -9,7 +9,7 @@
         _Detail("_Detail",Range(0,5)) = 0.5
         _Naname("_Naname",Range(0,15)) = 0.5
 
-        //[Toggle] _Revert("_Revert", Float) = 0
+        [Toggle] _Invert("_Invert", Float) = 0
 
     }
     SubShader
@@ -51,6 +51,7 @@
             float _DepthTh;
             float _Detail;
             float _Naname;
+            float _Invert;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -92,12 +93,17 @@
                 uvv.x += _Time.x * 3;
                 float ss = step ( frac(  n*_Naname*(uvv.x+uvv.y) ),0.5 );
 
+                if(_Invert==1){
+                    stencil.r = 1 - stencil.r;
+                }
+
                 //マスク
                 col.rgb = lerp( 
                     col0.rgb, 
                     lerp( 1.0-col0, col0, ss),
                     stencil.r
-                );                
+                );
+
 
                 //if( depth.r < _DepthTh ){
                 //     col.rgb = col0.rgb;

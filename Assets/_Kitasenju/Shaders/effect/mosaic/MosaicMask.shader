@@ -8,7 +8,7 @@
         _StencilTex ("_StencilTex", 2D) = "white" {}
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
-        //[Toggle] _Revert("_Revert", Float) = 0
+        [Toggle] _Invert("_Invert", Float) = 0
 
     }
     SubShader
@@ -45,6 +45,7 @@
             sampler2D _DepthTex;
             sampler2D _StencilTex;
             float _DepthTh;
+            float _Invert;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -80,7 +81,13 @@
                 //fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 //マスク
-                col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
+                //col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
+                
+                col.rgb = lerp(
+                    lerp( col0.rgb, col.rgb, stencil.r),
+                    lerp( col0.rgb, col.rgb, 1-stencil.r),
+                    _Invert
+                );
 
                 //if( depth.r < _DepthTh ){
                 //     col.rgb = col0.rgb;

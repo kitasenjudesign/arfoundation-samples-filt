@@ -7,6 +7,7 @@ public class FilterBase : MonoBehaviour
 {
 
     [SerializeField] public Sprite _icon;
+    [SerializeField] public bool _hasInvert = false;
     protected EffectControlMain _main;
     public string filterName;
 
@@ -23,9 +24,11 @@ public class FilterBase : MonoBehaviour
 
     }
 
+    public virtual void SetInvert(bool b){
+
+    }
+
     public virtual void UpdateFilter(){
-
-
 
     }
 

@@ -33,25 +33,32 @@ public class ReplayPlayer : MonoBehaviour
     {
 
         _rectTrans = GetComponent<RectTransform>();
-        _saveBtn.onClick.AddListener( _saveVideo );
-        _closeBtn.onClick.AddListener( _hideVideo );
+        _saveBtn.onClick.AddListener( _onClickSave );
+        _closeBtn.onClick.AddListener( _onClickClose );
         gameObject.SetActive(false);
         _savedTxt.gameObject.SetActive(false);
         _recordBtn._staticImageCaptureCallback = ShowImage;
+
     }
 
 
 
 
     public void ShowReplay(string path){
+
+        //多き目の振動
+        VibeManager.Instance.PlaySystemSound(VibeManager.Vibe03);
+
         //replayを開始する
         _path = path;
         gameObject.SetActive(true);
         _isImageMode=false;
+        
         //animation
         _rectTrans.localPosition = new Vector3(0,-Screen.height,0);
         _rectTrans.DOLocalMoveY(0,0.5f);
 
+        //arを切る
         if(_arSession!=null){
             _arSession.enabled=false;
         }
@@ -86,6 +93,7 @@ public class ReplayPlayer : MonoBehaviour
 
     private void _saveVideo(){
         
+        //保存する
         _savedTxt.gameObject.SetActive(true);
         
         #if UNITY_IOS
@@ -97,11 +105,38 @@ public class ReplayPlayer : MonoBehaviour
         #endif
 
         //_hideVideo();
+        _hideBtn();
         Invoke("_hideVideo",0.5f);
     }
 
+    private void _onClickSave(){
+
+        VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
+        _saveVideo();
+
+    }
+
+    private void _onClickClose(){
+
+        _hideBtn();
+        VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
+        Invoke("_hideVideo",0.2f);
+        //_hideVideo();
+    }
+
+
+    private void _hideBtn(){
+
+        var saveBtnRect = _saveBtn.GetComponent<RectTransform>();
+        var closeBtnRect = _closeBtn.GetComponent<RectTransform>();        
+        saveBtnRect.DOScale(Vector3.zero,0.5f);
+        closeBtnRect.DOScale(Vector3.zero,0.5f);
+
+    }
+
     private void _hideVideo(){
-        
+
+        //_videoPlayer.prepareCompleted -= _onPrepare;
         _savedTxt.gameObject.SetActive(false);
         _videoPlayer.Pause();
 
@@ -137,14 +172,17 @@ public class ReplayPlayer : MonoBehaviour
         //videoPlayer.SetTargetAudioSource(0, audioSource);
 
         //Debug.Log("Set Audio Track to : " + audioSource);
-
+        
         _videoPlayer.Prepare ();
-
+        _rawImage.color = Color.black;
+        
         //Wait until Movie is prepared
         WaitForSeconds waitTime = new WaitForSeconds(1);
         while (!_videoPlayer.isPrepared)
         {
             Debug.Log("Preparing Movie");
+            _rawImage.DOColor(Color.white,0.5f).SetEase(Ease.Linear);
+
             yield return waitTime;
             break;
         }
@@ -162,7 +200,7 @@ public class ReplayPlayer : MonoBehaviour
         saveBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.3f);
         closeBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.4f);
 
-
+        
         _videoPlayer.enabled=true;
         _videoPlayer.Play();
         //audioSource.Play();
@@ -170,12 +208,17 @@ public class ReplayPlayer : MonoBehaviour
         //yield return new WaitForEndOfFrame();
     }
 
+    void _onPrepare(VideoPlayer v){
+
+    }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (_videoPlayer.isPrepared) {
             _rawImage.texture = _videoPlayer.texture;
         }
+
     }
 }

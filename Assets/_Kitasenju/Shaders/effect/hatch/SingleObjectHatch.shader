@@ -16,7 +16,7 @@ Shader "effects/hatch/SingleObjectHatch"
 		_Size("_Size",float) = 8
 		_Detail("_Detail",float) = 4
 
-        [Toggle] _Revert("_Revert", Float) = 0
+        [Toggle] _Invert("_Invert", Float) = 0
 	}
 	SubShader
 	{
@@ -55,7 +55,7 @@ Shader "effects/hatch/SingleObjectHatch"
 
 			sampler2D _Hatch0;
 			sampler2D _Hatch1;
-			float _Revert;
+			float _Invert;
 			float4 _LightColor0;
 			float _Detail;
 			float _Size;
@@ -152,7 +152,7 @@ Shader "effects/hatch/SingleObjectHatch"
 				
 				fixed4 outCol = lerp( col0, color, step(0.5,stencil.r) );
 				
-				if( _Revert == 1 ){
+				if( _Invert == 1 ){
 					//col0.rgb = (col0.r+col0.g+col0.b)/3;
                     outCol = lerp( col0, color, step(0.5,1-stencil.r) );
                 }

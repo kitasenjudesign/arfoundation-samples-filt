@@ -8,6 +8,8 @@
         _StencilTex ("_StencilTex", 2D) = "white" {}        
 
         _DepthTh("_DepthTh",Range(0,1)) = 0.5        
+
+        [Toggle] _Invert("_Invert", Float) = 0        
     }
     SubShader
     {
@@ -43,6 +45,7 @@
             float4 _MainTex_ST;
             sampler2D _StencilTex;
             float _DepthTh;
+            float _Invert;
 
             v2f vert (appdata v)
             {
@@ -101,7 +104,7 @@
                 );
                 fixed4 colNoise = tex2D(_MainTex, abs( frac( i.uv+mosaicUV ) ) );                
                 
-
+                if(_Invert == 1) stencil.r = 1 - stencil.r;
 				fixed4 col = lerp( 
                     col0,
                     colNoise,//ascii

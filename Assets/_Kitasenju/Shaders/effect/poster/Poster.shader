@@ -7,6 +7,8 @@
         _Threshold ("Threshold", float) = 0.0
         _EdgeColor ("Edge Color", COLOR) = (1,1,1,1)
         _StencilTex ("_StencilTex", 2D) = "white" {}           
+
+        [Toggle] _Invert("_Invert", Float) = 0          
     }
     SubShader
     {
@@ -45,6 +47,7 @@
             float _Sensitivity;
             float _Threshold;
             half4 _EdgeColor;
+            float _Invert;
             
 
             v2f vert (appdata v)
@@ -66,21 +69,22 @@
 
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
-                float cg = GetEdge(_MainTex, i.uv+(col0.rg-0.5)*0.02, duv);
+                float cg = GetEdge(_MainTex, i.uv+(col0.rg-0.5)*0.01, duv);
                 half4 edge = cg * _Sensitivity;
 
 
                 float rr = snoise( float3(i.uv*300,floor( _Time.z*5 ) ) );//rand( floor( i.uv * 300 + floor( _Time.x*100 )*100 ) );
-                fixed4 col = floor( ( col0 + 0.2 * rr ) * 3 ) / 3;
+                fixed4 col = floor( ( col0 + 0.05 * rr ) * 3 ) / 3;
 
 
 
-                col = col - _EdgeColor * step(0.5+rr*0.1,edge - _Threshold);
+                col = col - _EdgeColor * step(0.5,edge - _Threshold);
 
 
                 float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 
+                if( _Invert==1 ) stencil.r = 1 - stencil.r;
                 fixed4 outputCol = lerp(col,col0,stencil.r);
 
 

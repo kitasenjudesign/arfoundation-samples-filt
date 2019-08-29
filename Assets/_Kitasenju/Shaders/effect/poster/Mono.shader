@@ -3,7 +3,9 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _StencilTex ("_StencilTex", 2D) = "white" {}        
+        _StencilTex ("_StencilTex", 2D) = "white" {}    
+        
+        [Toggle] _Invert("_Invert", Float) = 0    
     }
     SubShader
     {
@@ -41,6 +43,7 @@
 
             sampler2D _MainTex;
             sampler2D _StencilTex;
+            float _Invert;
 
             //simple
             fixed4 frag (v2f i) : SV_Target
@@ -50,13 +53,17 @@
                 float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 
-
+                if(_Invert==1){
+                    stencil.r = 1-stencil.r;
+                }
                 // just invert the colors
                 col.rgb = lerp( 
                     col,
                     0.3333 * ( col.r+col.g+col.b ),
                     stencil.r
                 );
+                
+
                 
                 return col;
             }

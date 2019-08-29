@@ -52,6 +52,8 @@ public class FilterMenu : MonoBehaviour
             return;
         }
 
+        VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
+
         _containerRect = _container.GetComponent<RectTransform>();
 
 
