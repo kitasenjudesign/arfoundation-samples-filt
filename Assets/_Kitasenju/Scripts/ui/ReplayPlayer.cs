@@ -152,7 +152,7 @@ public class ReplayPlayer : MonoBehaviour
             _isMoving=false;
             gameObject.SetActive(false);
             
-        }).SetDelay(0.2f);
+        }).SetEase(Ease.InSine).SetDelay(0.2f);
 
     }
 
@@ -181,7 +181,9 @@ public class ReplayPlayer : MonoBehaviour
         while (!_videoPlayer.isPrepared)
         {
             Debug.Log("Preparing Movie");
-            _rawImage.DOColor(Color.white,0.5f).SetEase(Ease.Linear);
+            _rawImage.DOColor(Color.white,0.5f)
+                .SetDelay(0.3f)
+                .SetEase(Ease.Linear);
 
             yield return waitTime;
             break;

@@ -15,6 +15,7 @@ public class FilterMenu : MonoBehaviour
     [SerializeField] private float _velocityLimit = 0.1f;
 
     private RectTransform _containerRect;
+    private int _currentIndex = -1;
 
 
     public void Init(List<FilterBase> list){
@@ -48,10 +49,17 @@ public class FilterMenu : MonoBehaviour
 
     private void OnClick(int idx){
 
+        if(_currentIndex==idx){
+            Debug.Log("IDが同じ");
+            return;
+        }
+
         if( Mathf.Abs( _touch.velocity.x ) >_velocityLimit ){
             return;
         }
 
+        _currentIndex = idx;
+        //vibe
         VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
 
         _containerRect = _container.GetComponent<RectTransform>();

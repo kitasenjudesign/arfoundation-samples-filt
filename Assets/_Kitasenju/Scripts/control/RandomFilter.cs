@@ -18,18 +18,21 @@ public class RandomFilter : FilterBase
     }
 
     public override void Hide(){
-
+        
         CancelInvoke("_startLoop");
         gameObject.SetActive(false);
 
     }
 
     private void _startLoop(){
-        
+        if(!gameObject.activeSelf) return;
+
         _material = _materials[ _index % _materials.Length ];
         _index++;
+        //SetInvert(
+        //    Random.value < 0.5f ? true : false
+        //);
         _main.SetImageEffect(_material);
-
         Invoke("_startLoop",0.5f);
 
     }

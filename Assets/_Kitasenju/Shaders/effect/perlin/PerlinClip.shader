@@ -7,6 +7,8 @@
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
         _Detail("_Detail",Range(0,5)) = 0.5
+
+        [Toggle] _Invert("_Invert", Float) = 0        
         //[Toggle] _Revert("_Revert", Float) = 0
 
     }
@@ -44,6 +46,7 @@
             sampler2D _StencilTex;
             float _DepthTh;
             float _Detail;
+            float _Invert;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -79,8 +82,8 @@
                 fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 float2 mosaicUV = float2(
-                    snoise(float3(i.uv*_Detail, 2.0 + _Time.y*1.0)),
-                    snoise(float3(i.uv*_Detail, 2.0 + _Time.y*1.5))
+                    snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.0)),
+                    snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.5))
                 );
 
                 float2 stp = step(
@@ -90,6 +93,7 @@
                 fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV*stp ) ) );
                 
                 //マスク
+                if(_Invert==1) stencil.r = 1 - stencil.r;
                 col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
 
                 //if( depth.r < _DepthTh ){

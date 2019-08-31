@@ -8,6 +8,7 @@
         _StencilTex ("_StencilTex", 2D) = "white" {}
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
+        _Brightness("_Brightness",Float) = 1
         [Toggle] _Invert("_Invert", Float) = 0
 
     }
@@ -46,6 +47,7 @@
             sampler2D _StencilTex;
             float _DepthTh;
             float _Invert;
+            float _Brightness;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -93,7 +95,7 @@
                 //     col.rgb = col0.rgb;
                 //}
 
-                return col;
+                return col * _Brightness;
 
             }
             ENDCG

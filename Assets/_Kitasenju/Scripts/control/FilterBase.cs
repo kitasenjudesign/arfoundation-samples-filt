@@ -32,5 +32,8 @@ public class FilterBase : MonoBehaviour
 
     }
 
+    public virtual Material GetMaterial(){
+        return null;
+    }
 
 }

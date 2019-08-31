@@ -68,14 +68,15 @@
 
 				//モザイクを何分割するか
 				float2 mosaicSize = float2(
-					30,
-					30 * _ScreenParams.y / _ScreenParams.x
+					15,
+					15 * _ScreenParams.y / _ScreenParams.x
 				);
 				float2 roundedUv = floor(i.uv*mosaicSize) / mosaicSize;
 
 				//分割した座標から輝度を取得する
 				fixed4 srcPixel = tex2D(_MainTex, roundedUv);
-				float mean = ( srcPixel.x + srcPixel.y + srcPixel.z ) / 3.0 * 0.999;//1.0にしないため
+				float mean = ( srcPixel.x + srcPixel.y + srcPixel.z ) / 3.0;//1.0にしないため
+                mean = floor( frac(mean+_Time.x) * 10) / 10 * 0.999;
 
 				//分割内の座標の比率
 				float2 uvRatio = ( i.uv - roundedUv ) / (1/mosaicSize);
@@ -106,6 +107,7 @@
                 if(_Invert==1) stencil.r = 1 - stencil.r;
 				fixed4 col = lerp( 
                     col0,
+                    //srcPixel,
                     ascii,//ascii
                     step(0.5,stencil.r)
                 );

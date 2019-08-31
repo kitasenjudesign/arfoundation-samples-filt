@@ -29,6 +29,12 @@ public class ToggleBtn : MonoBehaviour
 
     }
 
+    public void SetActive(bool b){
+
+        _image.raycastTarget = b;
+
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -80,8 +80,8 @@
                 fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 float2 mosaicUV = float2(
-                    snoise(float3(i.uv*_Detail, 2.0 + _Time.y*1.0)),
-                    snoise(float3(i.uv*_Detail, 2.0 + _Time.y*1.5))
+                    snoise(float3(i.uv*aspect*_Detail, 2.0 + _Time.y*1.0)),
+                    snoise(float3(i.uv*aspect*_Detail, 2.0 + _Time.y*1.5))
                 );
 
                 fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV ) ) );

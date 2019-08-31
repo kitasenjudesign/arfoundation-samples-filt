@@ -42,7 +42,7 @@ namespace NatCorder.Examples {
 
         [SerializeField,Space(10)] private ReplayPlayer _player;
         [SerializeField] private RawImage rawImage;
-        [SerializeField,Space(10)] private Camera cam;
+        [SerializeField,Space(10)] public Camera cam;
         private string _path = "";
 
         void Awake(){

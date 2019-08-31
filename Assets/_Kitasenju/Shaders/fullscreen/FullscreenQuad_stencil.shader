@@ -4,6 +4,7 @@
 	{
 		_MainTex ("_MainTex", 2D) = "white" {}
 		_StencilTex ("_StencilTex", 2D) = "white" {}
+		_Brightness ("_Brightness",float) = 0
 
 	}
 	SubShader
@@ -40,6 +41,7 @@
 			sampler2D _MainTex;
 			sampler2D _StencilTex;
 			float4 _MainTex_ST;
+			float _Brightness;
 			
 			v2f vert (appdata v)
 			{

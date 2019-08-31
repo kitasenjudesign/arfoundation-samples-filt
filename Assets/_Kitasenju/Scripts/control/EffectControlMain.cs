@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using DG.Tweening;
 
 
 public class EffectControlMain : MonoBehaviour
@@ -22,7 +23,7 @@ public class EffectControlMain : MonoBehaviour
 
     private FilterBase _currentFilter;
     private int _index = 0;
-    private RenderTexture _camTex;
+    public RenderTexture _camTex;
     [SerializeField] private bool _Invert = false;
 
 
@@ -40,7 +41,16 @@ public class EffectControlMain : MonoBehaviour
         }
         _filterMenu.Init( _filters );
         //_next();
+        
         SetFilter(0);
+        
+        var mat = _currentFilter.GetMaterial();
+
+        //mat.SetFloat("_Brightness",0);
+        Debug.Log(">>>>" + mat);
+        mat.SetFloat("_Brightness",0);
+        mat.DOFloat(1f,"_Brightness",0.5f).SetDelay(0.3f);
+        
     }
 
     public void SetFilter(int idx){
@@ -93,6 +103,7 @@ public class EffectControlMain : MonoBehaviour
             Graphics.Blit(null,_camTex,_arBackground.material);
             mat.SetTexture("_MainTex",_camTex);
         }
+        
     }
 
     public void SetImageEffect(Material mat){

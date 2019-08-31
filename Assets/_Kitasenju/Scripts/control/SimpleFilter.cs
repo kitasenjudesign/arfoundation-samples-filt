@@ -16,17 +16,20 @@ public class SimpleFilter : FilterBase
     public override void SetInvert(bool b){
 
         _invert = b;
-        
+        UpdateFilter();
 
     }
 
     public override void UpdateFilter(){
 
+        //Debug.Log(_invert);
+
         Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
         Texture2D humanDepth    = _main._humanBodyManager.humanDepthTexture;
 
+        //invertをセット
         _material.SetFloat("_Invert",_invert?1f:0);
-
+        //main texture
         _main.SetCamToMainTex(_material);
         _material.SetTexture("_DepthTex", humanDepth );
 
@@ -45,7 +48,9 @@ public class SimpleFilter : FilterBase
 
     }
 
-
+    public override Material GetMaterial(){
+        return _material;
+    }
 
 
 }

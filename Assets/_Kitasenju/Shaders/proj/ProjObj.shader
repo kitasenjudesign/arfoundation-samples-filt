@@ -22,7 +22,7 @@ Shader "Unlit/ProjObj"
 			#pragma multi_compile_fog
 			
 			#include "UnityCG.cginc"
-			#include "../noise/SimplexNoise3D.hlsl"
+			#include "../effect/noise/SimplexNoise3D.hlsl"
 
 			struct appdata
 			{
@@ -136,8 +136,8 @@ Shader "Unlit/ProjObj"
 				//fixed4 col = tex2DProj(texture, i.tangent);//tex2D(_MainTex, i.uv);
 				
 				float2 uv = i.screenPos.xy/i.screenPos.w;
-				//uv.y = 1 - uv.y;
-				//uv.y = 1 - uv.y;
+				//uv.x = 1 - uv.x;
+				uv.y = 1 - uv.y;
 				//o.tangent = float4(uv,0,0);
 
 				//fixed4 col =tex2D(_MainTex, i.tangent.xy / i.tangent.w);
