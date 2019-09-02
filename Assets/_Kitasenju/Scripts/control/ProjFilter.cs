@@ -5,34 +5,31 @@ using NatCorder.Examples;
 public class ProjFilter : FilterBase
 {
     
-    [SerializeField] public Material _material;
+    [SerializeField,Space(10)] public Material _fullBgMaterial;
     [SerializeField] private bool _invert = false;
     [SerializeField] private ProjObjs _projObjs;
-    [SerializeField] private Camera _camera1;
-    [SerializeField] private Camera _camera2;
+
     [SerializeField] private GameObject _fullQuad;
     [SerializeField] private MyReplayCam _replayCam;
-
+    [SerializeField] private RenderTexMaker _texMaker;
+    [SerializeField] private FullScreenQuadByShader _myFullScreen;
+    private bool _flag = false;
 
     public override void Show(EffectControlMain main){
 
-        _camera1.enabled=true;
-        _camera2.enabled=false;
-        _replayCam.cam = _camera1;
         _fullQuad.gameObject.SetActive(false);
-
+        _texMaker.enabled=true;
         base.Show(main);
-        _main.SetImageEffect(_material);
+        //_main.SetImageEffect(_material);
         _projObjs.Init( _main );
         UpdateFilter();
+
     }
+
     public override void Hide(){
         
-        _replayCam.cam = _camera2;
-        _camera1.enabled=false;
-        _camera2.enabled=true;
         _fullQuad.gameObject.SetActive(true);
-
+        _texMaker.enabled=false;
         gameObject.SetActive(false);
 
     }
@@ -45,9 +42,23 @@ public class ProjFilter : FilterBase
     }
 
     public override void UpdateFilter(){
+        
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
+            {
+                if(Random.value<0.5f){
+				    _flag = !_flag;
+                }
+			}
+		}
 
-        //
-
+        if(!_flag){
+            _main.SetCamToMainTex( _fullBgMaterial );
+        }else{
+            _fullBgMaterial.SetTexture("_MainTex",_texMaker._tex);
+        }
 
     }
 

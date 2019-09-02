@@ -55,7 +55,9 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
+				i.uv.y = 1 - i.uv.y;
 				fixed4 col = tex2D(_MainTex, i.uv);
+				
                 //if(col.r<0.5) clip(-1);
 				// apply fog
 				//UNITY_APPLY_FOG(i.fogCoord, col);

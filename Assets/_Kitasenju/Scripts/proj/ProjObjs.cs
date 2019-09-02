@@ -16,7 +16,7 @@ public class ProjObjs : MonoBehaviour {
 	private ProjBase _current;
 	private int _count = 0;
     private EffectControlMain _main;
-    [SerializeField] private RenderTexture _camTex;
+    [SerializeField] private RenderTexMaker _camTexMaker;
 
 	public void Init (EffectControlMain main) {
 
@@ -113,7 +113,7 @@ public class ProjObjs : MonoBehaviour {
 		_list.Add(_current);
 
 		//多すぎると削除
-		if(_list.Count>20){
+		if(_list.Count>10){
 			var tgt = _list[0];
 			tgt.Kill();
 			_list.RemoveAt(0);
@@ -125,7 +125,7 @@ public class ProjObjs : MonoBehaviour {
         //if(_main._arBackground.material){
         //    Graphics.Blit(null,_main._camTex,_main._arBackground.material);
         //}
-		_current.Capture(_camTex);//相手と背景をキャプチャ
+		_current.Capture(_camTexMaker._tex);//相手と背景をキャプチャ
 
 		//0.05sec後に表示する
 		Invoke("_SetPos",0.05f);
@@ -138,8 +138,7 @@ public class ProjObjs : MonoBehaviour {
 		var projMat = _projectionCam.projectionMatrix;
 		var viewMat = _projectionCam.worldToCameraMatrix;
 		
-		//_current.transform.localScale = new Vector3(0.2f,0.2f,0.2f);
-		_current.transform.position = _camera.transform.position + _camera.transform.forward*(1f + 3f * Random.value);
+		_current.transform.position = _camera.transform.position + _camera.transform.forward*(0.5f + 0.5f * Random.value);
 		_current.transform.LookAt(_projectionCam.transform.position);
 		_current.gameObject.SetActive(true);
 		
@@ -147,14 +146,14 @@ public class ProjObjs : MonoBehaviour {
 		_current.Init(
 			projMat,
 			viewMat,
-			(Random.value>0.5f) ? 0.2f : 0.9f
+			0.2f + 0.1f * Random.value
 		);
 
 		//三個消す
-		//if(_count%3==0){
-			//for(int i=0;i<_list.Count;i++){
-			//	_list[i].Hide();
-			//}
+		//if(_count%5==0){
+		//	for(int i=0;i<_list.Count;i++){
+		//		_list[i].Hide();
+		//	}
 		//}
 
 	}

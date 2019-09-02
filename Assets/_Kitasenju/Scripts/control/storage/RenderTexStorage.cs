@@ -13,7 +13,7 @@ public class RenderTexStorage
     public RenderTexture _renderTex;
     public RenderTexture _inputTex;
     public RenderTexture _outputTex;//
-
+    public RenderTexture _outputTexTmp;//
 
     public void Init(){
 
@@ -27,6 +27,11 @@ public class RenderTexStorage
             0
         );
         _outputTex = new RenderTexture(
+            Screen.width,
+            Screen.height,
+            0
+        );
+        _outputTexTmp = new RenderTexture(
             Screen.width,
             Screen.height,
             0

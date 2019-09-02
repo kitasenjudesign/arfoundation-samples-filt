@@ -79,7 +79,7 @@
                 //mosaic
                 fixed4 col = tex2D(_MainTex,  i.uv );
                 //col = 0.5 + 0.5*sin( col * 50 * _DepthTh + _Time.z * 2.0 );
-                col = frac( col * 10 + _Time.z * 2.0 );
+                col = frac( col * 10 + _Time.z * 1.0 );
                 
                 //マスク
                 //col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                

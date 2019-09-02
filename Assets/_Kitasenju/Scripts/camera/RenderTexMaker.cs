@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RenderTexMaker : MonoBehaviour
 {
-    [SerializeField] private RenderTexture _tgt;
+    [SerializeField] public RenderTexture _tex;
     [SerializeField] private Shader _shader;
     private Material _mat;
     void Start(){
@@ -15,7 +15,7 @@ public class RenderTexMaker : MonoBehaviour
     {
           GUI.DrawTexture(
                 new Rect(0, 0, 200, 200), 
-                _tgt, 
+                _tex, 
                 ScaleMode.StretchToFill,
                 false
             ); 
@@ -24,7 +24,7 @@ public class RenderTexMaker : MonoBehaviour
    
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        Graphics.Blit(source, _tgt);
+        Graphics.Blit(source, _tex);
         Graphics.Blit(source, destination);
     }
 

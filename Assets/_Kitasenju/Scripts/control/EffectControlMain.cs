@@ -49,9 +49,10 @@ public class EffectControlMain : MonoBehaviour
 
         //mat.SetFloat("_Brightness",0);
         Debug.Log(">>>>" + mat);
-        mat.SetFloat("_Brightness",0);
-        mat.DOFloat(1f,"_Brightness",0.5f).SetDelay(0.3f);
-        
+        if(mat){
+            mat.SetFloat("_Brightness",0);
+            mat.DOFloat(1f,"_Brightness",0.5f).SetDelay(0.3f);
+        }        
     }
 
     public void SetFilter(int idx){
@@ -102,7 +103,7 @@ public class EffectControlMain : MonoBehaviour
 
     public void SetCamToMainTex(Material mat){
         if(_arBackground.material){
-            Graphics.Blit(null,_camTex,_arBackground.material);
+            Graphics.Blit(null,_camTex,_arBackground.material);//
             mat.SetTexture("_MainTex",_camTex);
         }
         
