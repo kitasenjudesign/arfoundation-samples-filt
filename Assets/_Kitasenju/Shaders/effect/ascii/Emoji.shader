@@ -105,6 +105,7 @@
                 //ascii = lerp( colNoise, srcPixel+fixed4(0.6,0.6,0.6,1), step(0.5,ascii.x) );
 
                 if(_Invert==1) stencil.r = 1 - stencil.r;
+
 				fixed4 col = lerp( 
                     col0,
                     //srcPixel,

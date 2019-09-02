@@ -85,7 +85,7 @@
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
 
                 if( _Invert==1 ) stencil.r = 1 - stencil.r;
-                fixed4 outputCol = lerp(col,col0,stencil.r);
+                fixed4 outputCol = lerp(col0,col,stencil.r);
 
 
                 return outputCol;

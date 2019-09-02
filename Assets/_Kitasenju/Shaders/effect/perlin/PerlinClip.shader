@@ -86,11 +86,14 @@
                     snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.5))
                 );
 
-                float2 stp = step(
-                    0.5, abs( frac( mosaicUV*2.4 ) )
+                float2 stp = smoothstep(
+                    0.6,0.7, abs( frac( mosaicUV*2.4 ) )
                 );
 
-                fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV*stp ) ) );
+                fixed4 col = tex2D(
+                    _MainTex, 
+                    abs( frac( i.uv+mosaicUV*stp ) ) 
+                );
                 
                 //マスク
                 if(_Invert==1) stencil.r = 1 - stencil.r;

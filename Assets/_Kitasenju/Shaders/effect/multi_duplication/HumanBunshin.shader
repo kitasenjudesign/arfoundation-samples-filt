@@ -58,11 +58,11 @@
                 );  */
 
                 float2 dd = float2(
-                    0.2 * cos( _Time.z ),
-                    _Strength
+                    0.3*_Strength * sin( _Time.z+_Strength*3.14*2 ),
+                    -_Strength * 0.5
                 );
 
-                float2 uvv = frac( i.uv + dd );
+                float2 uvv = ( i.uv + dd );
 
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
                 //float2 mosaicUV = i.uv;//round(i.uv*aspect*120)/(aspect*120);
@@ -72,7 +72,7 @@
                 //i.uv.x = 1 - i.uv.x;
                 float2 stencilUV = GetStencilUV( uvv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
-                clip( stencil.r - 0.5 );
+                clip( stencil.r - 0.6 );
 
                 fixed4 colOut = col0;
 

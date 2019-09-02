@@ -5,6 +5,8 @@
         _MainTex ("Texture", 2D) = "white" {}
         _StencilTex ("_StencilTex", 2D) = "white" {}        
         _Split("_Split",range(1,10)) = 1
+        
+        [Toggle] _Invert("_Invert", Float) = 0    
     }
     SubShader
     {
@@ -20,6 +22,7 @@
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+            #include "../util/StencilUV.hlsl"            
 
             struct appdata
             {
@@ -37,6 +40,7 @@
             sampler2D _MainTex;
             sampler2D _StencilTex;
             float _Split;
+            float _Invert;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -64,11 +68,11 @@
 
                 float split = pow( 2, floor( _Split ) );
 
-                float2 offset = float2( 0, floor( _Time.z * split * 2 ) );
+                float2 offset = float2( 0, floor( _Time.y * split * 3 ) );
                 float r = rand( floor( i.uv * split * aspect + offset ) / (split * aspect) );
 
                 //float size = split * floor( abs(r) * 25 + 2 );
-                float size = split * floor( abs(r) * 35 + 2 );
+                float size = split * floor( abs(r) * 50 + 2 );
 
 
                 float2 uvv = floor( i.uv * size * aspect ) / (size * aspect);
@@ -83,14 +87,11 @@
                 //////////////////
                 fixed4 col0 = tex2D(_MainTex,i.uv);
 
-                float2 stencilUV = i.uv;
-                stencilUV.y = 1 - stencilUV.y;
-
-                float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                stencilUV.y = stencilUV.y*bai + (1-bai)/2;
+                float2 stencilUV = GetStencilUV(i.uv);
 
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
 
+                if(_Invert == 1) stencil.r = 1 - stencil.r;
                 col.rgb = lerp( col0.rgb, col.rgb, stencil.r);
 
                 return col;

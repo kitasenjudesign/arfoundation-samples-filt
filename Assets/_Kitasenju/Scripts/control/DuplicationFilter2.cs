@@ -77,7 +77,7 @@ public class DuplicationFilter2 : FilterBase
 
                 _fillMat.SetTexture("_MainColTex", _texStorage._slitscanColor.GetFrame(camIdx[len-i-1]) );
                 _fillMat.SetTexture("_StencilTex", _texStorage._slitscanStencil.GetFrame(stencilIdx[len-i-1]) );
-                _fillMat.SetFloat("_Strength", 1f - (float)i/(float)len);
+                _fillMat.SetFloat("_Strength", 1f - (float)i/( (float)len - 1f ) );
 
                 Graphics.Blit( null, _texStorage._outputTex, _fillMat );
 

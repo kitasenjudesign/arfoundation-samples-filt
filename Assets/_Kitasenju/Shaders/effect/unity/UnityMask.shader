@@ -10,6 +10,11 @@
     {
         // No culling or depth
         //Cull Off ZWrite Off ZTest Always
+        Tags {"Queue"="Transparent" "RenderType"="Transparent" }
+        LOD 100
+        //ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
+
 
         Pass
         {
@@ -53,11 +58,14 @@
 
 
                 // just invert the colors
+                /*
                 if(_Revert==0){
                     if(stencil.r < 0.5) discard;
                 }else{
                     if(stencil.r > 0.5) discard;
-                }   
+                } */
+                col.a = stencil.r;  
+
 
                 return col;
             }

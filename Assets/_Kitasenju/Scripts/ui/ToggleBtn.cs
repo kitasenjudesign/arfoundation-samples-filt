@@ -31,8 +31,16 @@ public class ToggleBtn : MonoBehaviour
 
     public void SetActive(bool b){
 
-        _image.raycastTarget = b;
-
+        
+        if(b){
+            _button.enabled=true;
+            _image.raycastTarget = true;
+            _image.color = Color.white;
+        }else{
+            _button.enabled=false;
+            _image.raycastTarget = false;
+            _image.color = new Color(1f,1f,1f,0.5f);
+        }
     }
 
     // Update is called once per frame

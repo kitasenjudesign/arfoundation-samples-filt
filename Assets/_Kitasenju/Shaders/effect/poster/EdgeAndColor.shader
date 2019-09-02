@@ -79,7 +79,7 @@
                 if(_Invert==1) stencil.r = 1 - stencil.r;
 
                 col0.rgb = (col0.r+col0.g+col0.b)*0.33333;
-                fixed4 outputCol = lerp(col,col0,stencil.r);
+                fixed4 outputCol = lerp(col0,col,stencil.r);
 
 
                 return outputCol;

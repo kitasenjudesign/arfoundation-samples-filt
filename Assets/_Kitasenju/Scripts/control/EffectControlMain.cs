@@ -25,6 +25,7 @@ public class EffectControlMain : MonoBehaviour
     private int _index = 0;
     public RenderTexture _camTex;
     [SerializeField] private bool _Invert = false;
+    [SerializeField] private ToggleBtn _toggleBtn;
 
 
     // Start is called before the first frame update
@@ -61,6 +62,7 @@ public class EffectControlMain : MonoBehaviour
         _index = idx;
         _currentFilter = _filters[_index % _filters.Count];
         _currentFilter.Show( this );
+        _toggleBtn.SetActive( _currentFilter._hasInvert );
         SetInvert(_Invert);
     }
 

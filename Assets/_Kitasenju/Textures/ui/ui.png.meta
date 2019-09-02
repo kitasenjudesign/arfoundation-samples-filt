@@ -114,8 +114,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 819
-        width: 202
+        y: 1844
+        width: 201
         height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,7 +124,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e21268cbf59b84c9d9bd89af3cf43dce
+      spriteID: 1591708ebb9ca4a3e8e7362a2c9dd650
       internalID: 5707218116961789024
       vertices: []
       indices: 
@@ -134,8 +134,8 @@ TextureImporter:
       name: ui_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 929
+        x: 207
+        y: 1954
         width: 91
         height: 90
       alignment: 0
@@ -145,7 +145,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ae2f25a697764a999668c20ac9384dc
+      spriteID: cf4684e91b63d4bf79cb6970b3085c45
       internalID: 3556181715638617739
       vertices: []
       indices: 
@@ -155,8 +155,8 @@ TextureImporter:
       name: ui_2
       rect:
         serializedVersion: 2
-        x: 304
-        y: 889
+        x: 301
+        y: 1914
         width: 131
         height: 130
       alignment: 0
@@ -166,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4d45f9416a08424592f69c5725baf8d
+      spriteID: 2c268cd32f86243b28410b2d582be59a
       internalID: -8816031292267695619
       vertices: []
       indices: 
@@ -176,8 +176,8 @@ TextureImporter:
       name: ui_3
       rect:
         serializedVersion: 2
-        x: 439
-        y: 929
+        x: 435
+        y: 1954
         width: 91
         height: 91
       alignment: 0
@@ -187,7 +187,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 240d6f13cc9784c49b8b18fbea560ff2
+      spriteID: 1e698bda52c8347549af2632e920e063
       internalID: 7263181891274304025
       vertices: []
       indices: 
@@ -197,8 +197,8 @@ TextureImporter:
       name: ui_4
       rect:
         serializedVersion: 2
-        x: 534
-        y: 899
+        x: 529
+        y: 1924
         width: 121
         height: 120
       alignment: 0
@@ -208,7 +208,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fc29e2b0390142ff94e6b8c41c590f1
+      spriteID: 29b21481c112341208418ebff80a55b9
       internalID: -7975249404588759376
       vertices: []
       indices: 
