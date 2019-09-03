@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using DG.Tweening;
+using TMPro;
 
 
 public class EffectControlMain : MonoBehaviour
@@ -26,6 +27,7 @@ public class EffectControlMain : MonoBehaviour
     public RenderTexture _camTex;
     [SerializeField] private bool _Invert = false;
     [SerializeField] private ToggleBtn _toggleBtn;
+    [SerializeField] private TextMeshProUGUI _info;
 
 
     // Start is called before the first frame update
@@ -61,9 +63,12 @@ public class EffectControlMain : MonoBehaviour
             _filters[i].Hide();
         }
         _index = idx;
+
         _currentFilter = _filters[_index % _filters.Count];
         _currentFilter.Show( this );
         _toggleBtn.SetActive( _currentFilter._hasInvert );
+        
+        _info.gameObject.SetActive( _currentFilter.textId>=0 );
         SetInvert(_Invert);
     }
 
@@ -115,5 +120,8 @@ public class EffectControlMain : MonoBehaviour
         _fullScreenQuad.SetMaterial(mat);
     }
 
+    public void HideInfo(){
+        _info.gameObject.SetActive( false );
+    }
 
 }

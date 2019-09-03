@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using NatCorder.Examples;
+using DG.Tweening;
 
 public class ProjFilter : FilterBase
 {
@@ -13,6 +14,8 @@ public class ProjFilter : FilterBase
     [SerializeField] private MyReplayCam _replayCam;
     [SerializeField] private RenderTexMaker _texMaker;
     [SerializeField] private FullScreenQuadByShader _myFullScreen;
+    [SerializeField] private CameraMotionVector _camMotion;
+    private int _count = 0;
     private bool _flag = false;
 
     public override void Show(EffectControlMain main){
@@ -46,19 +49,31 @@ public class ProjFilter : FilterBase
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
+            if( touch.position.y < Screen.height*0.333f) return;
+
             if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
             {
-                if(Random.value<0.5f){
-				    _flag = !_flag;
+                
+                _main.HideInfo();
+
+                if(_count%4<=1){
+                    _flag = !_flag;
+                    
+                    _fullBgMaterial.DOFloat(
+                        _flag ? 1f : 0,
+                        "_FeedbackRatio",
+                        1f
+                    ).SetEase(Ease.Linear);
                 }
+
+                _count++;
+                
 			}
 		}
 
-        if(!_flag){
-            _main.SetCamToMainTex( _fullBgMaterial );
-        }else{
-            _fullBgMaterial.SetTexture("_MainTex",_texMaker._tex);
-        }
+        _main.SetCamToMainTex( _fullBgMaterial );
+        _fullBgMaterial.SetTexture("_MainTex2",_texMaker._tex);
+        _fullBgMaterial.SetVector("_Motion",_camMotion._distance);
 
     }
 

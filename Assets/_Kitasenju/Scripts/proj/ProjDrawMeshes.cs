@@ -36,12 +36,14 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
         _positions = positions;
 
         _isInit=true;
-        _count=Mathf.FloorToInt( 50+50*Random.value );
+        _count=Mathf.FloorToInt( 50+30*Random.value );
         
 
         int meshIndex = Mathf.FloorToInt(Random.value*_meshes.Length);
         _mesh = _meshes[meshIndex];
 
+        var scl = _scales[meshIndex];
+        var isRot = Random.value < 0.5f ? true : false;
         //_count = 300;
         for(int i=0;i<_count;i++){
 
@@ -61,14 +63,15 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
                 _data[i].pos.z
             );
 
+            var rr = isRot ? 1f : 0;
             _data[i].rot = Quaternion.Euler(
-                (Random.value-0.5f)*360f,
-                (Random.value-0.5f)*360f,
-                (Random.value-0.5f)*360f
-            );             
+                (Random.value-0.5f)*360f * rr,
+                (Random.value-0.5f)*360f * rr,
+                (Random.value-0.5f)*360f * rr
+            );         
                 
 
-            var ss = 0.05f + baseScale*Random.value;
+            var ss = scl * (0.06f + baseScale*Random.value);
             _data[i].scale = new Vector3(
                 ss,ss,ss
             );                         

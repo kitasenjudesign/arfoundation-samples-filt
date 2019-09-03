@@ -16,24 +16,38 @@
 		private bool pressed;
 		//private bool isRecording = false;
         private bool _isRecording = false;
-		private const float MaxRecordingTime = 10f; // seconds
+		private const float MaxRecordingTime = 15f; // seconds
 		//public System.Action _staticImageCaptureCallback;
 		private float _startTime = 0;
         [SerializeField] private NatCorder.Examples.MyReplayCam _replayCam;
         [SerializeField] private Image circle;
         [SerializeField] private Image sq;
+		[SerializeField] private Image bg;
 
 		private void Start () {
+			
 			Reset();
+			SetBtnActive(true);
+
 		}
 
 		private void Reset () {
+			
 			// Reset fill amounts
             if( sq ) sq.enabled=false;
             if( circle ) circle.enabled = true; 
 			if (button) button.fillAmount = 1.0f;
 			if (countdown) countdown.fillAmount = 0.0f;
+			//if (bg) bg.raycastTarget=false;
+
 		}
+
+		public void SetBtnActive(bool b){
+
+			bg.raycastTarget=b;
+
+		}
+
 
 		void IPointerDownHandler.OnPointerDown (PointerEventData eventData) {
             Debug.Log("start");
@@ -55,7 +69,6 @@
                 var rect = sq.GetComponent<RectTransform>();
                 rect.transform.localScale = Vector3.one*1.2f;
                 rect.DOScale(Vector3.one,0.5f).SetEase(Ease.OutSine);
-
 
                 _isRecording=true;
                 _startTime=Time.time;
@@ -80,6 +93,7 @@
             _replayCam.StopRecording();
             
             Reset();
+			SetBtnActive(false);
         }
 
         void Update(){
@@ -104,9 +118,6 @@
 			pressed = true;
 			// First wait a short time to make sure it's not a tap
 			yield return new WaitForSeconds(0.2f);
-
-
-
 
 			if (!pressed) yield break;
 			// Start recording

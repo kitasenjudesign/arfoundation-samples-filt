@@ -146,15 +146,15 @@ public class ProjObjs : MonoBehaviour {
 		_current.Init(
 			projMat,
 			viewMat,
-			0.2f + 0.1f * Random.value
+			0.15f + 0.1f * Random.value
 		);
 
 		//三個消す
-		//if(_count%5==0){
-		//	for(int i=0;i<_list.Count;i++){
-		//		_list[i].Hide();
-		//	}
-		//}
+		if(_count%5==0){
+			for(int i=0;i<_list.Count;i++){
+				_list[i].Hide();
+			}
+		}
 
 	}
 

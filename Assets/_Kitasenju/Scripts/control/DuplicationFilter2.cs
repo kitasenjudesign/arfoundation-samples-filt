@@ -21,7 +21,7 @@ public class DuplicationFilter2 : FilterBase
         //DataManager.Instance.InitTexStorage();
         //_texStorage = DataManager.Instance.texStorage;        
         //_main._arBackground.enabled=false;
-
+        UpdateFilter();
     }
 
     private void _Init(){

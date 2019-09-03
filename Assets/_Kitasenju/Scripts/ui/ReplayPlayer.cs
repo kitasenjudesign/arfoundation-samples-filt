@@ -13,7 +13,7 @@ using NatCorder.Examples;
 
 public class ReplayPlayer : MonoBehaviour
 {
-    [SerializeField] private RecordButton _recordBtn;
+    [SerializeField] private MyRecordBtn _recordBtn;
     [SerializeField] private Button _saveBtn;
     [SerializeField] private Button _closeBtn;
     [SerializeField] private RawImage _rawImage;
@@ -37,7 +37,7 @@ public class ReplayPlayer : MonoBehaviour
         _closeBtn.onClick.AddListener( _onClickClose );
         gameObject.SetActive(false);
         _savedTxt.gameObject.SetActive(false);
-        _recordBtn._staticImageCaptureCallback = ShowImage;
+        //_recordBtn._staticImageCaptureCallback = ShowImage;
 
     }
 
@@ -148,7 +148,8 @@ public class ReplayPlayer : MonoBehaviour
         }
 
         _rectTrans.DOLocalMoveY(-Screen.height,0.5f).OnComplete(()=>{
-            
+
+            _recordBtn.SetBtnActive(true);
             _isMoving=false;
             gameObject.SetActive(false);
             
@@ -174,14 +175,14 @@ public class ReplayPlayer : MonoBehaviour
         //Debug.Log("Set Audio Track to : " + audioSource);
         
         _videoPlayer.Prepare ();
-        _rawImage.color = Color.black;
+        _rawImage.color = new Color(0,0,0,1f);
         
         //Wait until Movie is prepared
         WaitForSeconds waitTime = new WaitForSeconds(1);
         while (!_videoPlayer.isPrepared)
         {
             Debug.Log("Preparing Movie");
-            _rawImage.DOColor(Color.white,0.5f)
+            _rawImage.DOColor(new Color(1f,1f,1f,1f),0.5f)
                 .SetDelay(0.3f)
                 .SetEase(Ease.Linear);
 
