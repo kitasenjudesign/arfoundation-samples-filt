@@ -33,7 +33,7 @@ public class RandomFilter : FilterBase
         //    Random.value < 0.5f ? true : false
         //);
         _main.SetImageEffect(_material);
-        Invoke("_startLoop",0.5f);
+        Invoke("_startLoop",0.75f);
 
     }
 

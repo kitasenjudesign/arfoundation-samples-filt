@@ -36,6 +36,7 @@
 
             sampler2D _MainColTex;
             sampler2D _StencilTex;
+            sampler2D _MainTex;
             float _Strength;
             float4 _MainTex_ST;
 
@@ -66,9 +67,10 @@
                 //i.uv.x = 1 - i.uv.x;
                 float2 stencilUV = GetStencilUV( uvv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
-                clip( stencil.r - 0.5 );
+                //clip( stencil.r - 0.5 );
+                fixed4 colA = tex2D(_MainTex,i.uv);
 
-                fixed4 colOut = col0;
+                fixed4 colOut = lerp(colA,col0,smoothstep(0.8,1,stencil.r));
 
                 return colOut;
 

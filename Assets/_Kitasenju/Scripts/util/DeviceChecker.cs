@@ -15,10 +15,10 @@ public class DeviceChecker {
     public static bool GetAvailable(){
 
         var devices = new string[]{
-            "iPhone11,8",
-            "iPhone11,2",
-            "iPhone11,4",
-            "iPhone11,6"
+            "iPhone11,8",//iphone xr
+            "iPhone11,2",//iphone xs
+            "iPhone11,4",//iphone xs max
+            "iPhone11,6"//iphone xs max
         };
 
         bool isAvailable = false;

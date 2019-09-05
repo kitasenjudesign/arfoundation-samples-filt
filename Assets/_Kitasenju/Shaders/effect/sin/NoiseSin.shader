@@ -1,4 +1,4 @@
-﻿Shader "effects/perlin/PerlinSin"
+﻿Shader "effects/sin/NoiseSin"
 {
     Properties
     {
@@ -58,46 +58,37 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
-                
-                //float2 mosaicUV = round(i.uv*aspect*40)/(aspect*40);
-                //noiseuv
 
-
-
+                //を作る
                 fixed4 col0 = tex2D(_MainTex,i.uv);
-
-                //i.uv.x = 1 - i.uv.x;
                 float2 stencilUV = GetStencilUV( i.uv );
-                //stencilUV.y = 1 - stencilUV.y;
-
-                //float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                //stencilUV.y = stencilUV.y*bai + (1-bai)/2;
-
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
-                fixed4 depth    = tex2D( _DepthTex, stencilUV );
-
-                //depthr は 荒すぎる
-                //depth.r *= _DepthTh * 2;
-
                 float2 mosaicUV = float2(
-                    snoise(float3(i.uv.x+col0.r*2.0,i.uv.y+col0.g*2.0, 2.0 + _Time.y*0.3)),
-                    snoise(float3(i.uv.x+col0.g*2.0,i.uv.y+col0.b*2.0, 2.0 + _Time.y*0.4))
+                    snoise(float3(i.uv.x+col0.r*2.0,i.uv.y+col0.g*2.0, 2.0 + _Time.x*1)),
+                    snoise(float3(i.uv.x+col0.g*2.0,i.uv.y+col0.b*2.0, 2.0 + _Time.x*1))
                 );
-
                 fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV*0.3 ) ) );
  
-            
-
-                //マスク
                 if(_Invert==1) stencil.r = 1 - stencil.r;
                 col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
 
-                //if( depth.r < _DepthTh ){
-                //     col.rgb = col0.rgb;
-                //}
+                //sinを作る
+                float amp = 0.5 + 0.5 * sin( _Time.z );
+                float2 uvv = i.uv + float2( 0.2 * amp * sin(i.uv.y * (20.0+20*amp) + _Time.z),0 );
+                col0 = tex2D(_MainTex,uvv);
+                stencilUV = GetStencilUV( uvv );
+                stencil  = tex2D( _StencilTex, stencilUV );
+                fixed4 colA = tex2D(_MainTex, uvv );
+ 
+                col.rgb = lerp(
+                    col,
+                    lerp( col0.rgb, colA.rgb, stencil.r),
+                    stencil.r
+                );
+
+                //if(_Invert==1) stencil.r = 1 - stencil.r;
+                //col.rgb = lerp( col0.rgb, col.rgb, stencil.r);    
 
                 return col;
 

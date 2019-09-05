@@ -39,7 +39,7 @@ public class ToggleBtn : MonoBehaviour
         }else{
             _button.enabled=false;
             _image.raycastTarget = false;
-            _image.color = new Color(1f,1f,1f,0.5f);
+            _image.color = new Color(1f,1f,1f,0.4f);
         }
     }
 

@@ -12,27 +12,41 @@ public class ProjObjs : MonoBehaviour {
 	private List<ProjBase> _list;
 	[SerializeField] private Camera _projectionCam;
 	[SerializeField] private Camera _camera;
-	private RenderTexture _captureTestTex;
+	//private RenderTexture _captureTestTex;
 	private ProjBase _current;
 	private int _count = 0;
     private EffectControlMain _main;
     [SerializeField] private RenderTexMaker _camTexMaker;
+	private bool _isInit = false;
 
 	public void Init (EffectControlMain main) {
 
 		_main = main;
+		HideAll();
+
+		if(_isInit)return;
+		_isInit=true;
 
 		_list = new List<ProjBase>();
 
 		for(int i=0;i<_src.Length; i++){
 			_src[i].gameObject.SetActive(false);
 		}
+	
+		//すでにあったら消す
 
 
-		_captureTestTex = new RenderTexture(Screen.width,Screen.height,0);
-		
 	}
 	
+	public void HideAll(){
+		if(_list!=null){
+			for(int i=0;i<_list.Count;i++){
+				_list[i].Hide();
+			}
+		}
+
+	}
+
 
 	private void OnGUI()
 	{
@@ -113,7 +127,7 @@ public class ProjObjs : MonoBehaviour {
 		_list.Add(_current);
 
 		//多すぎると削除
-		if(_list.Count>10){
+		if(_list.Count>6){
 			var tgt = _list[0];
 			tgt.Kill();
 			_list.RemoveAt(0);

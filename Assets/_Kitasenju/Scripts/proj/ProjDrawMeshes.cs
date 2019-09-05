@@ -131,7 +131,11 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
     public override void Capture(RenderTexture srcTex){
 
         if(_renderTexture == null){
-            _renderTexture = new RenderTexture(Screen.width,Screen.height,0);                  
+            _renderTexture = new RenderTexture(
+                Mathf.FloorToInt( Screen.width * 0.5f ),
+                Mathf.FloorToInt( Screen.height * 0.5f ),
+                0
+            );                  
         }
 
         //if( Random.value < 0.5f ){
