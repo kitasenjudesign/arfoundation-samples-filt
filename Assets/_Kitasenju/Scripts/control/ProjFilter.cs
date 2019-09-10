@@ -49,27 +49,29 @@ public class ProjFilter : FilterBase
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
-            if( touch.position.y < Screen.height*0.333f) return;
+            if( touch.position.y > Screen.height*0.333f){
 
-            if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
-            {
-                
-                _main.HideInfo();
+                if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
+                {
+                    
+                    _main.HideInfo();
 
-                if(_count%4<=1){
-                    _flag = !_flag;
-                    /*
-                    _fullBgMaterial.DOFloat(
-                        _flag ? 1f : 0,
-                        "_FeedbackRatio",
-                        1f
-                    ).SetEase(Ease.Linear);
-                    */
+                    if(_count%4<=1){
+                        _flag = !_flag;
+                        /*
+                        _fullBgMaterial.DOFloat(
+                            _flag ? 1f : 0,
+                            "_FeedbackRatio",
+                            1f
+                        ).SetEase(Ease.Linear);
+                        */
+                    }
+
+                    _count++;
+                    
                 }
-
-                _count++;
                 
-			}
+            }
 		}
 
         _main.SetCamToMainTex( _fullBgMaterial );

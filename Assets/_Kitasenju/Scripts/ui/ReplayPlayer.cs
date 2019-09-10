@@ -107,7 +107,7 @@ public class ReplayPlayer : MonoBehaviour
 
         //_hideVideo();
         _hideBtn();
-        Invoke("_hideVideo",0.5f);
+        Invoke("_hideVideo",0.4f);
     }
 
     private void _onClickSave(){

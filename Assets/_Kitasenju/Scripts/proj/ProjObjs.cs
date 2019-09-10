@@ -44,7 +44,7 @@ public class ProjObjs : MonoBehaviour {
 
 	}
 
-	
+	/*
    private void OnGUI()
     {
 
@@ -64,7 +64,7 @@ public class ProjObjs : MonoBehaviour {
             _style
         );
 
-	}
+	}*/
 	
 	public void HideAll(){
 		if(_list!=null){
@@ -79,10 +79,12 @@ public class ProjObjs : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-
+		
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
+			if( touch.position.y < Screen.height*0.333f) return;
+
             if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
             {
 				MakeObj();
@@ -92,6 +94,8 @@ public class ProjObjs : MonoBehaviour {
         if (Input.touchCount == 3)
         {
             Touch touch = Input.GetTouch(0);
+			if( touch.position.y < Screen.height*0.333f) return;
+
             if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
             {			
             	_Remove();
@@ -174,7 +178,9 @@ public class ProjObjs : MonoBehaviour {
 		_current.gameObject.SetActive(true);
 		
 		//初期化
-		_scale = 0.15f + 0.1f * Random.value;
+		_scale = 0.1f + 0.1f * Random.value;
+		if(_count%3==0) _scale = 0.2f + 0.2f * Random.value;
+
 		_current.Init(
 			projMat,
 			viewMat,

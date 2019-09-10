@@ -71,7 +71,7 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
             );         
                 
 
-            var ss = scl * (0.06f + baseScale);//*Random.value);
+            var ss = scl * (0.06f + baseScale*(0.5f+0.5f*Random.value) );
             _data[i].scale = new Vector3(
                 ss,ss,ss
             );
