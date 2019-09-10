@@ -34,6 +34,7 @@ public class Main : MonoBehaviour
     void Update()
     {
         
+        /*
         if (Input.touchCount >= 2){
             
             var touch = Input.touches[0];
@@ -54,6 +55,7 @@ public class Main : MonoBehaviour
             }
 
         }
+         */
 
     }
 }

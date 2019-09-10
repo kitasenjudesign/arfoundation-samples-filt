@@ -87,11 +87,21 @@
                     snoise(float3(i.uv.x+col0.g*2.0,i.uv.y+col0.b*2.0, 2.0 + _Time.y*0.4))
                 );
 
+
+
                 fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV*0.3 ) ) );
                 col.r *= 1.0;
                 col.g *= 0.8;
                 col.b *= 0.1;
 
+                
+                col.rgb = lerp( 
+                    
+                    col.rgb,
+                    col0.rgb,
+                    step( 0, snoise(float3(col0.b*2.0,i.uv.y+col0.r*2.0+_Time.y*0.5, _Time.x)) )
+
+                );
 
                 //マスク
                 if(_Invert==1) stencil.r = 1 - stencil.r;

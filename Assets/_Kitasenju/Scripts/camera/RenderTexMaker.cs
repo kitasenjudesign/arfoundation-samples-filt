@@ -13,12 +13,14 @@ public class RenderTexMaker : MonoBehaviour
 
     private void OnGUI()
     {
-          GUI.DrawTexture(
-                new Rect(0, 0, 200, 200), 
-                _tex, 
-                ScaleMode.StretchToFill,
-                false
-            ); 
+        /*
+        GUI.DrawTexture(
+            new Rect(0, 0, 200, 200), 
+            _tex, 
+            ScaleMode.StretchToFill,
+            false
+        );
+        */
     }
 
    

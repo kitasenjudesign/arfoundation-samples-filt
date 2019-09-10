@@ -19,6 +19,11 @@ public class ProjObjs : MonoBehaviour {
     [SerializeField] private RenderTexMaker _camTexMaker;
 	private bool _isInit = false;
 
+    [SerializeField] protected Material _simpleMaskMat;
+	private RenderTexture _renderTex;
+	private GUIStyle _style;
+	private float _scale=1f;
+
 	public void Init (EffectControlMain main) {
 
 		_main = main;
@@ -28,6 +33,7 @@ public class ProjObjs : MonoBehaviour {
 		_isInit=true;
 
 		_list = new List<ProjBase>();
+		_renderTex = new RenderTexture(1024,1024,0);
 
 		for(int i=0;i<_src.Length; i++){
 			_src[i].gameObject.SetActive(false);
@@ -35,6 +41,28 @@ public class ProjObjs : MonoBehaviour {
 	
 		//すでにあったら消す
 
+
+	}
+
+	
+   private void OnGUI()
+    {
+
+
+        if(_style==null){
+            _style = new GUIStyle();
+            _style.fontSize = 40;
+            _style.normal.textColor = Color.red;                
+        }
+
+        var str = ""+_scale;
+
+        //Debug.Log(timeCode=="");
+        GUI.Label(
+            new Rect(50,350, 200, 100),
+            str,
+            _style
+        );
 
 	}
 	
@@ -46,26 +74,6 @@ public class ProjObjs : MonoBehaviour {
 		}
 
 	}
-
-
-	private void OnGUI()
-	{
-		//float nn = 0.1f;
-        /*
-		GUI.DrawTexture(
-            new Rect(0, 0, Mathf.FloorToInt(Screen.width*nn),Mathf.FloorToInt(Screen.height*nn)), 
-            _captureTestTex, 
-            ScaleMode.StretchToFill,
-            false
-        ); 
-		GUI.DrawTexture(
-            new Rect(0, Mathf.FloorToInt(Screen.height*nn), Mathf.FloorToInt(Screen.width*nn),Mathf.FloorToInt(Screen.height*nn)), 
-            _main._humanBodyManager, 
-            ScaleMode.StretchToFill,
-            false
-        );*/
-
-	}  
 
 
 	// Update is called once per frame
@@ -117,13 +125,11 @@ public class ProjObjs : MonoBehaviour {
 
 	public void MakeObj(){
 
-	
-		//instansiate
 		_current = Instantiate( _src[_count%_src.Length], transform, false );
-      
         _current.gameObject.SetActive(true);
 		_count++;
 
+		Debug.Log("MakeObj " + _current);
 		_list.Add(_current);
 
 		//多すぎると削除
@@ -136,10 +142,21 @@ public class ProjObjs : MonoBehaviour {
 
 		_current.gameObject.SetActive(false);//自分は消す
         
-        //if(_main._arBackground.material){
-        //    Graphics.Blit(null,_main._camTex,_main._arBackground.material);
-        //}
-		_current.Capture(_camTexMaker._tex);//相手と背景をキャプチャ
+		//背景を透明にしたいとき
+			/*
+			Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
+			_simpleMaskMat.SetTexture("_StencilTex",humanStencil);
+			_simpleMaskMat.SetTexture("_MainTex",_camTexMaker._tex);
+			Graphics.Blit(
+				_camTexMaker._tex,_renderTex,_simpleMaskMat
+			);
+			_current.Capture(_renderTex );
+			*/
+
+		//通常
+			_current.Capture(
+				_camTexMaker._tex
+			);//相手と背景をキャプチャ
 
 		//0.05sec後に表示する
 		Invoke("_SetPos",0.05f);
@@ -152,15 +169,16 @@ public class ProjObjs : MonoBehaviour {
 		var projMat = _projectionCam.projectionMatrix;
 		var viewMat = _projectionCam.worldToCameraMatrix;
 		
-		_current.transform.position = _camera.transform.position + _camera.transform.forward*(0.5f + 0.5f * Random.value);
+		_current.transform.position = _camera.transform.position + _camera.transform.forward*(0.4f + 0.4f * Random.value);
 		_current.transform.LookAt(_projectionCam.transform.position);
 		_current.gameObject.SetActive(true);
 		
 		//初期化
+		_scale = 0.15f + 0.1f * Random.value;
 		_current.Init(
 			projMat,
 			viewMat,
-			0.15f + 0.1f * Random.value
+			_scale
 		);
 
 		//三個消す

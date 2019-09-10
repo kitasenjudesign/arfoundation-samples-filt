@@ -72,6 +72,8 @@
  
                 if(_Invert==1) stencil.r = 1 - stencil.r;
                 col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
+                //col.rgb = lerp( col0.rgb, float3(0,0,0), stencil.r);                
+
 
                 //sinを作る
                 float amp = 0.5 + 0.5 * sin( _Time.z );

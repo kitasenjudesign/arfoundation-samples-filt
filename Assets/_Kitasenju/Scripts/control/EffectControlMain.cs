@@ -28,7 +28,9 @@ public class EffectControlMain : MonoBehaviour
     [SerializeField] private bool _Invert = false;
     [SerializeField] private ToggleBtn _toggleBtn;
     [SerializeField] private TextMeshProUGUI _info;
-
+    private int _count = 0;
+    
+    private GUIStyle _style;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +59,26 @@ public class EffectControlMain : MonoBehaviour
         }        
     }
 
+    
+    /*
+    void OnGUI(){
+
+        if(_style==null){
+            _style = new GUIStyle();
+            _style.fontSize = 40;
+            _style.normal.textColor = Color.red; 
+        }
+
+            GUI.Label(
+                new Rect(100, 100, 500, 100), 
+                ""+_count,
+                _style
+            );
+        //GUI.DrawTexture(new Rect(0,0,100,100),_webcamTex);
+        //GUI.DrawTexture(new Rect(0,0,200,100),_data[0].renderTexture);
+    }*/
+
+
     public void SetFilter(int idx){
         
         for(int i=0;i<_filters.Count;i++){
@@ -75,6 +97,28 @@ public class EffectControlMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        /*
+        Texture2D humanStencil  = _humanBodyManager.humanStencilTexture;
+        Texture2D humanDepth    = _humanBodyManager.humanDepthTexture;
+
+        if(humanStencil){
+
+            var w = humanStencil.width;
+            var h = humanStencil.height;
+            
+            var cols =humanStencil.GetPixels();
+
+            for(int i=0;i<cols.Length;i++){
+                if( cols[i].r > 0.1f ){
+                    _count++;
+                }
+            }
+
+        }*/
+
+
         var subsystem = _humanBodyManager.subsystem;
         if (subsystem == null)
         {

@@ -101,6 +101,7 @@ public class ReplayPlayer : MonoBehaviour
                 NatShare.SaveToCameraRoll(_capturedImage);
             }else{
                 NatShare.SaveToCameraRoll(_path);
+                
             }
         #endif
 

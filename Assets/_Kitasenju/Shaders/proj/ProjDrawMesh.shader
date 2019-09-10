@@ -154,7 +154,7 @@ Shader "Unlit/ProjDrawMesh"
 				
 				//debug用
 				//fixed4 col = fixed4(uv.x,uv.y,0,1);
-				
+				clip(col.a-0.5);
 				// apply fog
 				//UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;

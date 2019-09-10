@@ -1925,6 +1925,7 @@ MonoBehaviour:
   _projectionCam: {fileID: 1886177310}
   _camera: {fileID: 1886177310}
   _camTexMaker: {fileID: 1886177311}
+  _simpleMaskMat: {fileID: 2100000, guid: 5b8fae1d4b5b3420f8a6be53e7b28c31, type: 2}
 --- !u!1 &551758154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,7 +4530,7 @@ MonoBehaviour:
   _container: {fileID: 138622922}
   _width: 3130
   _touch: {fileID: 1204305543}
-  _velocityLimit: 0.01
+  _velocityLimit: 10
 --- !u!114 &1204305543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5135,6 +5136,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
   - {fileID: 2100000, guid: 2731c8fa59ac445869a4ae52cc4e999d, type: 2}
   - {fileID: 2100000, guid: 53fb4f0bd4a7b4023bfb566e1309631c, type: 2}
+  - {fileID: 2100000, guid: b1722ef8d4c08411489922b82c922f4b, type: 2}
+  - {fileID: 2100000, guid: 08a703bf395e24ee7975cd9341b1a63a, type: 2}
   _invert: 0
 --- !u!4 &1369086503
 Transform:

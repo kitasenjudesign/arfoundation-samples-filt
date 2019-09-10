@@ -47,7 +47,7 @@ public class FilterBtn : MonoBehaviour
     }
 
 
-    private void _onClick(){
+    public void _onClick(){
 
         _callback( _index );
 
