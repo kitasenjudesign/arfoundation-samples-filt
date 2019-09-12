@@ -5,79 +5,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-public class ProjObjs : MonoBehaviour {
+public class ProjObjsAuto : ProjObjs {
 
-	[SerializeField] protected ProjBase[] _src;//prefab
-	protected List<ProjBase> _list;
-	[SerializeField] protected Camera _projectionCam;
-	[SerializeField] protected Camera _camera;
-	//private RenderTexture _captureTestTex;
-	protected ProjBase _current;
-	protected int _count = 0;
-    protected EffectControlMain _main;
-    [SerializeField] protected RenderTexMaker _camTexMaker;
-	protected bool _isInit = false;
-
-    [SerializeField] protected Material _simpleMaskMat;
-	protected RenderTexture _renderTex;
-	protected GUIStyle _style;
-	protected float _scale=1f;
-
-	public void Init (EffectControlMain main) {
-
-		_main = main;
-		HideAll();
-
-		if(_isInit)return;
-		_isInit=true;
-
-		_list = new List<ProjBase>();
-		_renderTex = new RenderTexture(1024,1024,0);
-
-		for(int i=0;i<_src.Length; i++){
-			_src[i].gameObject.SetActive(false);
-		}
-	
-		//すでにあったら消す
-
-
-	}
-
-	/*
-   private void OnGUI()
-    {
-
-
-        if(_style==null){
-            _style = new GUIStyle();
-            _style.fontSize = 40;
-            _style.normal.textColor = Color.red;                
-        }
-
-        var str = ""+_scale;
-
-        //Debug.Log(timeCode=="");
-        GUI.Label(
-            new Rect(50,350, 200, 100),
-            str,
-            _style
-        );
-
-	}*/
-	
-	public void HideAll(){
-		if(_list!=null){
-			for(int i=0;i<_list.Count;i++){
-				_list[i].Hide();
-			}
-		}
-
-	}
-
+	private float _time = 0;
 
 	// Update is called once per frame
 	void Update () {
 		
+		if( Time.realtimeSinceStartup - _time > 0.5f){
+			
+			_time=Time.realtimeSinceStartup;
+			MakeObj2();
+
+		}
+
 		
         if (Input.touchCount == 1)
         {
@@ -86,7 +27,7 @@ public class ProjObjs : MonoBehaviour {
 
             if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
             {
-				MakeObj();
+				MakeObj2();
 			}
 		}
 
@@ -101,10 +42,8 @@ public class ProjObjs : MonoBehaviour {
 			}
 		}
 
-
-
 		if(Input.GetKeyDown(KeyCode.Space)){
-			MakeObj();
+			MakeObj2();
 		}
 
 		if(Input.GetKeyDown(KeyCode.RightArrow)){
@@ -126,7 +65,7 @@ public class ProjObjs : MonoBehaviour {
 	
 	}
 
-	public void MakeObj(){
+	public void MakeObj2(){
 
 		_current = Instantiate( _src[_count%_src.Length], transform, false );
         _current.gameObject.SetActive(true);
@@ -136,36 +75,27 @@ public class ProjObjs : MonoBehaviour {
 		_list.Add(_current);
 
 		//多すぎると削除
-		if(_list.Count>6){
+		if(_list.Count>20){
 			var tgt = _list[0];
 			tgt.Kill();
 			_list.RemoveAt(0);
 			Destroy(tgt.gameObject);
 		}
 
-		_current.gameObject.SetActive(false);//自分は消す
-        
-		//背景を透明にしたいとき
-			/*
 			Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
 			_simpleMaskMat.SetTexture("_StencilTex",humanStencil);
 			_simpleMaskMat.SetTexture("_MainTex",_camTexMaker._tex);
 			Graphics.Blit(
 				_camTexMaker._tex,_renderTex,_simpleMaskMat
 			);
-			_current.Capture(_renderTex );
-			*/
-
-		//通常
-			_current.Capture(
-				_camTexMaker._tex
-			);//相手と背景をキャプチャ
+			_current.Capture(  _renderTex );
+			
 
 		//0.05sec後に表示する
-		Invoke("_SetPos",0.05f);
+		Invoke("_SetPos2",0.05f);
 	}
 
-	void _SetPos(){
+	void _SetPos2(){
 
 		Debug.Log("_SetPos!!!!");
 
@@ -173,7 +103,15 @@ public class ProjObjs : MonoBehaviour {
 		var viewMat = _projectionCam.worldToCameraMatrix;
 		
 		_current.transform.position = _camera.transform.position + _camera.transform.forward*(0.4f + 0.4f * Random.value);
-		_current.transform.LookAt(_projectionCam.transform.position);
+		//_current.transform.LookAt(
+		//	_projectionCam.transform.position,
+		//	new Vector3(0.3f*Random.value,1f,0.3f*Random.value)
+		//);
+		_current.transform.localRotation = Quaternion.Euler(
+			360f * Random.value,
+			360f * Random.value,
+			360f * Random.value
+		);
 		_current.gameObject.SetActive(true);
 		
 		//初期化
@@ -185,13 +123,6 @@ public class ProjObjs : MonoBehaviour {
 			viewMat,
 			_scale
 		);
-
-		//三個消す
-		if(_count%5==0){
-			for(int i=0;i<_list.Count;i++){
-				_list[i].Hide();
-			}
-		}
 
 	}
 

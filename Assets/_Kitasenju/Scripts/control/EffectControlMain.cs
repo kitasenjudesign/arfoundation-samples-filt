@@ -55,7 +55,7 @@ public class EffectControlMain : MonoBehaviour
         Debug.Log(">>>>" + mat);
         if(mat){
             mat.SetFloat("_Brightness",0);
-            mat.DOFloat(1f,"_Brightness",0.5f).SetDelay(0.3f);
+            mat.DOFloat(1f,"_Brightness",0.5f).SetEase(Ease.Linear).SetDelay(0.4f);
         }        
     }
 

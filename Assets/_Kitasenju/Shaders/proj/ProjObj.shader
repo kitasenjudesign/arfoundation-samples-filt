@@ -143,7 +143,7 @@ Shader "Unlit/ProjObj"
 				//fixed4 col =tex2D(_MainTex, i.tangent.xy / i.tangent.w);
 				fixed4 col = tex2D( _MainTex, uv);//i.tangent.xy );
 				//fixed4 col = fixed4(i.col.rgb,1.0);
-				
+				clip(col.a - 0.5);
 				// apply fog
 				//UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;

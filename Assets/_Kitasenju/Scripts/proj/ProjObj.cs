@@ -70,7 +70,7 @@ public class ProjObj : ProjBase {
 
 		//gameObject.SetActive(false);
         if(_renderTexture == null){
-            _renderTexture = new RenderTexture(Screen.width,Screen.height,0);                  
+            _renderTexture = DataManager.Instance.texStorage.GetNextColorTexture();  //new RenderTexture(Screen.width,Screen.height,0);                  
         }
 
 		Graphics.Blit( srcTex, _renderTexture );/////

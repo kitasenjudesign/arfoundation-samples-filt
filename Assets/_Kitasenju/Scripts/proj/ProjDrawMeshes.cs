@@ -133,11 +133,17 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
     public override void Capture(RenderTexture srcTex){
 
         if(_renderTexture == null){
-            _renderTexture = new RenderTexture(
-                Mathf.FloorToInt( Screen.width * 0.5f ),
-                Mathf.FloorToInt( Screen.height * 0.5f ),
-                0
-            );                  
+
+            Debug.Log(DataManager.Instance);
+            Debug.Log(DataManager.Instance.texStorage);
+
+            _renderTexture = DataManager.Instance.texStorage.GetNextColorTexture(); 
+            
+            //new RenderTexture(
+            //    Mathf.FloorToInt( Screen.width * 0.5f ),
+            //    Mathf.FloorToInt( Screen.height * 0.5f ),
+            //    0
+            //);               
         }
 
         //if( Random.value < 0.5f ){
@@ -165,9 +171,9 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
 
     public override void Kill(){
 
-        if(_renderTexture!=null){
-            _renderTexture.Release();
-        }
+        //if(_renderTexture!=null){
+        //    _renderTexture.Release();
+        //}
         //DestroyImmediate(_mat);
 
     }

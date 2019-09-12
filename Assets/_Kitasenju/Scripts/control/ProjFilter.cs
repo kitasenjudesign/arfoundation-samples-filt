@@ -11,7 +11,8 @@ public class ProjFilter : FilterBase
     [SerializeField] private ProjObjs _projObjs;
 
     [SerializeField] private GameObject _fullQuad;
-    [SerializeField] private MyReplayCam _replayCam;
+
+    //[SerializeField] private MyReplayCam _replayCam;
     [SerializeField] private RenderTexMaker _texMaker;
     [SerializeField] private FullScreenQuadByShader _myFullScreen;
     [SerializeField] private CameraMotionVector _camMotion;
@@ -20,6 +21,7 @@ public class ProjFilter : FilterBase
 
     public override void Show(EffectControlMain main){
 
+        DataManager.Instance.InitTexStorage();
         _fullQuad.gameObject.SetActive(false);
         _texMaker.enabled=true;
         base.Show(main);

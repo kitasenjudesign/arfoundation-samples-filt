@@ -44,7 +44,7 @@ public class RenderTexStocker
 
 
     public RenderTexture GetFrame(int idx){
-        return _frames[idx];
+        return _frames[ idx % _frames.Count];
     }
 
 

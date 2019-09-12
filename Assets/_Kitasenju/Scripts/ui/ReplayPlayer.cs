@@ -128,6 +128,11 @@ public class ReplayPlayer : MonoBehaviour
 
     private void _hideBtn(){
 
+        //暗くする
+            _rawImage.DOColor(new Color(0f,0f,0f,1f),0.5f)
+                .SetDelay(0.1f)
+                .SetEase(Ease.Linear);
+
         var saveBtnRect = _saveBtn.GetComponent<RectTransform>();
         var closeBtnRect = _closeBtn.GetComponent<RectTransform>();        
         saveBtnRect.DOScale(Vector3.zero,0.5f);

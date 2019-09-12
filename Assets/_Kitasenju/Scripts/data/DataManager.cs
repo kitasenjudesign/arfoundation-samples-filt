@@ -5,7 +5,7 @@ public class DataManager : MonoBehaviour
 {
 
     public static DataManager Instance;
-    public RenderTexStorage texStorage;
+    public RenderTexManager texStorage;
 
     void Awake(){
         
@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
     public void InitTexStorage(){
         
         if(texStorage==null){
-            texStorage = new RenderTexStorage();
+            texStorage = new RenderTexManager();
             texStorage.Init();
         }
         

@@ -23,10 +23,8 @@ public class SimpleFilter : FilterBase
     public override void UpdateFilter(){
 
         //Debug.Log(_invert);
-
         Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
         Texture2D humanDepth    = _main._humanBodyManager.humanDepthTexture;
-
 
         //invertをセット
         _material.SetFloat("_Invert",_invert?1f:0);

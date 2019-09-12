@@ -11,7 +11,7 @@ public class DuplicationFilter2 : FilterBase
     private Material _outputMat;
     private bool _isInit = false;
     private float _ratio = 0;
-    private RenderTexStorage _texStorage;
+    private RenderTexManager _texStorage;
 
     public override void Show(EffectControlMain main){
         

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
-public class RenderTexStorage
+public class RenderTexManager
 {
 
     private bool _isInit = false;
@@ -14,6 +14,7 @@ public class RenderTexStorage
     public RenderTexture _inputTex;
     public RenderTexture _outputTex;//
     public RenderTexture _outputTexTmp;//
+    private int _count = 0;
 
     public void Init(){
 
@@ -49,5 +50,14 @@ public class RenderTexStorage
         );
 
     }
+
+    public RenderTexture GetNextColorTexture(){
+        
+        Init();
+        _count++;
+        return _slitscanColor.GetFrame(_count);
+
+    }
+
 
 }
