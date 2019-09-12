@@ -164,7 +164,7 @@ PlayerSettings:
     Standalone: com.unity.arfoundation.samples
     iPhone: com.kitasenjudesign.mesai
   buildNumber:
-    iPhone: 112
+    iPhone: 113
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 0

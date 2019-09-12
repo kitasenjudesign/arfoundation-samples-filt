@@ -18,5 +18,5 @@ EditorBuildSettings:
     path: Assets/_Kitasenju/Scenes/main_maskTest.unity
     guid: ff23af9dd571143f8820e0abd5b18813
   m_configObjects:
-    com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: 2d5fb8e61571b4e3897f221189089fd6,
+    com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: e17e892774dfa41258820f0c404a4012,
       type: 2}

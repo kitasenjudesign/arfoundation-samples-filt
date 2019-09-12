@@ -44,9 +44,9 @@ public class ARKitBlendShapeVisualizer : MonoBehaviour
     }
 
 #if UNITY_IOS && !UNITY_EDITOR
-    ARKitFaceSubsystem m_ARKitFaceSubsystem;
+    //ARKitFaceSubsystem m_ARKitFaceSubsystem;
 
-    Dictionary<ARKitBlendShapeLocation, int> m_FaceArkitBlendShapeIndexMap;
+    //Dictionary<ARKitBlendShapeLocation, int> m_FaceArkitBlendShapeIndexMap;
 #endif
 
     ARFace m_Face;
@@ -65,6 +65,7 @@ public class ARKitBlendShapeVisualizer : MonoBehaviour
         }
 
 #if UNITY_IOS && !UNITY_EDITOR
+        /* 
         const string strPrefix = "blendShape2.";
         m_FaceArkitBlendShapeIndexMap = new Dictionary<ARKitBlendShapeLocation, int>();
         
@@ -120,6 +121,7 @@ public class ARKitBlendShapeVisualizer : MonoBehaviour
         m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerLeft       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneer_L");
         m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerRight      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneer_R");
         m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.TongueOut           ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "tongueOut");
+        */
 #endif
     }
 
@@ -143,11 +145,11 @@ public class ARKitBlendShapeVisualizer : MonoBehaviour
     void OnEnable()
     {
 #if UNITY_IOS && !UNITY_EDITOR
-        var faceManager = FindObjectOfType<ARFaceManager>();
-        if (faceManager != null)
-        {
-            m_ARKitFaceSubsystem = (ARKitFaceSubsystem)faceManager.subsystem;
-        }
+        //var faceManager = FindObjectOfType<ARFaceManager>();
+        //if (faceManager != null)
+        //{
+        //    m_ARKitFaceSubsystem = (ARKitFaceSubsystem)faceManager.subsystem;
+        //}
 #endif
         UpdateVisibility();
         m_Face.updated += OnUpdated;
@@ -179,6 +181,7 @@ public class ARKitBlendShapeVisualizer : MonoBehaviour
         }
 
 #if UNITY_IOS && !UNITY_EDITOR
+        /*
         using (var blendShapes = m_ARKitFaceSubsystem.GetBlendShapeCoefficients(m_Face.trackableId, Allocator.Temp))
         {
             foreach (var featureCoefficient in blendShapes)
@@ -192,7 +195,7 @@ public class ARKitBlendShapeVisualizer : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
 #endif
     }
 }
