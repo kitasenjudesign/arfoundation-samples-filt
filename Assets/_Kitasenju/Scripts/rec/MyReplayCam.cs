@@ -50,6 +50,11 @@ namespace NatCorder.Examples {
             //videoPlayer.enabled=false;
         }     
 
+        public void SetSize(Vector2Int size){
+            videoWidth = size.x;
+            videoHeight = size.y;
+        }
+
         public void StartRecording () {
             // Start recording
             recordingClock = new RealtimeClock();

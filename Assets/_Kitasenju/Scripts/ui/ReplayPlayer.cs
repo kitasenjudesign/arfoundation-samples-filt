@@ -13,6 +13,7 @@ using NatCorder.Examples;
 
 public class ReplayPlayer : MonoBehaviour
 {
+    [SerializeField] private MyReplayCam _replayCam;
     [SerializeField] private MyRecordBtn _recordBtn;
     [SerializeField] private Button _saveBtn;
     [SerializeField] private Button _closeBtn;
@@ -38,6 +39,15 @@ public class ReplayPlayer : MonoBehaviour
         gameObject.SetActive(false);
         _savedTxt.gameObject.SetActive(false);
         //_recordBtn._staticImageCaptureCallback = ShowImage;
+
+        var size = Params.GetVideoSize();
+        _replayCam.SetSize(size);
+
+        var rt = _rawImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2 (
+            Mathf.CeilToInt( (float)Screen.width/(float)Screen.height*2436f ), 
+            2436//Screen.height
+        );
 
     }
 

@@ -57,6 +57,7 @@ public class EffectControlMain : MonoBehaviour
             mat.SetFloat("_Brightness",0);
             mat.DOFloat(1f,"_Brightness",0.5f).SetEase(Ease.Linear).SetDelay(0.4f);
         }        
+        
     }
 
     
@@ -99,24 +100,17 @@ public class EffectControlMain : MonoBehaviour
     {
 
 
-        /*
+        
         Texture2D humanStencil  = _humanBodyManager.humanStencilTexture;
         Texture2D humanDepth    = _humanBodyManager.humanDepthTexture;
 
         if(humanStencil){
 
-            var w = humanStencil.width;
-            var h = humanStencil.height;
+            Params.SetStencilAspect(
+                humanStencil.width,humanStencil.height
+            );
             
-            var cols =humanStencil.GetPixels();
-
-            for(int i=0;i<cols.Length;i++){
-                if( cols[i].r > 0.1f ){
-                    _count++;
-                }
-            }
-
-        }*/
+        }
 
 
         var subsystem = _humanBodyManager.subsystem;

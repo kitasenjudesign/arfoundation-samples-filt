@@ -27,6 +27,9 @@ public class Main : MonoBehaviour
             _arSessionOrigin.gameObject.SetActive(true);
         }
 
+        //初期化
+        Params.Init();
+
 
     }
 
