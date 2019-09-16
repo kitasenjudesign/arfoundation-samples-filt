@@ -52,7 +52,7 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: 1
   androidShowActivityIndicatorOnLoading: -1
-  iosAppInBackgroundBehavior: 1
+  iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
   allowedAutorotateToPortrait: 1
@@ -164,7 +164,7 @@ PlayerSettings:
     Standalone: com.unity.arfoundation.samples
     iPhone: com.kitasenjudesign.mesai
   buildNumber:
-    iPhone: 134
+    iPhone: 155
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 0

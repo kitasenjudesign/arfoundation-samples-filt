@@ -7,10 +7,10 @@ public class DuplicationFilter3 : FilterBase
     //[SerializeField,Space(20)] private Shader _slitRecShader;
     [SerializeField] private Shader _fillShader;
     [SerializeField] private Shader _outputShader;
+    [SerializeField,Range(0,1f)] private float _ratioZanzou = 1f;
     private Material _fillMat;
     private Material _outputMat;
     private bool _isInit = false;
-    private float _ratio = 0;
     private RenderTexManager _texStorage;
 
     public override void Show(EffectControlMain main){
@@ -68,8 +68,7 @@ public class DuplicationFilter3 : FilterBase
             //Graphics.Blit( _cameraTex, _renderTex );
 
             //手前に、数フレームぶん、マスクした人を貼り付ける
-            _ratio=1f;
-            var len = Mathf.FloorToInt( camIdx.Length * _ratio );
+            var len = Mathf.FloorToInt( camIdx.Length * _ratioZanzou );
             Graphics.Blit( 
                 _texStorage._inputTex,
                 _texStorage._outputTex
