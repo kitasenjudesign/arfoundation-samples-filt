@@ -1,12 +1,14 @@
-﻿Shader "effects/perlin/PerlinTransparent"
+﻿Shader "effects/bloom/WhiteBloom"
 {
     Properties
     {
+        [KeywordEnum(POSTEFFECT,QUAD)]
+        _VERT("VERT KEYWORD", Float) = 0
         _MainTex ("_MainTex", 2D) = "white" {}
         _StencilTex ("_StencilTex", 2D) = "white" {}
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
-        _Detail("_Detail",Range(0,5)) = 0.5
+        _Brightness("_Brightness",Float) = 1
         [Toggle] _Invert("_Invert", Float) = 0
 
     }
@@ -24,8 +26,9 @@
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
-            #include "../noise/SimplexNoise3D.hlsl"
             #include "../util/StencilUV.hlsl"
+            #include "../util/FullScreen.hlsl"
+            #pragma multi_compile _VERT_POSTEFFECT _VERT_QUAD
 
             struct appdata
             {
@@ -43,14 +46,21 @@
             sampler2D _DepthTex;
             sampler2D _StencilTex;
             float _DepthTh;
-            float _Detail;
             float _Invert;
+            float _Brightness;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
             {
                 v2f o;
+
+                //POSTエフェクトに使うか、フルスクリーン用quadに使うか
+                #ifdef _VERT_POSTEFFECT
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                #elif _VERT_QUAD
+                o.vertex = GetFullScreenVert( v.vertex );
+                #endif
+
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
                 return o;
@@ -61,53 +71,32 @@
                 // sample the texture
                 
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
-                
-                //float2 mosaicUV = round(i.uv*aspect*40)/(aspect*40);
-                //noiseuv
+                float2 mosaicUV = round(i.uv*aspect*20)/(aspect*20);
 
-
-
-                fixed4 col0 = tex2D(_MainTex,i.uv);
+                float nn = 3+2*sin(_Time.y*30);
+                fixed4 col = tex2D(_MainTex,i.uv) * fixed4(nn,nn,nn,1.0);
+                fixed4 col0 = tex2D(_MainTex,i.uv) * fixed4(0.9,0.9,0.9,1.0);
 
                 //i.uv.x = 1 - i.uv.x;
-                float2 stencilUV = GetStencilUV( i.uv );
-                //stencilUV.y = 1 - stencilUV.y;
-
-                //float bai = 9.0/12.0 * 0.8;//4;3 16;12 16;9
-                //stencilUV.y = stencilUV.y*bai + (1-bai)/2;
+                float2 stencilUV = GetStencilUV(i.uv);
 
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
-                fixed4 depth    = tex2D( _DepthTex, stencilUV );
-
-                //depthr は 荒すぎる
-                //depth.r *= _DepthTh * 2;
-
-                float2 mosaicUV = float2(
-                    snoise(float3(i.uv.x+col0.r*2.0,i.uv.y+col0.g*2.0, 2.0 + _Time.y*0.3)),
-                    snoise(float3(i.uv.x+col0.g*2.0,i.uv.y+col0.b*2.0, 2.0 + _Time.y*0.4))
-                );
-
-                float nn = 0.4;//sin( _Time.x * 1.5) * 0.4;
-                fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV*nn ) ) );
- 
-                //オンオフにする
-                float ratio = sin( i.uv.y + _Time.x*9.0 ) * 0.5 + 0.5;//0 to 1
-                ratio = pow( ratio, 0.2 ) + 0.1*length(mosaicUV);
-                //ratio = smoothstep( 0.95,1.0,ratio );
-                ratio = smoothstep( 0.69, 0.70, ratio );
-
-
-                fixed4 col1 = lerp( col0, col, ratio );
+                //fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 //マスク
-                if(_Invert==1) stencil.r = 1 - stencil.r;
-                col.rgb = lerp( col0.rgb, col1.rgb, stencil.r);                
+                //col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
+                
+                col.rgb = lerp(
+                    lerp( col0.rgb, col.rgb, stencil.r),
+                    lerp( col0.rgb, col.rgb, 1-stencil.r),
+                    _Invert
+                );
 
                 //if( depth.r < _DepthTh ){
                 //     col.rgb = col0.rgb;
                 //}
 
-                return col;
+                return col * _Brightness;
 
             }
             ENDCG

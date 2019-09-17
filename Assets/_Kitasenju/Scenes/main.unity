@@ -242,7 +242,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &35242834
 MonoBehaviour:
@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -98294520734072907, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: gold
   _material: {fileID: 2100000, guid: b1722ef8d4c08411489922b82c922f4b, type: 2}
@@ -293,7 +294,7 @@ Transform:
   - {fileID: 974681972}
   - {fileID: 1015722067}
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &123500926
 MonoBehaviour:
@@ -309,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 8198144437244906290, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 0
+  _hasBloom: 0
   textId: -1
   filterName: unity1
   _material: {fileID: 2100000, guid: 4b80d2d1a14b546e6a6f48f3872eb69e, type: 2}
@@ -348,6 +350,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &140488868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140488869}
+  - component: {fileID: 140488870}
+  m_Layer: 0
+  m_Name: 01_mosaic (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &140488869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140488868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1141330383}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140488870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140488868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e85b82f03154e97a57990bba983a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 3b48d84785bca4c1191bf5617685d06c, type: 3}
+  _hasInvert: 1
+  _hasBloom: 1
+  textId: -1
+  filterName: whiteMat
+  _material: {fileID: 2100000, guid: 9c6e04e66b5314db7bcaa658fcb37701, type: 2}
+  _invert: 0
 --- !u!1 &163611023
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &164928699
 MonoBehaviour:
@@ -445,6 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 5786624601717946163, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 0
+  _hasBloom: 0
   textId: -1
   filterName: 
   _fillShader: {fileID: 4800000, guid: 8ee32d5fffbbd4985b67df6427a16d3b, type: 3}
@@ -729,6 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -8237091279408964635, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: emoji
   _material: {fileID: 2100000, guid: bab5756109d6b4b01b706fae6864971f, type: 2}
@@ -745,7 +799,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276163651
 GameObject:
@@ -928,6 +982,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.46, z: 3.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1005147532}
   - {fileID: 1886177307}
   m_Father: {fileID: 1335839535}
   m_RootOrder: 0
@@ -1144,6 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 2770fc58dca0343c583a963bbcc88e71, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: poster
   _material: {fileID: 2100000, guid: 5885e1f98e64b4a9b8dcb6947578cd44, type: 2}
@@ -1160,7 +1216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360502055
 GameObject:
@@ -1191,7 +1247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &360502057
 MonoBehaviour:
@@ -1207,6 +1263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -692933740443633824, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 0
+  _hasBloom: 0
   textId: -1
   filterName: 
   _fillShader: {fileID: 4800000, guid: bcc2a808ee43144b5a98276b8ee14d84, type: 3}
@@ -1241,7 +1298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &400126571
 MonoBehaviour:
@@ -1257,6 +1314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 4c6e0a46a66d8475bbd5eec4edc15a3d, type: 3}
   _hasInvert: 0
+  _hasBloom: 0
   textId: -1
   filterName: gold
   _material: {fileID: 2100000, guid: 3e6789ccdcc834a9db310f8e5f086e23, type: 2}
@@ -1364,7 +1422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &420790019
 MonoBehaviour:
@@ -1380,6 +1438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 1620823216107830769, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: perlin
   _material: {fileID: 2100000, guid: 2731c8fa59ac445869a4ae52cc4e999d, type: 2}
@@ -1964,7 +2023,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &514388316
 MonoBehaviour:
@@ -1980,6 +2039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: df20912ae2c1448d29621d40dc50822e, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: mosaicDisplace
   _material: {fileID: 2100000, guid: f91f43d5a8447430082da6f447230dc7, type: 2}
@@ -2712,6 +2772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 3b48d84785bca4c1191bf5617685d06c, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: mosaic
   _material: {fileID: 2100000, guid: 13c21281c21af42d8b89031a85067b30, type: 2}
@@ -2984,7 +3045,7 @@ Transform:
   - {fileID: 1367229939}
   - {fileID: 1511411753}
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &789600310
 MonoBehaviour:
@@ -3000,6 +3061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 5555755232975270929, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 0
+  _hasBloom: 0
   textId: 0
   filterName: 
   _fullBgMaterial: {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
@@ -3287,7 +3349,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &799080817
 MonoBehaviour:
@@ -3303,6 +3365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 8420518847959141732, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: mosaic
   _material: {fileID: 2100000, guid: c722545923d2a4520970b1755113adc0, type: 2}
@@ -3336,7 +3399,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &801002610
 MonoBehaviour:
@@ -3352,6 +3415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: d057c56f725eb4fc182de984a22080d2, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: ditha
   _material: {fileID: 2100000, guid: 08a703bf395e24ee7975cd9341b1a63a, type: 2}
@@ -3433,7 +3497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &853209882
 MonoBehaviour:
@@ -3449,6 +3513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 1747370874640036263, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: perlin
   _material: {fileID: 2100000, guid: b8b4edc1c5a71465c898fe002db29817, type: 2}
@@ -3484,6 +3549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -4600961098432017999, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: color
   _material: {fileID: 2100000, guid: ae8ca81fccaa84234b53fe7c840dc1b7, type: 2}
@@ -3500,7 +3566,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &884865730
 GameObject:
@@ -4315,6 +4381,54 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1005147531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005147532}
+  - component: {fileID: 1005147533}
+  m_Layer: 8
+  m_Name: post_effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1005147532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005147531}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.46, z: -11.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 282840814}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005147533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005147531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 9838aeac44be940a48d212371946cd30, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &1015722065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4581,6 +4695,7 @@ MonoBehaviour:
   _humanBodyManager: {fileID: 1335839536}
   _imageEffect: {fileID: 0}
   _fullScreenQuad: {fileID: 1886177308}
+  _postEffect: {fileID: 1886177312}
   _filters: []
   _menu: {fileID: 785619057}
   _filterMenu: {fileID: 1204305542}
@@ -4600,6 +4715,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 697284877}
+  - {fileID: 140488869}
   - {fileID: 853209881}
   - {fileID: 1158625249}
   - {fileID: 420790018}
@@ -4758,6 +4874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -2461405462128906930, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: mono
   _material: {fileID: 2100000, guid: 8c5df80c5ffaf46df8b161423a50d749, type: 2}
@@ -4774,7 +4891,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158625248
 GameObject:
@@ -4805,7 +4922,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1158625250
 MonoBehaviour:
@@ -4821,6 +4938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -2919381225683057706, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: colorLoop
   _material: {fileID: 2100000, guid: b9c49968ee6c04800b2a23310cdd41fb, type: 2}
@@ -5754,6 +5872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -7063388237116788486, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: 
   _materials:
@@ -5780,7 +5899,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390279358
 GameObject:
@@ -5814,7 +5933,7 @@ Transform:
   - {fileID: 577766543}
   - {fileID: 822285812}
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1390279360
 MonoBehaviour:
@@ -5830,6 +5949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _hasInvert: 0
+  _hasBloom: 0
   textId: 0
   filterName: 
   _fullBgMaterial: {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
@@ -6682,7 +6802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1547164260
 MonoBehaviour:
@@ -6698,6 +6818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 5786624601717946163, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 0
+  _hasBloom: 0
   textId: -1
   filterName: 
   _fillShader: {fileID: 4800000, guid: 7a895be56beb143649c98fa0368f4abc, type: 3}
@@ -6734,6 +6855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 3469880780921692964, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: color
   _material: {fileID: 2100000, guid: 53fb4f0bd4a7b4023bfb566e1309631c, type: 2}
@@ -6750,7 +6872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1590856752
 GameObject:
@@ -7610,6 +7732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 8704171305400832197, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: ascii
   _material: {fileID: 2100000, guid: aea958d13825c4f0aa90feab2d1d1ded, type: 2}
@@ -7626,7 +7749,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1886177306
 GameObject:
@@ -7639,6 +7762,7 @@ GameObject:
   - component: {fileID: 1886177307}
   - component: {fileID: 1886177310}
   - component: {fileID: 1886177309}
+  - component: {fileID: 1886177312}
   - component: {fileID: 1886177308}
   - component: {fileID: 1886177311}
   m_Layer: 0
@@ -7660,7 +7784,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 282840814}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1886177308
 MonoBehaviour:
@@ -7748,6 +7872,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tex: {fileID: 8400000, guid: 764c6ec5248764ab28f595f0451976d8, type: 2}
   _shader: {fileID: 4800000, guid: 24790b97a837e462387f396eb79c04ca, type: 3}
+--- !u!114 &1886177312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886177306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 0}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &1946191406
 GameObject:
   m_ObjectHideFlags: 0
@@ -7897,7 +8081,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1966470635
 MonoBehaviour:
@@ -7913,6 +8097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 2622788328075499590, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: perlin
   _material: {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
@@ -8218,7 +8403,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141330383}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2050464666
 MonoBehaviour:
@@ -8234,6 +8419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 646422853617712624, guid: 44d394470064846debd929eb52f04f8f, type: 3}
   _hasInvert: 1
+  _hasBloom: 0
   textId: -1
   filterName: gold
   _material: {fileID: 2100000, guid: 1bd3cdd0045634040a2f55d15242bc54, type: 2}

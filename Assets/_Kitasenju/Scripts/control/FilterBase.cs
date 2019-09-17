@@ -8,6 +8,8 @@ public class FilterBase : MonoBehaviour
 
     [SerializeField] public Sprite _icon;
     [SerializeField] public bool _hasInvert = false;
+    [SerializeField] public bool _hasBloom = false;
+
     [SerializeField] public int textId=-1;
     protected EffectControlMain _main;
     public string filterName;

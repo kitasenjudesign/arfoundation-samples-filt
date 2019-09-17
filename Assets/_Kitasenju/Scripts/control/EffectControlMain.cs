@@ -17,6 +17,7 @@ public class EffectControlMain : MonoBehaviour
     [SerializeField] public ARHumanBodyManager _humanBodyManager;
     [SerializeField,Space(10)] private ImageEffectBase _imageEffect;
     [SerializeField] private FullScreenQuad _fullScreenQuad;
+    [SerializeField] private UnityEngine.Rendering.PostProcessing.PostProcessLayer _postEffect;
 
     [SerializeField,Space(10)] private List<FilterBase> _filters;
     [SerializeField,Space(10)] public Menu _menu;
@@ -90,6 +91,9 @@ public class EffectControlMain : MonoBehaviour
         _currentFilter = _filters[_index % _filters.Count];
         _currentFilter.Show( this );
         _toggleBtn.SetActive( _currentFilter._hasInvert );
+
+        _postEffect.enabled = _currentFilter._hasBloom;
+
         
         _info.gameObject.SetActive( _currentFilter.textId>=0 );
         SetInvert(_Invert);

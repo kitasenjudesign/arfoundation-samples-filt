@@ -29,6 +29,7 @@ public class DeviceChecker {
     public static bool GetAvailable(){
 
         var devices = new string[]{
+
             "iPhone11,8",//iphone xr
             "iPhone11,2",//iphone xs
             "iPhone11,4",//iphone xs max
@@ -42,8 +43,6 @@ public class DeviceChecker {
             "iPad8,6",
             "iPad8,7",
             "iPad8,8"
-
-
         };
 
 
@@ -57,7 +56,6 @@ public class DeviceChecker {
                 isAvailable=true;
                 break;
             }
-
         }
 
         #if UNITY_EDITOR
