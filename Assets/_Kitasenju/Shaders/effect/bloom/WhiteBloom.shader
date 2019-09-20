@@ -73,8 +73,10 @@
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
                 float2 mosaicUV = round(i.uv*aspect*20)/(aspect*20);
 
-                float nn = 3+2*sin(_Time.y*30);
-                fixed4 col = tex2D(_MainTex,i.uv) * fixed4(nn,nn,nn,1.0);
+                float nn = 2+1*sin(_Time.y*22);
+                float ox = 0.1 * ( 0.5 + 0.5 * sin(_Time.y*30) );
+
+                fixed4 col = tex2D(_MainTex,i.uv) * fixed4(nn,nn,nn,1.0) + fixed4(ox,ox,ox,0);
                 fixed4 col0 = tex2D(_MainTex,i.uv) * fixed4(0.9,0.9,0.9,1.0);
 
                 //i.uv.x = 1 - i.uv.x;

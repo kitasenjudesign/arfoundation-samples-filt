@@ -7,6 +7,7 @@
 		_MainTex2 ("Texture", 2D) = "white" {}
 		_FeedbackRatio ("_FeedbackRatio", float) = 0
 		_Motion("_Motion",Vector) = (0,0,0,0)
+		_IsInvertUV("_IsInvertUV",float) = 1
 		
 	}
 
@@ -44,6 +45,7 @@
 			float _FeedbackRatio;
 			float4 _MainTex_ST;
 			float4 _Motion;
+			float _IsInvertUV;
 			
 			v2f vert (appdata v)
 			{
@@ -68,7 +70,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				i.uv.y = 1 - i.uv.y;
+				if( _IsInvertUV == 1 ) i.uv.y = 1 - i.uv.y;
 
 				float2 dUV = i.uv + _Motion.xy;
 				fixed4 col = tex2D(_MainTex, i.uv);
