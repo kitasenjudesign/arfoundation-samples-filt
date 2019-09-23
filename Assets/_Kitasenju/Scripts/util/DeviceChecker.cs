@@ -51,6 +51,14 @@ public class DeviceChecker {
 
 
         bool isAvailable = false;
+
+        //iPhone11
+        if( SystemInfo.deviceModel.IndexOf("iPhone12") >= 0){
+            isAvailable=true;
+        }
+
+
+        //それ以外
         for(int i=0;i<devices.Length;i++){
             if( SystemInfo.deviceModel == devices[i] ){
                 isAvailable=true;

@@ -83,13 +83,14 @@
                 stencil  = tex2D( _StencilTex, stencilUV );
                 fixed4 colA = tex2D(_MainTex, uvv );
  
+                //if(_Invert==1) stencil.r = 1 - stencil.r;
+                
                 col.rgb = lerp(
                     col,
                     lerp( col0.rgb, colA.rgb, stencil.r),
                     stencil.r
                 );
 
-                //if(_Invert==1) stencil.r = 1 - stencil.r;
                 //col.rgb = lerp( col0.rgb, col.rgb, stencil.r);    
 
                 return col;
