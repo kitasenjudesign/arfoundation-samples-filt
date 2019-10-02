@@ -7,7 +7,7 @@ public class RandomFilter : FilterBase
     [SerializeField] public Material[] _materials;
     private Material _material;
     [SerializeField] private bool _invert = false;
-    private int _index=0;
+    [SerializeField] private int _index=0;
     public override void Show(EffectControlMain main){
         
         base.Show(main);
@@ -27,13 +27,20 @@ public class RandomFilter : FilterBase
     private void _startLoop(){
         if(!gameObject.activeSelf) return;
 
+        //あれをかえる
+
         _material = _materials[ _index % _materials.Length ];
         _index++;
+
+        //SetInvert(
+       //     Mathf.Floor( _index / _materials.Length ) % 2 == 1 ? true : false
+       // );
+        
         //SetInvert(
         //    Random.value < 0.5f ? true : false
         //);
         _main.SetImageEffect(_material);
-        Invoke("_startLoop",0.75f);
+        Invoke("_startLoop",0.75f);//1fにするか
 
     }
 

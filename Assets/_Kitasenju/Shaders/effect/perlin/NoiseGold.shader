@@ -7,6 +7,7 @@
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
         _Detail("_Detail",Range(0,5)) = 0.5
+        _Th("_Th",float) = 0
         [Toggle] _Invert("_Invert", Float) = 0
 
     }
@@ -45,6 +46,7 @@
             float _DepthTh;
             float _Detail;
             float _Invert;
+            float _Th;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -99,7 +101,7 @@
                     
                     col.rgb,
                     col0.rgb,
-                    step( 0, snoise(float3(col0.b*2.0,i.uv.y+col0.r*2.0+_Time.y*0.5, _Time.x)) )
+                    step( _Th, snoise(float3(col0.b*2.0,i.uv.y+col0.r*2.0+_Time.y*0.5, _Time.x)) )
 
                 );
 

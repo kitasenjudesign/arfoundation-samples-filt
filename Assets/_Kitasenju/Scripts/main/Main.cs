@@ -15,6 +15,8 @@ public class Main : MonoBehaviour
     void Awake()
     {
         
+        Debug.Log(Application.version);
+
         baseScale=new Vector2Int(Screen.width,Screen.height);
         //Screen.height
 

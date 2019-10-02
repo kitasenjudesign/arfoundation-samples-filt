@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class About : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class About : MonoBehaviour
     [SerializeField] private Button _webBtn;
     [SerializeField] private Button _instaBtn;
     [SerializeField] private Button _twBtn;
+    [SerializeField,Space(10)] private TextMeshProUGUI _ver;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,8 @@ public class About : MonoBehaviour
         _instaBtn.GetComponent<Image>().color=new Color(0,0,0,0);
         _twBtn.GetComponent<Image>().color=new Color(0,0,0,0);
         
+        _ver.text = "ver " + Application.version;
+
     }
 
     public void Show(){

@@ -45,10 +45,8 @@ public class DeviceChecker {
             "iPad8,8"
         };
 
-
-
-
-
+        //var test = "iPhone12,1";
+        //Debug.Log( test.IndexOf("iPhone12") >= 0 );
 
         bool isAvailable = false;
 

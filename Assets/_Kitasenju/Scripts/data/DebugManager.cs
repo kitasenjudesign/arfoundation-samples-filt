@@ -22,7 +22,7 @@ public class DebugManager : MonoBehaviour
     void Update()
     {
 
-         if (Input.touchCount >= 2){
+         if (Input.touchCount >= 3){
             
             var touch = Input.touches[0];
             if (touch.phase == TouchPhase.Began)

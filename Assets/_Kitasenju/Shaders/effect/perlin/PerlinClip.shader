@@ -7,7 +7,8 @@
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
         _Detail("_Detail",Range(0,5)) = 0.5
-
+        _Strength("_Strength",float) = 2.4 //default - 2.4
+        _Pow("_Pow",float) = 1 //default - 2.4
         [Toggle] _Invert("_Invert", Float) = 0        
         //[Toggle] _Revert("_Revert", Float) = 0
 
@@ -48,6 +49,8 @@
             float _Detail;
             float _Invert;
             float4 _MainTex_ST;
+            float _Strength;
+            float _Pow;
 
             v2f vert (appdata v)
             {
@@ -82,17 +85,27 @@
                 fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 float2 mosaicUV = float2(
-                    snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.0)),
-                    snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.5))
+                    _Strength * snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.0)),
+                    _Strength * snoise(float3(i.uv*_Detail*aspect, 2.0 + _Time.y*1.4))
                 );
 
+
+
                 float2 stp = smoothstep(
-                    0.6,0.7, abs( frac( mosaicUV*2.4 ) )
+                    0.6,0.7, abs( frac( mosaicUV*1.4 ) )
                 );
+
+                //polar
+                //stp = pow(stp,_Pow);
+                float aa = mosaicUV.x;//length( mosaicUV );
+                float rr = mosaicUV.y;//atan2(mosaicUV.y,mosaicUV.x);
+                mosaicUV.x = aa * cos( rr );
+                mosaicUV.y = aa * sin( rr );
+                
 
                 fixed4 col = tex2D(
                     _MainTex, 
-                    abs( frac( i.uv+mosaicUV*stp ) ) 
+                    abs( frac( i.uv + mosaicUV * stp ) ) 
                 );
                 
                 //マスク
