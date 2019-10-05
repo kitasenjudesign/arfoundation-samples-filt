@@ -15,9 +15,19 @@ public class About : MonoBehaviour
     [SerializeField] private Button _twBtn;
     [SerializeField,Space(10)] private TextMeshProUGUI _ver;
 
+    ///
+    [SerializeField,Space(10)] private GameObject _page1;
+    [SerializeField] private SettingPage _page2;    
+    [SerializeField,Space(10)] private Button _page1Btn;
+    [SerializeField] private Button _page2Btn;
+    [SerializeField] private Image _underline1;
+    [SerializeField] private Image _underline2;
+
+
     // Start is called before the first frame update
     void Start()
     {
+
         gameObject.SetActive(false);
 
         _aboutBtn.onClick.AddListener(_onShowAbout);
@@ -30,7 +40,40 @@ public class About : MonoBehaviour
         _instaBtn.GetComponent<Image>().color=new Color(0,0,0,0);
         _twBtn.GetComponent<Image>().color=new Color(0,0,0,0);
         
+
+        //page1,2
+
+        _page1Btn.GetComponent<Image>().color=new Color(0,0,0,0);
+        _page2Btn.GetComponent<Image>().color=new Color(0,0,0,0);
+        _page1Btn.onClick.AddListener(_goPage1);
+        _page2Btn.onClick.AddListener(_goPage2);
+
+
         _ver.text = "ver " + Application.version;
+
+
+        if( _page2 != null ) _page2.Init();
+
+
+        _goPage1();
+    }
+
+    
+        
+
+    
+
+    private void _goPage1(){
+        _page1.gameObject.SetActive(true);
+        _page2.gameObject.SetActive(false);
+        _underline1.gameObject.SetActive(true);
+        _underline2.gameObject.SetActive(false);        
+    }
+    private void _goPage2(){
+        _page1.gameObject.SetActive(false);
+        _page2.gameObject.SetActive(true);
+        _underline1.gameObject.SetActive(false);
+        _underline2.gameObject.SetActive(true);        
 
     }
 
@@ -43,12 +86,14 @@ public class About : MonoBehaviour
     }
 
     private void _onShowAbout(){
+
         var active = !gameObject.activeSelf;
         VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
         gameObject.SetActive( active );
         if(active){
             _mainImage.color = new Color(1,1,1,0);
             _mainImage.DOColor(Color.white,0.5f).SetDelay(0.1f);
+            _page2.Show();
         }        
         
     }
@@ -69,16 +114,9 @@ public class About : MonoBehaviour
     
     }
 
-
-
-
-    
-    //    Application.OpenURL("http://www.2121designsight.jp/program/audio_architecture/");        
-    
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //void Update()
+    //{  
+    //}
+
 }

@@ -19,7 +19,7 @@
 		private const float MaxRecordingTime = 20f;//15f; // seconds
 		//public System.Action _staticImageCaptureCallback;
 		private float _startTime = 0;
-        [SerializeField] private NatCorder.Examples.MyReplayCam _replayCam;
+        [SerializeField] private MyReplayCam _replayCam;
         [SerializeField] private Image circle;
         [SerializeField] private Image sq;
 		[SerializeField] private Image bg;

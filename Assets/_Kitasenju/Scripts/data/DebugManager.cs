@@ -46,6 +46,8 @@ public class DebugManager : MonoBehaviour
             Texture2D humanDepth    = _main._humanBodyManager.humanDepthTexture;
 
             _text.text += Screen.width + " " + Screen.height + "\n";
+            _text.text += Screen.currentResolution.width + " " + Screen.currentResolution.height + "\n";
+            
             _text.text += Params._stencilAscpect + "\n";
 
             if(humanStencil){

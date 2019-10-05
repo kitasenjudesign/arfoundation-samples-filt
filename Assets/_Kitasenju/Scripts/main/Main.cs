@@ -32,7 +32,6 @@ public class Main : MonoBehaviour
         //初期化
         Params.Init();
 
-
     }
 
     // Update is called once per frame
