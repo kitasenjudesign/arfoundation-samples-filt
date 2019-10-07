@@ -39,9 +39,11 @@ public class RenderTexManager
         );
 
         _slitscanColor = new RenderTexStocker(
-            480,//640,
-            640,//480,
-            RenderTextureFormat.ARGB32
+            
+            Mathf.FloorToInt( Screen.width*0.5f ),//640,
+            Mathf.FloorToInt( Screen.height*0.5f ),//480,
+            RenderTextureFormat.ARGBHalf
+
         );
         _slitscanStencil = new RenderTexStocker(
             720,//960,

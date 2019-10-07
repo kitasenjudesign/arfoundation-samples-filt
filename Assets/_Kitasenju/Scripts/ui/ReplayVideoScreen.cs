@@ -48,7 +48,7 @@ public class ReplayVideoScreen : MonoBehaviour
 
     public void HideCover(){
 
-        _cover.DOColor(new Color(0,0,0,0),0.5f).SetDelay(0.5f);
+        _cover.DOColor(new Color(0,0,0,0),0.5f).SetDelay(0.3f);
         
     }
 

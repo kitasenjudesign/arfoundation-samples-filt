@@ -10,6 +10,7 @@ public class Main : MonoBehaviour
     [SerializeField] private GameObject NGPanel;
     [SerializeField] private ARSession _arSession;
     [SerializeField] private ARSessionOrigin _arSessionOrigin;
+    private GUIStyle _style;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,32 +35,45 @@ public class Main : MonoBehaviour
 
     }
 
+
+    
+    void OnGUI(){
+
+        if(_style==null){
+            _style = new GUIStyle();
+            _style.fontSize = 50;
+            _style.normal.textColor = Color.white; 
+        }
+
+        GUI.Label(
+            new Rect(50, 50, 500, 100), 
+            "" + Params.microphoneVolume,
+            _style
+        );
+    }
+
+
     // Update is called once per frame
     void Update()
     {
         
-        /*
+        
         if (Input.touchCount >= 2){
             
             var touch = Input.touches[0];
             if (touch.phase == TouchPhase.Began)
             {
+                
                 var scales = new float[]{
-                    0.5f,0.75f,1f
+                    1f,2f,3f,4f,5f
                 };
                 var ss = scales[_index%scales.Length];
-
-                Screen.SetResolution(
-                    Mathf.FloorToInt( baseScale.x * ss),
-                    Mathf.FloorToInt( baseScale.y * ss),
-                    FullScreenMode.FullScreenWindow
-                );
-
+                Params.microphoneVolume=ss;
                 _index++;
+
             }
 
         }
-         */
 
     }
 }

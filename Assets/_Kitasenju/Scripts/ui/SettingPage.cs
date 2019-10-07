@@ -77,7 +77,7 @@ public class SettingPage : MonoBehaviour
     void _onClickMic(SettingToggleBtn btn){
         
         Debug.Log("_onClickMic");
-        Params.usingMicrophone = btn.selected==0 ? false : true;
+        Params.usingMicrophone = btn.selected==0 ? true : false;
         
         if(Params.usingMicrophone){
             var m = Params.SetMic();

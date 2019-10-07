@@ -57,6 +57,7 @@
             //videoPlayer.enabled=false;
         }     
 
+        /*
         void OnGUI(){
             if(_style==null){
                 _style = new GUIStyle();
@@ -75,7 +76,7 @@
                 str,
                 _style
             );
-        }
+        }*/
 
         //public void SetSize(Vector2Int size){
         //    videoWidth = size.x;
@@ -139,6 +140,9 @@
 
 	public void OnSampleBuffer (float[] sampleBuffer, int sampleRate, int channelCount, long timestamp) {
 		// Send sample buffers directly to the video recorder for recording
+        for(int i=0;i<sampleBuffer.Length;i++){
+            sampleBuffer[i] = sampleBuffer[i] * Params.microphoneVolume;
+        }
 		videoRecorder.CommitSamples(sampleBuffer, recordingClock.Timestamp);
 	}
 
