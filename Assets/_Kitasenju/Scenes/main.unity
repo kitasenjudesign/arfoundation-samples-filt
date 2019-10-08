@@ -10046,7 +10046,7 @@ MonoBehaviour:
   srcBtn: {fileID: 2089900335}
   _list:
   - MICROPHONE,ON,OFF
-  - VIDEO QUALITY,LOW,MID,HIGH
+  - VIDEO QUALITY,LOW,MID,HIGH (high load)
   _settingBtn: {fileID: 2076282951}
   _canvasGroup: {fileID: 1978214710}
 --- !u!225 &1978214710

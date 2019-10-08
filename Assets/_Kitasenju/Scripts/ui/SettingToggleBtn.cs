@@ -68,7 +68,7 @@ public class SettingToggleBtn : MonoBehaviour
 
     public void UpdateText(){
 
-        _text.text = _title + "\n" + "[" + _choices[selected] + "]";
+        _text.text = _title + "\n" + "[ " + _choices[selected] + " ]";
        
     }
 

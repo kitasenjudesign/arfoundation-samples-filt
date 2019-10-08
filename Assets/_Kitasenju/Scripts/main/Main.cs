@@ -37,6 +37,7 @@ public class Main : MonoBehaviour
 
 
     
+    /*
     void OnGUI(){
 
         if(_style==null){
@@ -51,6 +52,7 @@ public class Main : MonoBehaviour
             _style
         );
     }
+    */
 
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class Main : MonoBehaviour
     {
         
         
-        if (Input.touchCount >= 2){
+        /*if (Input.touchCount >= 2){
             
             var touch = Input.touches[0];
             if (touch.phase == TouchPhase.Began)
@@ -73,7 +75,7 @@ public class Main : MonoBehaviour
 
             }
 
-        }
+        }*/
 
     }
 }

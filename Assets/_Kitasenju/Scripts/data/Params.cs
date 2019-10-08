@@ -30,7 +30,9 @@ public class Params
 
     public static AudioDevice SetMic(){
         if(audioDevice==null){
-            audioDevice = AudioDevice.GetDevices()[0];
+            if( DeviceChecker.GetAvailable() ){
+                audioDevice = AudioDevice.GetDevices()[0];
+            }
         }
         return audioDevice;
     }
