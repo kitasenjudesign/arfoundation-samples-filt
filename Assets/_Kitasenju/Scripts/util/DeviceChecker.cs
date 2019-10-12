@@ -55,6 +55,17 @@ public class DeviceChecker {
             isAvailable=true;
         }
 
+        //iPad8
+        if( SystemInfo.deviceModel.IndexOf("iPad8") >= 0){
+            isAvailable=true;
+        }
+
+        //iPhoneXS
+        if( SystemInfo.deviceModel.IndexOf("iPhone11") >= 0){
+            isAvailable=true;
+        }
+
+
 
         //それ以外
         for(int i=0;i<devices.Length;i++){

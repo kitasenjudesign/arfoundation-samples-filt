@@ -62,7 +62,7 @@
                 float amp = length( d * aspect );
                 float rad = atan2(d.y,d.x);
 
-                amp = 0.04*sin( amp * 30 - _Time.z*5 );
+                amp = 0.04*sin( amp * 30 - _Time.z*5 );// + 0.01*sin(rad*10+_Time.x);
                 //float amp2 = 0.03*cos( amp * 30 - _Time.z*3 );
 
                 float2 uvv = float2(

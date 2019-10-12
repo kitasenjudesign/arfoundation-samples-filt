@@ -29,6 +29,7 @@ public class EffectControlMain : MonoBehaviour
     [SerializeField] private bool _Invert = false;
     [SerializeField] private ToggleBtn _toggleBtn;
     [SerializeField] private TextMeshProUGUI _info;
+    [SerializeField,Space(10)] private BlurTexture _blurTexture;
     private int _count = 0;
     
     private GUIStyle _style;
@@ -48,16 +49,17 @@ public class EffectControlMain : MonoBehaviour
         _filterMenu.Init( _filters );
         //_next();
         
-        SetFilter(0);
+        //SetFilter(0);
         
+        /*
         var mat = _currentFilter.GetMaterial();
-
-        //mat.SetFloat("_Brightness",0);
         Debug.Log(">>>>" + mat);
         if(mat){
             mat.SetFloat("_Brightness",0);
             mat.DOFloat(1f,"_Brightness",0.5f).SetEase(Ease.Linear).SetDelay(0.4f);
-        }        
+        }*/     
+        
+
         
     }
 
@@ -83,6 +85,8 @@ public class EffectControlMain : MonoBehaviour
 
     public void SetFilter(int idx){
         
+        Debug.Log("SetFilter " + idx);
+
         for(int i=0;i<_filters.Count;i++){
             _filters[i].Hide();
         }
@@ -148,13 +152,23 @@ public class EffectControlMain : MonoBehaviour
     }
 
 
-    public void SetCamToMainTex(Material mat){
+    public void SetCamToMainTex(Material mat, bool isBlur=false){
         if(_arBackground.material){
+            
             Graphics.Blit(null,_camTex,_arBackground.material);//
             mat.SetTexture("_MainTex",_camTex);
+
+            if(isBlur){
+                mat.SetTexture("_BlurTex",_blurTexture.UpdateBlur(_camTex));
+            }
+
         }
-        
     }
+
+    public void SetBlurTex(Material mat){
+
+    }
+
 
     public void SetImageEffect(Material mat){
         

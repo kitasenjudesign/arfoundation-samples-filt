@@ -5,6 +5,7 @@
         _MainTex ("_MainTex", 2D) = "white" {}
         _StencilTex ("_StencilTex", 2D) = "white" {}
         _DepthTex ("_DepthTex", 2D) = "white" {}
+        _BlurTex ("_BlurTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
         _Detail("_Detail",Range(0,5)) = 0.5
         
@@ -41,6 +42,8 @@
             };
 
             sampler2D _MainTex;
+
+            sampler2D _BlurTex;
             sampler2D _DepthTex;
             sampler2D _StencilTex;
             float _DepthTh;
@@ -77,7 +80,9 @@
                 fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 //mosaic
-                fixed4 col = tex2D(_MainTex,  i.uv );
+                //fixed4 col = tex2D(_MainTex,  i.uv );
+                fixed4 col = tex2D(_BlurTex,  i.uv );
+
                 //col = 0.5 + 0.5*sin( col * 50 * _DepthTh + _Time.z * 2.0 );
                 col = frac( col * 10 + _Time.z * 1.0 );
                 

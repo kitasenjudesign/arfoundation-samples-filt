@@ -49,7 +49,7 @@ public class About : MonoBehaviour
         _page2Btn.onClick.AddListener(_goPage2);
 
 
-        _ver.text = "ver " + Application.version + Application.buildGUID;
+        _ver.text = "ver " + Application.version;// + Application.buildGUID;
 
 
         if( _page2 != null ) _page2.Init();

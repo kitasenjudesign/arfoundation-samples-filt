@@ -16,6 +16,7 @@ public class FilterMenu : MonoBehaviour
 
     private RectTransform _containerRect;
     private int _currentIndex = -1;
+    private const string SAVE_KEY="_Menu";
 
 
     public void Init(List<FilterBase> list){
@@ -36,7 +37,13 @@ public class FilterMenu : MonoBehaviour
 
         }
         _btnPrefab.gameObject.SetActive(false);
-        OnClick(0);
+        
+        if(PlayerPrefs.HasKey(SAVE_KEY)){
+            SetIndex( PlayerPrefs.GetInt(SAVE_KEY),false );
+        }else{
+            SetIndex(0, false);
+        }
+    
     }
 
     private Vector3 GetPositionByIndex(int idx){
@@ -58,6 +65,13 @@ public class FilterMenu : MonoBehaviour
             return;
         }
 
+        SetIndex(idx);
+
+    }
+
+    private void SetIndex(int idx, bool isAnim=true){
+        PlayerPrefs.SetInt(SAVE_KEY,idx);
+
         _currentIndex = idx;
         //vibe
         VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
@@ -77,10 +91,17 @@ public class FilterMenu : MonoBehaviour
         if(tgt<-_width) tgt = -_width; 
 
         //click
-        _containerRect.DOLocalMoveX(
-            tgt,0.5f
-        ).SetEase( Ease.InOutSine );
-        
+        if(isAnim){
+            _containerRect.DOLocalMoveX(
+                tgt,0.5f
+            ).SetEase( Ease.InOutSine );
+        }else{
+            var lp = _containerRect.localPosition;
+            lp.x = tgt;
+            _containerRect.localPosition=lp;
+        }
+
+
         _control.SetFilter(idx);
 
     }

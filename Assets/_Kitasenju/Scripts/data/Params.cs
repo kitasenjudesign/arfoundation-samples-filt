@@ -67,6 +67,8 @@ public class Params
             case VIDEO_QUALITY_LOW:
                 screen.x = Mathf.FloorToInt( (float)baseWidth / 2f );
                 screen.y = Mathf.FloorToInt( (float)baseHeight / 2f );
+                screen.x += screen.x % 2;
+                screen.y += screen.y % 2;                
                 break;
             case VIDEO_QUALITY_MID:
                 screen.x = Mathf.FloorToInt( (float)baseWidth * 0.75f );
@@ -78,6 +80,8 @@ public class Params
             case VIDEO_QUALITY_HIGH:
                 screen.x = baseWidth;
                 screen.y = baseHeight;
+                screen.x += screen.x % 2;
+                screen.y += screen.y % 2;                
                 break;
 
         }
