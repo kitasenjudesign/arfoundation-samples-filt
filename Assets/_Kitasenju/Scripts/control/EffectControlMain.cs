@@ -155,7 +155,8 @@ public class EffectControlMain : MonoBehaviour
     public void SetCamToMainTex(Material mat, bool isBlur=false){
         if(_arBackground.material){
             
-            Graphics.Blit(null,_camTex,_arBackground.material);//
+            //Graphics.Blit(null,_camTex,_arBackground.material);//
+            UpdateCamTex();
             mat.SetTexture("_MainTex",_camTex);
 
             if(isBlur){
@@ -163,6 +164,11 @@ public class EffectControlMain : MonoBehaviour
             }
 
         }
+    }
+
+    public RenderTexture UpdateCamTex(){
+        if(_arBackground.material) Graphics.Blit(null,_camTex,_arBackground.material);
+        return _camTex;
     }
 
     public void SetBlurTex(Material mat){

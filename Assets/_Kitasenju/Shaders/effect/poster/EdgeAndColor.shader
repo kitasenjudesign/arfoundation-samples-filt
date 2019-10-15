@@ -3,6 +3,8 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _BlurTex ("Texture", 2D) = "white" {}
+
         _Sensitivity ("Sensitivity", float) = 1.0
         _Threshold ("Threshold", float) = 0.0
         _EdgeColor ("Edge Color", COLOR) = (1,1,1,1)
@@ -40,9 +42,11 @@
             };
 
             sampler2D _MainTex;
+            sampler2D _BlurTex;            
             sampler2D _StencilTex;
             float4 _MainTex_ST;
             float4 _MainTex_TexelSize;
+            float4 _BlurTex_TexelSize;
             float _Sensitivity;
             float _Threshold;
             half4 _EdgeColor;
@@ -59,15 +63,18 @@
             
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 duv = _MainTex_TexelSize.xy;
+                //float2 duv = _MainTex_TexelSize.xy;
+                float2 duv = _BlurTex_TexelSize.xy;
 
-                half3 cg = GetEdge(_MainTex,i.uv,duv);
+
+                //half3 cg = GetEdge(_MainTex,i.uv,duv);
+                half3 cg = GetEdge(_BlurTex,i.uv,duv);
 
                 half3 edge = cg * _Sensitivity;
 
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
-                fixed4 col = fixed4( frac(edge*3+_Time.zzz) ,1) * step(0.5,length(edge.rgb) - _Threshold);
+                fixed4 col = fixed4( frac(edge*3+_Time.yyy) ,1) * step( _Threshold,length(edge.rgb) );
                 //fixed4 col = fixed4(edge,1);//_EdgeColor * step(0.5,edge - _Threshold);
 
                 //col = 1-col;

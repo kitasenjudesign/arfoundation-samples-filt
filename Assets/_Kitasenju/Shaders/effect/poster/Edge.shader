@@ -73,17 +73,17 @@
                 half3 col8 = tex2D(_MainTex, uv8);
  
 //#ifdef Sobel
-//                float cgx = col0 * -1 + col2 * 1 + col3 * -2 + col5 * 2 + col6 * -1 + col8 * 1;
-//                float cgy = col0 * -1 + col1 * -2 + col2 * -1 + col6 * 1 + col7 * 2 + col8 * 1;
-//                float cg = sqrt(cgx * cgx + cgy * cgy);
+                float cgx = col0 * -1 + col2 * 1 + col3 * -2 + col5 * 2 + col6 * -1 + col8 * 1;
+                float cgy = col0 * -1 + col1 * -2 + col2 * -1 + col6 * 1 + col7 * 2 + col8 * 1;
+                float cg = sqrt(cgx * cgx + cgy * cgy);
 //#elif Prewitt
 //                float cgx = col0 * -1 + col2 * 1 + col3 * -1 + col5 * 1 + col6 * -1 + col8 * 1;
 //                float cgy = col0 * -1 + col1 * -1 + col2 * -1 + col6 * 1 + col7 * 1 + col8 * 1;
 //                float cg = sqrt(cgx * cgx + cgy * cgy);
 //#elif RobertsCross
-                float3 cg1 = col8 - col0;
-                float3 cg2 = col6 - col2;
-                float cg = sqrt(dot(cg1, cg1) + dot(cg2, cg2));
+//                float3 cg1 = col8 - col0;
+//                float3 cg2 = col6 - col2;
+//                float cg = sqrt(dot(cg1, cg1) + dot(cg2, cg2));
 //#endif
                 half4 edge = cg * _Sensitivity;
 

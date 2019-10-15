@@ -21,15 +21,18 @@ public class BlurTexture : MonoBehaviour
         _isInit=true;
 
         blurTexture = new RenderTexture(
-            Mathf.FloorToInt(Screen.width*0.2f),
+            Mathf.FloorToInt(Screen.width*0.2f),//0.2f),
             Mathf.FloorToInt(Screen.height*0.2f),
             0
-        );    
+        );
+        blurTexture.antiAliasing=4;
+
         _tempTexture = new RenderTexture(
             blurTexture.width,
             blurTexture.height,
             0
         );
+
     }
 
 
@@ -45,9 +48,10 @@ public class BlurTexture : MonoBehaviour
         //draws the pixels from the source texture to the destination texture
 		//var temporaryTexture = RenderTexture.GetTemporary(blurTexture.width, blurTexture.height);
 
-		Graphics.Blit(inputTex, _tempTexture, postprocessMaterial, 0);
-		Graphics.Blit(_tempTexture, blurTexture, postprocessMaterial, 1);
+		//Graphics.Blit(inputTex, _tempTexture, postprocessMaterial, 0);
+		//Graphics.Blit(_tempTexture, blurTexture, postprocessMaterial, 1);
 		
+        Graphics.Blit(inputTex, blurTexture);//only copy and downscale
         return blurTexture;
         //RenderTexture.ReleaseTemporary(temporaryTexture);
 
