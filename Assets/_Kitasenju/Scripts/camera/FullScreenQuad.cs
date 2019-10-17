@@ -17,10 +17,12 @@ public class FullScreenQuad : MonoBehaviour
         b.size = new Vector3(1000f,1000f,1000f);
         
         _quad.mesh.bounds = b;
-        Debug.Log( verts[0] );
-        Debug.Log( verts[1] );
-        Debug.Log( verts[2] );
-        Debug.Log( verts[3] );
+
+        //Debug.Log( verts[0] );
+        //Debug.Log( verts[1] );
+        //Debug.Log( verts[2] );
+        //Debug.Log( verts[3] );
+        
         //(-0.5, -0.5, 0.0)
         //(0.5, -0.5, 0.0)
         //(-0.5, 0.5, 0.0)

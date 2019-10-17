@@ -11,7 +11,7 @@ public class FilterBase : MonoBehaviour
     [SerializeField] public bool _hasBloom = false;
     [SerializeField] public bool _hasBlur = false;
 
-    [SerializeField] public int textId=-1;
+    [SerializeField] public string info = "";
     protected EffectControlMain _main;
     public string filterName;
 

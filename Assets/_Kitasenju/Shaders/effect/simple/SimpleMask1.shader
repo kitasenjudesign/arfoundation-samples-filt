@@ -59,7 +59,7 @@
  
                 if(_Invert==1) stencil.r = 1 - stencil.r;
 				
-                if(stencil.r<0.5) col0.rgb = float3(0,0,0);
+                col0.a = stencil.r;
 
                 //clip(col0.r-0.5);
 

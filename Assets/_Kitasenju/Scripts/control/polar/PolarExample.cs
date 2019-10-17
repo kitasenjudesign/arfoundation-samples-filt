@@ -21,8 +21,8 @@ public class PolarExample : MonoBehaviour
         shader.SetFloat("w", tex.width);
         shader.SetFloat("h", tex.height);
         shader.SetTexture(0, "tex", tex);//出力用
-        shader.SetTexture(0,"baseTex",_src);
-        shader.SetTexture(0,"maskTex",_maskTex);
+        shader.SetTexture(0,"baseTex",_src);//入力、黒い色を無視し同心円状に。
+        //shader.SetTexture(0,"maskTex",_maskTex);
 
         shader.Dispatch(0, tex.width/8, tex.height/8, 1);
 

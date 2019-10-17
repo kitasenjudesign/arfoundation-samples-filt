@@ -17,14 +17,22 @@ public class PolarFilter : SimpleFilter
         base.Show(main);
         _main.SetImageEffect(_material);
         UpdateFilter();
+        _main.ShowInfo();
+        Invoke("_onHideInfo",3f);
+    }
+
+    private void _onHideInfo(){
+        _main.HideInfo();        
     }
     
     //onguiを描く
 
+    /*
     private void OnGUI()
     {
         if(_inputTex==null) return;
 
+        
         GUI.DrawTexture(
             new Rect(0, 0, 200, 200), 
             _inputTex, 
@@ -38,21 +46,29 @@ public class PolarFilter : SimpleFilter
             false
         );
         
-    }    
+    }*/
 
 
     public override void UpdateFilter(){
 
         if(_texMakeMat==null){
-            _inputTex = new RenderTexture(512,512,0);
-            //_inputTex.enableRandomWrite = true;
-            //_inputTex.Create();
-            _outputTex = new RenderTexture(512,512,0);
+
+            var ss = 0.5f;
+            var ww = Mathf.FloorToInt( Screen.width * ss );
+            var hh = Mathf.FloorToInt( Screen.height * ss );
+
+            _inputTex = new RenderTexture(ww,hh,0);
+            
+            _outputTex = new RenderTexture(ww,hh,0);
             _outputTex.enableRandomWrite = true;
+            _outputTex.antiAliasing=2;
             _outputTex.Create();
 
             _texMakeMat = new Material(_texMaker);
+
         }
+
+
         //Debug.Log("----1");
         //Debug.Log(_invert);
         Texture2D humanStencil  = _main._humanBodyManager.humanStencilTexture;
@@ -60,14 +76,16 @@ public class PolarFilter : SimpleFilter
 
 
         var mainTex = _main.UpdateCamTex();
-        
+        _texMakeMat.SetFloat("_Invert",_invert?1f:0);
         _texMakeMat.SetTexture("_MainTex"　,mainTex );//メイン画像
         _texMakeMat.SetTexture("_StencilTex", humanStencil);//マスク画像
         Graphics.Blit( null,_inputTex,_texMakeMat);
+        
 
         //compute shader
+        _computeShader.SetFloat("isInvert",_invert?1f:0 );
         _computeShader.SetFloat("w", _outputTex.width);
-        _computeShader.SetFloat("h", _outputTex.height);
+        _computeShader.SetFloat("h", _outputTex.height);        
         _computeShader.SetTexture(0, "tex", _outputTex);//出力用
         _computeShader.SetTexture(0,"baseTex",_inputTex);//入力、黒い色を無視し同心円状に。
         //shader.SetTexture(0,"maskTex",_maskTex);

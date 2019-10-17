@@ -5,7 +5,7 @@ public class SimpleFilter : FilterBase
 {
     
     [SerializeField] public Material _material;
-    private bool _invert = false;
+    protected bool _invert = false;
     public override void Show(EffectControlMain main){
         
         base.Show(main);

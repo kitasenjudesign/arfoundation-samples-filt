@@ -260,7 +260,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: gold
   _material: {fileID: 2100000, guid: b1722ef8d4c08411489922b82c922f4b, type: 2}
 --- !u!1 &123500924
@@ -312,7 +312,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: unity1
   _material: {fileID: 2100000, guid: 4b80d2d1a14b546e6a6f48f3872eb69e, type: 2}
 --- !u!1 &138622922
@@ -397,7 +397,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 1
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: whiteMat
   _material: {fileID: 2100000, guid: 9c6e04e66b5314db7bcaa658fcb37701, type: 2}
 --- !u!1 &163611023
@@ -499,7 +499,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: 
   _fillShader: {fileID: 4800000, guid: 8ee32d5fffbbd4985b67df6427a16d3b, type: 3}
   _outputShader: {fileID: 4800000, guid: f2f3ecb7b9cbd4db0b1b528eca347bcc, type: 3}
@@ -785,7 +785,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: emoji
   _material: {fileID: 2100000, guid: bab5756109d6b4b01b706fae6864971f, type: 2}
 --- !u!4 &210078993
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: poster
   _material: {fileID: 2100000, guid: 5885e1f98e64b4a9b8dcb6947578cd44, type: 2}
 --- !u!4 &328843158
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: 
   _fullBgMaterial: {fileID: 2100000, guid: ce5912c5776a24995b1487efa9583b04, type: 2}
   _invert: 0
@@ -1326,7 +1326,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: 
   _fillShader: {fileID: 4800000, guid: bcc2a808ee43144b5a98276b8ee14d84, type: 3}
   _outputShader: {fileID: 4800000, guid: f2f3ecb7b9cbd4db0b1b528eca347bcc, type: 3}
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: gold
   _material: {fileID: 2100000, guid: 3e6789ccdcc834a9db310f8e5f086e23, type: 2}
 --- !u!1 &415066237
@@ -1502,7 +1502,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: perlin
   _material: {fileID: 2100000, guid: 2731c8fa59ac445869a4ae52cc4e999d, type: 2}
 --- !u!1 &427002218
@@ -2115,7 +2115,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: mosaicDisplace
   _material: {fileID: 2100000, guid: f91f43d5a8447430082da6f447230dc7, type: 2}
 --- !u!1 &535495717
@@ -3146,7 +3146,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: mosaic
   _material: {fileID: 2100000, guid: 13c21281c21af42d8b89031a85067b30, type: 2}
 --- !u!1 &715254319
@@ -3550,7 +3550,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: gold
   _material: {fileID: 2100000, guid: 1bd3cdd0045634040a2f55d15242bc54, type: 2}
 --- !u!1 &773643824
@@ -3765,7 +3765,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: 0
+  info: TAP AND MOVE
   filterName: 
   _fullBgMaterial: {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
   _invert: 0
@@ -4070,7 +4070,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: mosaic
   _material: {fileID: 2100000, guid: c722545923d2a4520970b1755113adc0, type: 2}
 --- !u!1 &801002608
@@ -4120,7 +4120,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: ditha
   _material: {fileID: 2100000, guid: 08a703bf395e24ee7975cd9341b1a63a, type: 2}
 --- !u!1 &822285811
@@ -4218,7 +4218,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: perlin
   _material: {fileID: 2100000, guid: b8b4edc1c5a71465c898fe002db29817, type: 2}
 --- !u!1 &854068597
@@ -4254,7 +4254,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: color
   _material: {fileID: 2100000, guid: ae8ca81fccaa84234b53fe7c840dc1b7, type: 2}
 --- !u!4 &854068599
@@ -4768,11 +4768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0579b6e5bf347b5b9cba0ce4640937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 32b37ff1ca176462492459cda00db159, type: 3}
-  _hasInvert: 0
+  _icon: {fileID: -570637331714184540, guid: 44d394470064846debd929eb52f04f8f, type: 3}
+  _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: POINT AT PEOPLE
   filterName: aaa
   _material: {fileID: 2100000, guid: ac2e660d061754cf5ba5135e1c91d219, type: 2}
   _texMaker: {fileID: 4800000, guid: 61fa6855051264b94856b6b247cabcd1, type: 3}
@@ -5914,7 +5914,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: mono
   _material: {fileID: 2100000, guid: 8c5df80c5ffaf46df8b161423a50d749, type: 2}
 --- !u!4 &1158289410
@@ -5978,7 +5978,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 1
-  textId: -1
+  info: 
   filterName: colorLoop
   _material: {fileID: 2100000, guid: b9c49968ee6c04800b2a23310cdd41fb, type: 2}
 --- !u!1 &1168434884
@@ -7124,7 +7124,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: 
   _materials:
   - {fileID: 2100000, guid: 0d1abe753fe1a440fa5a193891c8a9f0, type: 2}
@@ -7204,7 +7204,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: 0
+  info: 
   filterName: 
   _fullBgMaterial: {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
   _invert: 0
@@ -8353,7 +8353,7 @@ MonoBehaviour:
   _hasInvert: 0
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: 
   _fillShader: {fileID: 4800000, guid: 7a895be56beb143649c98fa0368f4abc, type: 3}
   _outputShader: {fileID: 4800000, guid: f2f3ecb7b9cbd4db0b1b528eca347bcc, type: 3}
@@ -8391,7 +8391,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 1
-  textId: -1
+  info: 
   filterName: color
   _material: {fileID: 2100000, guid: 53fb4f0bd4a7b4023bfb566e1309631c, type: 2}
 --- !u!4 &1555315994
@@ -9819,7 +9819,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: ascii
   _material: {fileID: 2100000, guid: aea958d13825c4f0aa90feab2d1d1ded, type: 2}
 --- !u!4 &1885557432
@@ -10184,7 +10184,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: perlin
   _material: {fileID: 2100000, guid: 32b608c143f534ece88365d623d879cc, type: 2}
 --- !u!1 &1978214707
@@ -10809,7 +10809,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: gold
   _material: {fileID: 2100000, guid: 0d1abe753fe1a440fa5a193891c8a9f0, type: 2}
 --- !u!1 &2065330871
@@ -10859,7 +10859,7 @@ MonoBehaviour:
   _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
-  textId: -1
+  info: 
   filterName: ripple
   _material: {fileID: 2100000, guid: 8c01751e2c9d640dca1bbaa8ecf78042, type: 2}
 --- !u!1 &2076282949

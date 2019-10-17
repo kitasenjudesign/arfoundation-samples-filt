@@ -98,8 +98,8 @@ public class EffectControlMain : MonoBehaviour
 
         _postEffect.enabled = _currentFilter._hasBloom;
 
-        
-        _info.gameObject.SetActive( _currentFilter.textId>=0 );
+       ShowInfo();
+
         SetInvert(_Invert);
     }
 
@@ -180,6 +180,17 @@ public class EffectControlMain : MonoBehaviour
         
         //_imageEffect.material = mat;
         _fullScreenQuad.SetMaterial(mat);
+    }
+
+    public void ShowInfo(){
+        
+        if( _currentFilter.info == "" ){
+            _info.gameObject.SetActive( false );
+        }else{
+            _info.text = _currentFilter.info;
+            _info.gameObject.SetActive( true );
+        }
+
     }
 
     public void HideInfo(){

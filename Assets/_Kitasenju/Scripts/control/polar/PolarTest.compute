@@ -5,18 +5,18 @@ Texture2D<float4> baseTex;
 //Texture2D<float4> maskTex;
 
 float w, h;
-float bw, bh;
-float mw, mh;
+float isInvert;
 
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID)
 {
-    
+    w=w-1;
+    h=h-1;
     float2 p = float2(id.x / w, id.y / h) - float2(0.5,0.5);
     float amp = length( p );
     float rad = atan2(p.y,p.x);
     float4 baseCol = baseTex[id];
-    if( length( baseCol.xyz ) > 0.01 ){
+    if( baseCol.a > 0.5 ){
         
         tex[id] = baseCol;//baseTex[id];
 
@@ -25,20 +25,35 @@ void CSMain (uint2 id : SV_DispatchThreadID)
         
         float2 uv = float2(0,0);
         float4 col = float4(0,0,0,1);
-        
-        
+        float prev = 1;
+        int lim = isInvert==0 ? 99999 : 199;
+
         for(float i=0;i<200;i++){
 
-            float n = amp * (1-i/200.0);
+            float n = isInvert==0 ? amp * (1-i/200.0) : i/200.0;
+
             uv.x = n * cos( rad ) + 0.5;
             uv.y = n * sin( rad ) + 0.5;
+            uv = saturate(uv);
             uv.x *= w;
             uv.y *= h;
             
-            if( length( baseTex[uv].xyz ) > 0.2 ){
+
+            //if( length( baseTex[uv].xyz ) > 0.2 ){
+            if( baseTex[uv].a > 0.5 || i==lim ){
+              
                 col = baseTex[uv];//座標
+                col.a = 1;
                 //n++;
-                break;
+                if(isInvert==0){
+                    break;
+                }else{
+                    if(prev==0) break;
+                }
+
+                prev = 1;
+            }else{
+                prev = 0;
             }
 
         }
