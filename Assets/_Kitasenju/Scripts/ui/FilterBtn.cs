@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 [RequireComponent(typeof(Button))]
 public class FilterBtn : MonoBehaviour
 {
     [SerializeField] private Image _dot;
     [SerializeField] private Image _icon;
+    [SerializeField] private TextMeshProUGUI _text;
 
     private System.Action<int> _callback;
     private Button _btn;
@@ -33,6 +34,7 @@ public class FilterBtn : MonoBehaviour
         }
 
         _index = idx;
+        _text.text = _index.ToString("D2");
         _callback = callback;
 
         if(texture!=null){
@@ -44,6 +46,7 @@ public class FilterBtn : MonoBehaviour
 
     public void SetActiveDot(bool b){
         _dot.gameObject.SetActive(b);
+        _text.gameObject.SetActive(b);
     }
 
 

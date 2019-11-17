@@ -5,6 +5,7 @@ public class RandomFilter : FilterBase
 {
     
     [SerializeField] public Material[] _materials;
+    [SerializeField] public bool[] _blurs;
     private Material _material;
     [SerializeField] private bool _invert = false;
     [SerializeField] private int _index=0;
@@ -30,6 +31,7 @@ public class RandomFilter : FilterBase
         //あれをかえる
 
         _material = _materials[ _index % _materials.Length ];
+        _hasBlur = _blurs[ _index % _materials.Length ];
         _index++;
 
         //SetInvert(
@@ -40,6 +42,7 @@ public class RandomFilter : FilterBase
         //    Random.value < 0.5f ? true : false
         //);
         _main.SetImageEffect(_material);
+        UpdateFilter();
         Invoke("_startLoop",1f);//1fにするか
 
     }
@@ -58,7 +61,11 @@ public class RandomFilter : FilterBase
 
         _material.SetFloat("_Invert",_invert?1f:0);
 
-        _main.SetCamToMainTex(_material);
+
+        _main.SetCamToMainTex(_material,_hasBlur);
+
+        //_main.SetCamToMainTex(_material);
+        
         _material.SetTexture("_DepthTex", humanDepth );
 
         if(_main._menu){

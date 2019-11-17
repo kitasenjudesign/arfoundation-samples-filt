@@ -38,6 +38,7 @@ public class EffectControlMain : MonoBehaviour
     void Start()
     {
         _camTex=new RenderTexture( Screen.width, Screen.height, 0);
+        //_camTex.enableRandomWrite = true;
 
         _filters = new List<FilterBase>();
         foreach (Transform child in transform)

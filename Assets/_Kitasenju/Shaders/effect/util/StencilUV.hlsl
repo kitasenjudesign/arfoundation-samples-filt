@@ -18,7 +18,7 @@ float2 GetStencilUV(float2 uv, float oy=0.002)
 
 float _GlobalStencilAspect;//
 
-float2 GetStencilUV(float2 uv){//, float oy=0.002){
+float2 GetStencilUV( float2 uv ){//, float oy=0.002){
 
     float2 stencilUV = float2(
       1-uv.y,
