@@ -34,7 +34,9 @@ public class FilterBtn : MonoBehaviour
         }
 
         _index = idx;
-        _text.text = _index.ToString("D2");
+
+        var nn = _index + 1;
+        _text.text = nn.ToString("D2");
         _callback = callback;
 
         if(texture!=null){
