@@ -31,12 +31,15 @@ float4 _DepthTexSize;
 float4 _StencilTexSize;
 float4 _ColorTexSize;
 
-float4  _Positions[1000];
-
+//float4  _Positions[1000];
 float _Near;
 float _Far;
 float4x4 _InvProjMat;
 float4x4 _InvViewMat;
+
+float _VelocityRatio;
+
+float _Duration;
 
 
 float rand(float3 co)
@@ -80,11 +83,8 @@ void MainCS(uint3 id : SV_DispatchThreadID)
     float3 pos = _CubeDataBuffer[index].position;
     CubeData data =_CubeDataBuffer[index];
 
-    if( data.time > 4 /*+ 4 * data.basePos.x*/ ){
+    if( data.time > _Duration ){
 
-        
-        
-        
         float2 uvv = float2(0,0);
         float2 pp = data.basePos.xy;
         float hasPixel = 0.0;
@@ -126,8 +126,9 @@ void MainCS(uint3 id : SV_DispatchThreadID)
             float3 ScreenPos = float3(
                 data.uv.x,
                 data.uv.y,
+                depthCol
                 //0.5 + _Near + (_Far-_Near) * depthCol
-                0.5 + saturate(depthCol) * 1.0
+                //0.5 + saturate(depthCol) * 1.0 + data.basePos.y * 0.1
                 //0.5
             );
 
@@ -152,12 +153,12 @@ void MainCS(uint3 id : SV_DispatchThreadID)
     }
 
     
-    float3 force = curlNoise( pos * 3.0 + _Time.x*0.5 ) - data.velocity.xyz;
+    float3 force = curlNoise( pos * 3.0 + _Time.x ) - data.velocity.xyz;
     
-    data.time += 0.01;//_Time - data.basePos.x * 3;
+    data.time += 1.0/60.0;//_Time - data.basePos.x * 3;
     data.velocity += force * 0.000004;
     data.velocity.y += data.basePos.y * 0.00002;
-    data.velocity *= 0.99;//force * 0.001;
+    data.velocity *= 0.99 * _VelocityRatio;//force * 0.001;
     data.position += data.velocity;
 
     _CubeDataBuffer[index]=data;

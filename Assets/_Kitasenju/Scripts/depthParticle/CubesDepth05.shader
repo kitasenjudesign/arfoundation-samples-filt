@@ -1,4 +1,4 @@
-Shader "CubesDepth04"
+Shader "CubesDepth05"
 {
 	Properties
 	{
@@ -27,8 +27,9 @@ Shader "CubesDepth04"
 		
 		struct Input
 		{
-			float2 uv_MainTex;
-            float4 col;//position  : POSITION;
+			//float2 uv_MainTex;
+            float4 screenPos;
+			float4 col;//position  : POSITION;
 		};
 		// Boidの構造体
 		struct CubeData
@@ -52,8 +53,8 @@ Shader "CubesDepth04"
 		half   _Glossiness; // 光沢
 		half   _Metallic;   // 金属特性
 		fixed4 _Color;      // カラー
-		float _Duration;
 		float _Amount;
+		float _Duration;
 		float _Size;
 		float _Speed;
 		float _Ratio;
@@ -61,8 +62,6 @@ Shader "CubesDepth04"
 		float4 _Num;
 		float3 _ObjectScale; // Boidオブジェクトのスケール
 		float4x4 _modelMatrix;
-
-		//float _Duration;
 
 		// オイラー角（ラジアン）を回転行列に変換
 		float4x4 eulerAnglesToRotationMatrix(float3 angles)
@@ -98,6 +97,7 @@ Shader "CubesDepth04"
 
 			float scaleRatio = 1.0 - cubeData.time/_Duration;
 			scaleRatio = saturate(scaleRatio);//max(scaleRatio,0);
+			//角度を計算するようにしよう
 
 			float3 scl = float3(_Size,_Size,_Size) * scaleRatio;//_ObjectScale;          // Boidのスケールを取得
 
@@ -118,14 +118,17 @@ Shader "CubesDepth04"
 			//float4x4(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)
 
 			// スケール値を代入
-			object2world._11_22_33_44 = float4(scl.xyz, 1.0);
+			object2world._11_22_33_44 = float4(scl.xyz * float3(0.3,0.3,3), 1.0);
+
 			// 速度からY軸についての回転を算出
-			float rotY = cubeData.velocity.x * 0.8 * 3.14 * _Amount;
+			float rotY = 
+				atan2(cubeData.velocity.x, cubeData.velocity.z);
 			// 速度からX軸についての回転を算出
-			float rotX = cubeData.velocity.y * 0.8 * 3.14 * _Amount;
-			float rotZ = cubeData.velocity.z * 0.5 * 3.14 * _Amount;
+			float rotX = 
+				-asin(cubeData.velocity.y / (length(cubeData.velocity.xyz) + 1e-8));
 			// オイラー角（ラジアン）から回転行列を求める
-			float4x4 rotMatrix = eulerAnglesToRotationMatrix(float3(rotX, rotY, rotZ));
+			float4x4 rotMatrix = eulerAnglesToRotationMatrix(float3(rotX, rotY, 0));
+
 			// 行列に回転を適用
 			object2world = mul(rotMatrix, object2world);
 			// 行列に位置（平行移動）を適用
@@ -161,19 +164,17 @@ Shader "CubesDepth04"
 		// サーフェスシェーダ
 		void surf (Input IN, inout SurfaceOutputStandard o)
 		{
-			//270
-			//720
-			/*
-			float2 r = IN.uv_MainTex * float2(1.0/_Num.x,1.0/_Num.y);
-			r.x = 1.0 - r.x + 1.0/_Num.x;
-			fixed4 c1 = tex2D (_MainTex, IN.col.xy + r );//IN.col.xy + r );
-			fixed4 c2 = tex2D (_MainTex2, IN.col.xy + r );//IN.col.xy + r );
-			*/
+
+			//screen pos を受け取るようにする
+			float2 uvv = IN.screenPos.xy / IN.screenPos.w;
+
+			fixed4 c1 = IN.col;//tex2D ( _MainTex, uvv + 0.8*(IN.col.xy-float2(0.5,0.5)) );
 			
-			o.Albedo = IN.col.rgb*0.3;//tex2D (_MainTex, IN.col.xy).rgb;//lerp(c1.rgb,c2.rgb,_Ratio);//IN.col.xyz;//c.rgb;// * IN.color.xyz;
+			o.Albedo = c1.rgb*0.3;//tex2D (_MainTex, IN.col.xy).rgb;//lerp(c1.rgb,c2.rgb,_Ratio);//IN.col.xyz;//c.rgb;// * IN.color.xyz;
 			o.Metallic = _Metallic;
-			o.Emission = IN.col.rgb*0.7;
+			o.Emission = c1.rgb*0.7;
 			o.Smoothness = _Glossiness;
+
 		}
 		ENDCG
 	}

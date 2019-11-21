@@ -77,7 +77,9 @@
                 //stencilUV.y = stencilUV.y*bai + (1-bai)/2;
 
                 fixed4 stencil  = tex2D( _StencilTex, stencilUV );
-                fixed4 depth    = tex2D( _DepthTex, stencilUV );
+                //fixed4 depth    = tex2D( _DepthTex, stencilUV );
+
+                //depthを使うと気持ち良くない。解像度も低いし、アニメがグダる。
 
                 float2 mosaicUV = float2(
                     snoise(float3(i.uv*aspect*_Detail, 2.0 + _Time.y*1.0)),

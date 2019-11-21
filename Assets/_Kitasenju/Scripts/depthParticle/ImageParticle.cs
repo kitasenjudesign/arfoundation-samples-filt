@@ -29,12 +29,15 @@ public class ImageParticle : MonoBehaviour{
     private MeshRenderer _renderer;
     private float _time = 0;
     private MaterialPropertyBlock _property;
-    private Vector4[] _positions;
+    //private Vector4[] _positions;
 
-    [SerializeField] private Texture _stencilTex;
+    [SerializeField,Space(10)] private Texture _stencilTex;
     [SerializeField] private Texture _colorTex;
     [SerializeField] private Texture _depthTex;
-    [SerializeField] private Camera _camera;
+    [SerializeField,Space(10)] private Camera _camera;
+    [SerializeField,Range(0,1),Space(10)] private float _velocityRatio = 1;
+    [SerializeField] private float _duration = 4f;
+
     private bool _isInit = false;
 
     void Start(){
@@ -135,6 +138,10 @@ public class ImageParticle : MonoBehaviour{
         _computeShader.SetMatrix("_InvProjMat", inverseP);
 		_computeShader.SetMatrix("_InvViewMat", camToWorld);
 
+        _computeShader.SetFloat("_Duration",_duration);
+        _computeShader.SetFloat("_VelocityRatio",_velocityRatio);
+
+
         if(_stencilTex!=null){
             _computeShader.SetTexture(0,"_StencilTex", _stencilTex);
             _computeShader.SetVector("_StencilTexSize", new Vector4(_stencilTex.width,_stencilTex.height));
@@ -146,7 +153,6 @@ public class ImageParticle : MonoBehaviour{
         if(_depthTex!=null){
             _computeShader.SetTexture(0,"_DepthTex", _depthTex);
             _computeShader.SetVector("_DepthTexSize", new Vector4(_depthTex.width,_depthTex.height));
-
         }
 
         //_computeShader.SetVectorArray("_Positions", _positions);
@@ -170,7 +176,9 @@ public class ImageParticle : MonoBehaviour{
         //_material.SetVector("_DokabenMeshScale", this._DokabenMeshScale);
         _material.SetMatrix("_modelMatrix", transform.localToWorldMatrix );
         _material.SetFloat("_Size",_size);
+        _material.SetFloat("_Duration", _duration);
 
+        if(_colorTex!=null) _material.SetTexture("_MainTex", _colorTex);
         //_renderer.SetPropertyBlock(_property);
 
         //_material.SetVector("_Num",new Vector4(_numX,_numY,0,0));
