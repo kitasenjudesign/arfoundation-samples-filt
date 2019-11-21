@@ -15,8 +15,10 @@ public class ImageParticle : MonoBehaviour{
         public float time;
     }
 
+    //[SerializeField] private Mesh[] _meshes;
     [SerializeField] private Mesh _mesh;
-    [SerializeField] int _num = 10000;
+    //[SerializeField] int _maxNum = 10000;
+    [SerializeField]private int _num = 10000;
     [SerializeField,Range(0.001f,1f)] float _size;//_Size ("_Size", Range(0.04,0.1)) = 0.04
 
     int ThreadBlockSize = 64;//256;
@@ -42,8 +44,27 @@ public class ImageParticle : MonoBehaviour{
 
     void Start(){
 
+        //Init();
+
+    }
+
+    public void Init(){
+
+        //_num = num;
+        //_num = num;
+        //if(_num>_maxNum) _num = _maxNum;
+
+        //_material = particleMat;
+       // _mesh = _meshes[Mathf.FloorToInt(_meshes.Length*Random.value)];
+
+
+
+        /////////////////////////
         if(_isInit)return;
         _isInit = true;
+
+
+
 
         if(_camera==null){
             _camera = Camera.main;
@@ -99,6 +120,8 @@ public class ImageParticle : MonoBehaviour{
 
 
         //GetComponent<MeshRenderer>().enabled=false;
+
+
     }
 
 
@@ -191,7 +214,8 @@ public class ImageParticle : MonoBehaviour{
             _argsBuffer,//Indirectには必要なんか
             0,
             null,
-            ShadowCastingMode.On,
+            ShadowCastingMode.Off,
+            //ShadowCastingMode.On,
             false
         );
         

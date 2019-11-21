@@ -508,14 +508,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _num: 20000
-  _size: 0.01
+  _size: 0.185
   _computeShader: {fileID: 7200000, guid: c81f841202b6145ca9eaa8d9343f22d6, type: 3}
   _material: {fileID: 2100000, guid: 668798f27d2184715982fcc0996deefe, type: 2}
   _stencilTex: {fileID: 2800000, guid: f03b50ab69c0d402190ca14cae4d0790, type: 3}
   _colorTex: {fileID: 2800000, guid: 5c7ef856e6150473792a2e4d2d46cff6, type: 3}
   _depthTex: {fileID: 2800000, guid: 191aa4b33d5994382b6912f64103c55b, type: 3}
-  _camera: {fileID: 0}
+  _camera: {fileID: 669385673}
   _velocityRatio: 1
+  _duration: 4
 --- !u!114 &1002705673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,6 +700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: cube2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1800d5640e72442da884948568bb48ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1800d5640e72442da884948568bb48ba,
         type: 3}

@@ -17,6 +17,19 @@ public class ImageParticleInitializer : MonoBehaviour
         
     }
 
+    public void Show(){
+        
+        gameObject.SetActive(true);
+        _particle.Init();
+
+    }
+
+    public void Hide(){
+        
+        gameObject.SetActive(false);
+
+    }
+
     /*
     private void OnGUI(){
             
