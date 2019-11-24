@@ -60,13 +60,13 @@ public class ProjFilter : FilterBase
 
                     if(_count%4<=1){
                         _flag = !_flag;
-                        /*
+                        
                         _fullBgMaterial.DOFloat(
                             _flag ? 1f : 0,
                             "_FeedbackRatio",
                             1f
                         ).SetEase(Ease.Linear);
-                        */
+                        
                     }
 
                     _count++;
@@ -77,6 +77,7 @@ public class ProjFilter : FilterBase
 		}
 
         _main.SetCamToMainTex( _fullBgMaterial );
+        
         _fullBgMaterial.SetTexture("_MainTex2",_texMaker._tex);//背景用
         _fullBgMaterial.SetVector("_Motion",_camMotion._distance);
 

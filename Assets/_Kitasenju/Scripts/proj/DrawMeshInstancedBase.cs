@@ -6,11 +6,11 @@ public class DrawMeshInstancedBase : ProjBase {
 
     [SerializeField] protected Mesh _mesh;
     [SerializeField] protected Mesh[] _meshes;
-    [SerializeField] protected float[] _scales;
+    //[SerializeField] protected float[] _scales;
     [SerializeField] protected Material _mat;
     protected Vector4[] _colors;
     protected MaterialPropertyBlock _propertyBlock;
-    protected int _count = 300;
+    protected int _count = 400;//300;
 
     protected Matrix4x4[] _modelMats;
     protected Matrix4x4[] _baseModelMats;

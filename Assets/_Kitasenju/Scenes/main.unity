@@ -934,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8bd085b0f954f4d8045363268ec003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 0}
+  _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _meshes:
   - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
@@ -942,9 +942,9 @@ MonoBehaviour:
   _scales:
   - 1
   - 1
-  - 0.6
-  _mat: {fileID: 2100000, guid: bb6e7234c5c684a84b2d79a5cb72ae78, type: 2}
-  _shader: {fileID: 4800000, guid: 36a72f98ff0a84c7f98066975a3ced75, type: 3}
+  - 1
+  - 5
+  _mat: {fileID: 2100000, guid: 7b9821c74bcbd415cb5a049005464a42, type: 2}
 --- !u!1 &187632570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,7 +1845,6 @@ MonoBehaviour:
   - 1
   - 0.6
   _mat: {fileID: 2100000, guid: bb6e7234c5c684a84b2d79a5cb72ae78, type: 2}
-  _shader: {fileID: 4800000, guid: 36a72f98ff0a84c7f98066975a3ced75, type: 3}
 --- !u!1 &454787121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,7 +2108,7 @@ GameObject:
   - component: {fileID: 485666363}
   - component: {fileID: 485666367}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4024,7 +4023,7 @@ MonoBehaviour:
   _hasBlur: 0
   info: TAP AND MOVE
   filterName: 
-  _fullBgMaterial: {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
+  _fullBgMaterial: {fileID: 2100000, guid: 4b36813dca7f34e22814614e17dc0c41, type: 2}
   _invert: 0
   _projObjs: {fileID: 535495719}
   _fullQuad: {fileID: 1871011836}
@@ -6041,6 +6040,7 @@ MonoBehaviour:
   _filters: []
   _menu: {fileID: 785619057}
   _filterMenu: {fileID: 1204305542}
+  _index: 0
   _camTex: {fileID: 0}
   _Invert: 0
   _toggleBtn: {fileID: 972713917}
@@ -7393,7 +7393,7 @@ MeshCollider:
   m_GameObject: {fileID: 1367229938}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -7415,7 +7415,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
+  - {fileID: 2100000, guid: 4b36813dca7f34e22814614e17dc0c41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7571,7 +7571,7 @@ MonoBehaviour:
   _hasBlur: 0
   info: 
   filterName: 
-  _fullBgMaterial: {fileID: 2100000, guid: 10c5f181e0ef04c438f62306caec0ec1, type: 2}
+  _fullBgMaterial: {fileID: 2100000, guid: 880d95629332e440c9f1e6285f68920e, type: 2}
   _invert: 0
   _projObjs: {fileID: 1096556461}
   _fullQuad: {fileID: 1871011836}

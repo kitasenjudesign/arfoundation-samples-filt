@@ -82,7 +82,7 @@ public class ProjObjs : MonoBehaviour {
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
-			if( touch.position.y < Screen.height*0.333f) return;
+			if( touch.position.y < Screen.height*0.3f) return;
 
             if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
             {
@@ -93,7 +93,7 @@ public class ProjObjs : MonoBehaviour {
         if (Input.touchCount == 3)
         {
             Touch touch = Input.GetTouch(0);
-			if( touch.position.y < Screen.height*0.333f) return;
+			if( touch.position.y < Screen.height*0.3f) return;
 
             if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
             {			
@@ -128,6 +128,8 @@ public class ProjObjs : MonoBehaviour {
 
 	public void MakeObj(){
 
+		VibeManager.Instance.PlaySystemSound( VibeManager.Vibe01 );
+
 		_current = Instantiate( _src[_count%_src.Length], transform, false );
         _current.gameObject.SetActive(true);
 		_count++;
@@ -136,7 +138,7 @@ public class ProjObjs : MonoBehaviour {
 		_list.Add(_current);
 
 		//多すぎると削除
-		if(_list.Count>6){
+		if(_list.Count>7){
 			var tgt = _list[0];
 			tgt.Kill();
 			_list.RemoveAt(0);
@@ -177,8 +179,9 @@ public class ProjObjs : MonoBehaviour {
 		_current.gameObject.SetActive(true);
 		
 		//初期化
-		_scale = 0.1f + 0.1f * Random.value;
-		if(_count%3==0) _scale = 0.2f + 0.2f * Random.value;
+		//_scale = 0.1f + 0.1f * Random.value;
+		//if(_count%3==0) _scale = 0.2f + 0.2f * Random.value;
+		_scale = 0.02f;
 
 		_current.Init(
 			projMat,
@@ -187,7 +190,7 @@ public class ProjObjs : MonoBehaviour {
 		);
 
 		//三個消す
-		if(_count%5==0){
+		if(_count%6==0){
 			for(int i=0;i<_list.Count;i++){
 				_list[i].Hide();
 			}

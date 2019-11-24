@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class ProjDrawMeshes : DrawMeshInstancedBase {
 
-    [SerializeField] protected Shader _shader;
+    //[SerializeField] protected Shader _shader;
     protected ProjDrawData[] _data;
     public const int MAX = 1023;
 
@@ -17,7 +17,9 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
         
     }
 
-    public override void Init(Matrix4x4 projMat, Matrix4x4 viewMat, float baseScale, Vector3[] positions=null){
+    public override void Init(
+        Matrix4x4 projMat, Matrix4x4 viewMat, float baseScale, Vector3[] positions=null
+    ){
 
         if(!_isInit){
 
@@ -36,14 +38,14 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
         _positions = positions;
 
         _isInit=true;
-        _count=Mathf.FloorToInt( 60+30*Random.value );
+        _count = 200;//Mathf.FloorToInt( 60+30*Random.value );
         
 
         int meshIndex = Mathf.FloorToInt(Random.value*_meshes.Length);
         _mesh = _meshes[meshIndex];
 
-        var scl = _scales[meshIndex];
-        var isRot = Random.value < 0.5f ? true : false;
+        var scl = Random.value <0.75f ? 1f : 3f;//_scales[meshIndex];
+        var isRot = Random.value < 0.3f ? true : false;
         //_count = 300;
         for(int i=0;i<_count;i++){
 
@@ -54,9 +56,9 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
             _data[i] = new ProjDrawData();
             _data[i].Init();
 
-            _data[i].pos.x = 2f * (Random.value - 0.5f);
-            _data[i].pos.y = 2f * (Random.value - 0.5f);
-            _data[i].pos.z = - 2f * Random.value;
+            _data[i].pos.x = 1.4f * (Random.value - 0.5f);
+            _data[i].pos.y = 1.4f * (Random.value - 0.5f);
+            _data[i].pos.z = - 0.5f - 1.5f * Random.value;
             _data[i].basePos = new Vector3(
                 _data[i].pos.x,
                 _data[i].pos.y,
@@ -71,7 +73,9 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
             );         
                 
 
-            var ss = scl * (0.06f + baseScale*(0.5f+0.5f*Random.value) );
+            //var ss = scl * (0.06f + baseScale*(0.5f+0.5f*Random.value) );
+            var ss = scl * (0.06f + baseScale*(1f) );
+            
             _data[i].scale = new Vector3(
                 ss,ss,ss
             );

@@ -19,12 +19,12 @@ public class EffectControlMain : MonoBehaviour
     [SerializeField] private FullScreenQuad _fullScreenQuad;
     [SerializeField] private UnityEngine.Rendering.PostProcessing.PostProcessLayer _postEffect;
 
-    [SerializeField,Space(10)] private List<FilterBase> _filters;
+    [SerializeField,Space(10)] public List<FilterBase> _filters;
     [SerializeField,Space(10)] public Menu _menu;
     [SerializeField] private FilterMenu _filterMenu;
 
     private FilterBase _currentFilter;
-    private int _index = 0;
+    [SerializeField] private int _index = 0;
     public RenderTexture _camTex;
     [SerializeField] private bool _Invert = false;
     [SerializeField] private ToggleBtn _toggleBtn;
@@ -86,7 +86,7 @@ public class EffectControlMain : MonoBehaviour
 
     public void SetFilter(int idx){
         
-        Debug.Log("SetFilter " + idx);
+        Debug.Log("SetFilter " + idx + "/" + _filters.Count);
 
         for(int i=0;i<_filters.Count;i++){
             _filters[i].Hide();
@@ -99,7 +99,7 @@ public class EffectControlMain : MonoBehaviour
 
         _postEffect.enabled = _currentFilter._hasBloom;
 
-       ShowInfo();
+        ShowInfo();
 
         SetInvert(_Invert);
     }
@@ -158,10 +158,10 @@ public class EffectControlMain : MonoBehaviour
             
             //Graphics.Blit(null,_camTex,_arBackground.material);//
             UpdateCamTex();
-            mat.SetTexture("_MainTex",_camTex);
+            if(mat) mat.SetTexture("_MainTex",_camTex);
 
             if(isBlur){
-                mat.SetTexture("_BlurTex",_blurTexture.UpdateBlur(_camTex));
+                if(mat) mat.SetTexture("_BlurTex",_blurTexture.UpdateBlur(_camTex));
             }
 
         }
