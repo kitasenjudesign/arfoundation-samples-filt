@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <symbol name="PRODUCTION"   comment="製品版" />
+    <symbol name="VJ"   comment="VJモード" />
+</root>

@@ -24,6 +24,7 @@ public class Params
 
         baseWidth = Screen.width;
         baseHeight = Screen.height;
+        Params.SetRotation();
         SetStencilAspect(720f,960f);
         
     }
@@ -38,10 +39,20 @@ public class Params
     }
 
     public static void SetStencilAspect(float w, float h){
+        if(Screen.height > Screen.width){
+            _stencilAscpect = ((float)Screen.height/(float)Screen.width) / (w/h);//なんか逆
+        }else{
+            _stencilAscpect = ((float)Screen.width/(float)Screen.height) / (w/h);//なんか逆
+        }
 
-        _stencilAscpect = ((float)Screen.height/(float)Screen.width) / (w/h);//なんか逆
         Shader.SetGlobalFloat("_GlobalStencilAspect",_stencilAscpect);
 
+    }
+
+    public static void SetRotation(){
+        Shader.SetGlobalFloat(
+            "_GlobalHorizonFlag", Screen.width > Screen.height ? 1f : 0
+        );
     }
 
 
