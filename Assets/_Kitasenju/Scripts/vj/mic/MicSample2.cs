@@ -33,7 +33,7 @@ public class MicSample2 : MonoBehaviour {
         audio.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
 
         for(int i=0;i<cube.Length;i++){
-            var ss = 0.1f +_spectrum[ i*100 ]*_slider.value;
+            var ss = 0.1f + _spectrum[ i*100 ]*_slider.value;
             var scale = cube[i].transform.localScale;
             var tgt = new Vector3(
                 ss,
@@ -50,6 +50,7 @@ public class MicSample2 : MonoBehaviour {
 
         }
 
+        Params.SetGlobalIntensity(_spectrum[ 0 ]*_slider.value);
         /*
         values = new float[cube.Length];
  

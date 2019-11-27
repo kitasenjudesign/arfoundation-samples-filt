@@ -1,4 +1,4 @@
-﻿Shader "effects/unity/UnityMask"
+﻿Shader "effects/unity/UnityMaskPerlin"
 {
     Properties
     {
@@ -24,6 +24,7 @@
 
             #include "UnityCG.cginc"
             #include "../util/StencilUV.hlsl"
+            #include "../noise/SimplexNoise3D.hlsl"
 
             struct appdata
             {
@@ -51,14 +52,18 @@
             //simple
             fixed4 frag (v2f i) : SV_Target
             {
-               
+
+                float2 offset = float2(
+                    0.2*snoise(float3(i.uv*2, 2.0 + _Time.y*0.3)),
+                    0.2*snoise(float3(i.uv*2, 2.0 + _Time.y*0.4))
+                );
+                i.uv += offset;
+
 
                 fixed4 col = tex2D(_MainTex, i.uv);
 
                 float2 stencilUV = GetStencilUV( i.uv );
                 fixed4 stencil = tex2D(_StencilTex, stencilUV);
-
-
 
 
                 // just invert the colors

@@ -49,6 +49,7 @@
             float _Invert;
             float _Brightness;
             float4 _MainTex_ST;
+            float _GlobalIntensity;//VJ用にパラメータを上下させる
 
             v2f vert (appdata v)
             {
@@ -69,9 +70,14 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                
+                float strength = 20;
+                if(_ScreenParams.x > _ScreenParams.y) strength = 40;
+
+                strength += + _GlobalIntensity*10;
+
+
                 float2 aspect = float2(1,_ScreenParams.y/_ScreenParams.x);
-                float2 mosaicUV = round(i.uv*aspect*20)/(aspect*20);
+                float2 mosaicUV = round(i.uv*aspect*strength)/(aspect*strength);
 
                 fixed4 col = tex2D(_MainTex, mosaicUV);
                 fixed4 col0 = tex2D(_MainTex,i.uv);

@@ -84,9 +84,17 @@
                 //depthr は 荒すぎる
                 //depth.r *= _DepthTh * 2;
 
+                float3 dd = col0.rgb;
+                dd += _Time.xxx * 0.1;
+                
+                //dd.x = 0.5 + 0.5 * sin( dd.x + _Time.x );
+                //dd.y = 0.5 + 0.5 * sin( dd.y + _Time.x );
+                //dd.z = 0.5 + 0.5 * sin( dd.z + _Time.x );
+
+
                 float2 mosaicUV = float2(
-                    snoise(float3(i.uv.x+col0.r*2.0,i.uv.y+col0.g*2.0, 2.0 + _Time.y*0.3)),
-                    snoise(float3(i.uv.x+col0.g*2.0,i.uv.y+col0.b*2.0, 2.0 + _Time.y*0.4))
+                    snoise(float3(i.uv.x+dd.r*2.0,i.uv.y+dd.g*2.0, 2.0 + _Time.y*0.3)),
+                    snoise(float3(i.uv.x+dd.g*2.0,i.uv.y+dd.b*2.0, 2.0 + _Time.y*0.4))
                 );
 
 
