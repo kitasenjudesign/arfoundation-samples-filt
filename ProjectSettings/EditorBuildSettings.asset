@@ -6,20 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/_Kitasenju/Scenes/Kitasenju.unity
-    guid: 232f86d2742c447eba490c70083ff4b3
-  - enabled: 0
-    path: Assets/_Kitasenju/Scenes/Kitasenju2.unity
-    guid: 166d98e6fdcdf4b468d2925b0ae31ecf
-  - enabled: 0
     path: Assets/_Kitasenju/Scenes/VJ.unity
     guid: 2bfd737bc0fd04f29ae8cda9f7b2bec0
   - enabled: 1
     path: Assets/_Kitasenju/Scenes/main.unity
     guid: 9357e2a3889514325beee2425b7f0177
-  - enabled: 0
-    path: Assets/_Kitasenju/Scenes/main_maskTest.unity
-    guid: ff23af9dd571143f8820e0abd5b18813
   m_configObjects:
     com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: e17e892774dfa41258820f0c404a4012,
       type: 2}

@@ -46,6 +46,7 @@
             sampler2D _StencilTex;
             float _DepthTh;
             float _Invert;
+            float _GlobalIntensity;
 
             v2f vert (appdata v)
             {
@@ -70,9 +71,14 @@
 
 
 				//モザイクを何分割するか
+                float strength = 20;;
+                if(_ScreenParams.x > _ScreenParams.y) strength = 40;
+
+                strength += _GlobalIntensity*10;
+
 				float2 mosaicSize = float2(
-					20,
-					20 * _ScreenParams.y / _ScreenParams.x
+					strength,
+					strength * _ScreenParams.y / _ScreenParams.x
 				);
 				float2 roundedUv = floor(i.uv*mosaicSize) / mosaicSize;
 

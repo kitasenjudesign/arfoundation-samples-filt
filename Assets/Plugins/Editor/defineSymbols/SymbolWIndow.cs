@@ -144,12 +144,19 @@ public class SymbolWindow : EditorWindow
                 PlayerSettings.allowedAutorotateToPortraitUpsideDown=false;                
                 PlayerSettings.allowedAutorotateToLandscapeRight=false;
                 PlayerSettings.applicationIdentifier = "com.kitasenjudesign.mesaiVJ";
+  
+                PlayerSettings.iOS.targetDevice = iOSTargetDevice.iPhoneAndiPad;
 
                 //buildするシーン変える
                 EditorBuildSettings.scenes = new EditorBuildSettingsScene[]{
                     new EditorBuildSettingsScene("Assets/_Kitasenju/Scenes/VJ.unity", true),
                     new EditorBuildSettingsScene("Assets/_Kitasenju/Scenes/main.unity", true)
                 };
+
+                //GameViewSizeHelper.ChangeGameViewSize(
+                //    GameViewSizeGroupType.iOS,
+                //    GameViewSizeHelper.GameViewSizeType.FixedResolution, 2224, 1668, "2224x1668"
+                //);
 
             }else{
                 
@@ -160,6 +167,9 @@ public class SymbolWindow : EditorWindow
                 PlayerSettings.allowedAutorotateToLandscapeLeft=false;
                 PlayerSettings.allowedAutorotateToLandscapeRight=false;
                 PlayerSettings.applicationIdentifier = "com.kitasenjudesign.mesai";
+                
+                PlayerSettings.iOS.targetDevice = iOSTargetDevice.iPhoneOnly;
+
                 //PlayerSettings.SplashScreen.show = true;
                 
                 //buildするシーン変える
@@ -172,6 +182,10 @@ public class SymbolWindow : EditorWindow
                 //    Resources.Load("icon/icon") as Texture2D
                 //};                
                 //PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Unknown, n);  
+                //GameViewSizeHelper.ChangeGameViewSize(
+                //    GameViewSizeGroupType.iOS,
+                //    GameViewSizeHelper.GameViewSizeType.FixedResolution, 1125, 2436, "1125x2436"
+                //);
 
             }
 
@@ -180,4 +194,6 @@ public class SymbolWindow : EditorWindow
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
     }
+
+    
 }

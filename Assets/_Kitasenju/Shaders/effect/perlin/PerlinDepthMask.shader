@@ -46,6 +46,7 @@
             float _Detail;
             float4 _MainTex_ST;
             float _Invert;
+            float _GlobalIntensity;
 
             v2f vert (appdata v)
             {
@@ -80,10 +81,10 @@
                 //fixed4 depth    = tex2D( _DepthTex, stencilUV );
 
                 //depthを使うと気持ち良くない。解像度も低いし、アニメがグダる。
-
+                float value = _Detail + _GlobalIntensity;
                 float2 mosaicUV = float2(
-                    snoise(float3(i.uv*aspect*_Detail, 2.0 + _Time.y*1.0)),
-                    snoise(float3(i.uv*aspect*_Detail, 2.0 + _Time.y*1.5))
+                    snoise(float3(i.uv * aspect * value, 2.0 + _Time.y*1.0)),
+                    snoise(float3(i.uv * aspect * value, 2.0 + _Time.y*1.5))
                 );
 
                 fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV ) ) );
