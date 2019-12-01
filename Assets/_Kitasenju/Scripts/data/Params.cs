@@ -56,9 +56,11 @@ public class Params
     }
 
     public static void SetGlobalIntensity(float value){
+        
         Shader.SetGlobalFloat(
             "_GlobalIntensity", value
         );
+
     }
 
     public static void SetScreenSizeByQuality(){

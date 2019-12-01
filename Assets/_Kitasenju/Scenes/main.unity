@@ -129,14 +129,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 22803082}
-  - component: {fileID: 22803083}
   m_Layer: 0
   m_Name: Spheres
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &22803082
 Transform:
   m_ObjectHideFlags: 0
@@ -152,18 +151,6 @@ Transform:
   m_Father: {fileID: 1336809257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &22803083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22803081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78458576573ae467e93613c19834898a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &27625903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8a6bd558eb746c1af337008a96b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spd: {x: 0, y: 0, z: 0}
+  spdScale: 1
 --- !u!23 &659774036
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5361,6 +5350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974681972}
+  - component: {fileID: 974681973}
   m_Layer: 0
   m_Name: Spheres
   m_TagString: Untagged
@@ -5383,6 +5373,21 @@ Transform:
   m_Father: {fileID: 123500925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974681973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974681971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78458576573ae467e93613c19834898a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  _mat: {fileID: 2100000, guid: e7249748356724b1f84a7a514eaadc16, type: 2}
+  _camera: {fileID: 1886177310}
 --- !u!1 &993690063
 GameObject:
   m_ObjectHideFlags: 0
@@ -7099,7 +7104,7 @@ GameObject:
   - component: {fileID: 1260375981}
   - component: {fileID: 1260375982}
   m_Layer: 0
-  m_Name: 23_particle (1)
+  m_Name: 23_particle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11957,6 +11962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d70c66f15b74c5383a7fbf7c60f7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crystalPrefab: {fileID: 0}
+  _camera: {fileID: 0}
 --- !u!1 &2121889912
 GameObject:
   m_ObjectHideFlags: 0

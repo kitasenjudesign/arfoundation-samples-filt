@@ -114,6 +114,8 @@ Shader "effects/hatch/SingleObjectHatch"
 			fixed4 frag (v2f i) : SV_Target
 			{
 
+
+
 				fixed4 color = tex2D(_MainTex, i.uv);
 				fixed3 diffuse = color.rgb;// * _LightColor0.rgb * dot(_WorldSpaceLightPos0, normalize(i.nrm));
 
@@ -121,10 +123,16 @@ Shader "effects/hatch/SingleObjectHatch"
 				
 				//
 				float scl = _Size;
+				if( _ScreenParams.x > _ScreenParams.y ) scl *= 2;
+
+
 				//fixed2 rotUV1 = rotate( i.uv * scl, sin( floor(_Time.y*2.0) * 999.9 )*0.8  );
 				//fixed2 rotUV2 = rotate( i.uv * scl, sin( floor(_Time.y*2.0) * 999.9 )*1.1  );
+
+				float dd = _Detail;
+
 				float tt = floor(_Time.y * 4)*10;
-				float detail = 0.005+_Detail*(0.5 + 0.5*sin(tt));
+				float detail = 0.005+dd*(0.5 + 0.5*sin(tt));
 				//detail*=0.5;
 				//fixed2 rotUV1 = rotate( i.uv * scl, floor( snoise( float3(i.uv*detail+intensity, tt ) ) * 20 ) / 20 * 2*3.14 );
 				//fixed2 rotUV2 = rotate( i.uv * scl, floor( snoise( float3(i.uv*detail+intensity, tt ) ) * 20 ) / 20 * 2*3.14 );

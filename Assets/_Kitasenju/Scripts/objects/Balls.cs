@@ -38,7 +38,9 @@ public class Balls : MonoBehaviour {
 
         var pos = _camera.transform.position;
 
-
+        Debug.Log("----");
+        Debug.Log(pos);
+        //var pos = Vector3.zero;
 
 
         _count=0;
@@ -76,7 +78,7 @@ public class Balls : MonoBehaviour {
 
 
         //transform.position = _camera.transform.position + _camera.transform.forward;
-        
+        if(!_isInit)return;
 
         for (int i = 0; i < _count; i++)
         {

@@ -53,6 +53,7 @@
             float _Naname;
             float _Invert;
             float4 _MainTex_ST;
+            float _GlobalIntensity;
 
             v2f vert (appdata v)
             {
@@ -85,12 +86,17 @@
                     snoise(float3(i.uv*_Detail, 2.0 + _Time.y*1.5))
                 );
 
-                fixed4 col = tex2D(_MainTex, abs( frac( i.uv+mosaicUV ) ) );
+                fixed4 col = tex2D(_MainTex, abs( frac( i.uv + mosaicUV ) ) );
                 
 
                 float2 uvv = i.scrPos.xy / i.scrPos.w * aspect;
+                
                 float n = 1;// + 0.5 + 0.5 * sin( _Time.y );
+
+                if(_ScreenParams.x>_ScreenParams.y) n = 3;
+
                 uvv.x += _Time.x * 3;
+
                 float ss = step ( frac(  n*_Naname*(uvv.x+uvv.y) ),0.5 );
 
                 if(_Invert==1){

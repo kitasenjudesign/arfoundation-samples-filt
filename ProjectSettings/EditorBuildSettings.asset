@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Kitasenju/Scenes/VJ.unity
     guid: 2bfd737bc0fd04f29ae8cda9f7b2bec0
   - enabled: 1

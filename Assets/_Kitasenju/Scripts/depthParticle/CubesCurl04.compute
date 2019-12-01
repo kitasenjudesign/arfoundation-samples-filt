@@ -40,7 +40,7 @@ float4x4 _InvViewMat;
 float _VelocityRatio;
 
 float _Duration;
-
+float _GlobalIntensity;
 
 float rand(float3 co)
 {
@@ -115,7 +115,7 @@ void MainCS(uint3 id : SV_DispatchThreadID)
                 rand(data.basePos.xy + index + 100.0),
                 0 * (rand(data.basePos.xy + index + 200.0) - 0.5 )
             );
-            data.velocity = vv * 0.005;
+            data.velocity = vv * 0.005 * (1+_GlobalIntensity);
 
             data.color = _ColorTex[ data.uv.xy * _ColorTexSize.xy  ];
 
