@@ -14,5 +14,23 @@ public class BallData {
     public Vector3 scale = new Vector3(1f,1f,1f);
 
     public Vector4 uv = new Vector4();
+    private Vector3 offset = new Vector3();
+    private Vector3 basePos = new Vector3();
+
+    public void Init(){
+
+        basePos.x = pos.x;
+        basePos.y = pos.y;
+        basePos.z = pos.z;
+
+    }
+
+
+    public void Update(){
+        
+        offset.y = 0.2f * Mathf.Sin( Time.realtimeSinceStartup + basePos.x );
+        pos = basePos + offset;
+
+    }
 
 }

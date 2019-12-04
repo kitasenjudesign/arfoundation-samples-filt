@@ -42,6 +42,7 @@ public class VJMain : MonoBehaviour
 
         _btnNext.onClick.AddListener(_nextFilter);
         _btnPrev.onClick.AddListener(_prevFilter);
+
         _btnRandom.onClick.AddListener(_randomFilter);
         _btnInvert.onClick.AddListener(_invertFilter);
         _btnMenu.onClick.AddListener(_onClickMenu);
@@ -54,10 +55,15 @@ public class VJMain : MonoBehaviour
 
     }
 
+    public void InvertFilter(){
+        _invertFilter();
+    }
+
     private void _invertFilter(){
 
         _isInvert = !_isInvert;
         _main.SetInvert(_isInvert);
+        _UpdateText();
 
     }
 
@@ -74,7 +80,13 @@ public class VJMain : MonoBehaviour
 
     private void _randomFilter(){
        
-        _index = Mathf.FloorToInt( _main._filters.Count * Random.value );
+        while(true){
+            _index = Mathf.FloorToInt( _main._filters.Count * Random.value );
+            if( _main._filters[_index].name.IndexOf("random") < 0 ){
+                break;
+            }
+        }
+
 
        _setFilter();
 
@@ -91,17 +103,27 @@ public class VJMain : MonoBehaviour
 
     private void _setFilter(){
 
+        if( VibeManager.Instance ){
+            VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
+        }
+
+
         if(_index>=_main._filters.Count)_index=0;
         if(_index<0) _index=_main._filters.Count-1;
 
-         _text.text = "" + _main._filters[_index].name.ToUpper();
+        _UpdateText();
 
         _main.SetFilter( _index );
 
     }
 
 
+    private void _UpdateText(){
 
+        _text.text = "" + _main._filters[_index].name.ToUpper();
+        if( _isInvert ) _text.text += " : INVERT";
+
+    }
 
 
 

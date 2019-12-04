@@ -48,14 +48,14 @@
 
             sampler2D _MainTex;
             sampler2D _StencilTex;
-            float _Revert;
+            float _Invert;
             //simple
             fixed4 frag (v2f i) : SV_Target
             {
 
                 float2 offset = float2(
-                    0.2*snoise(float3(i.uv*2, 2.0 + _Time.y*0.3)),
-                    0.2*snoise(float3(i.uv*2, 2.0 + _Time.y*0.4))
+                    0.14*snoise(float3(i.uv*2, 2.0 + _Time.y*0.3)),
+                    0.14*snoise(float3(i.uv*2, 2.0 + _Time.y*0.4))
                 );
                 i.uv += offset;
 
@@ -73,6 +73,8 @@
                 }else{
                     if(stencil.r > 0.5) discard;
                 } */
+
+                if(_Invert==1) stencil.r = 1 - stencil.r;
                 col.a = stencil.r;  
 
 

@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-public class ProjObjs : MonoBehaviour {
+public class ProjObjsKai : MonoBehaviour {
 
 	[SerializeField] protected ProjBase[] _src;//prefab
 	protected List<ProjBase> _list;
@@ -130,6 +130,9 @@ public class ProjObjs : MonoBehaviour {
 
 		VibeManager.Instance.PlaySystemSound( VibeManager.Vibe01 );
 
+		if(_current != null) _current.updatingPos = false;
+
+
 		_current = Instantiate( _src[_count%_src.Length], transform, false );
         _current.gameObject.SetActive(true);
 		_count++;
@@ -174,9 +177,9 @@ public class ProjObjs : MonoBehaviour {
 		var projMat = _projectionCam.projectionMatrix;
 		var viewMat = _projectionCam.worldToCameraMatrix;
 		
-		//_current.transform.position = Vector3.zero;
-		_current.transform.position = _camera.transform.position + _camera.transform.forward*(0.4f + 0.4f * Random.value);
-		_current.transform.LookAt(_projectionCam.transform.position);
+		_current.transform.position = Vector3.zero;
+		//_current.transform.position = _camera.transform.position + _camera.transform.forward*(0.4f + 0.4f * Random.value);
+		//_current.transform.LookAt(_projectionCam.transform.position);
 		_current.gameObject.SetActive(true);
 		
 		//初期化

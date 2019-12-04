@@ -3,6 +3,8 @@
     Properties
     {
         _MainTex ("_MainTex", 2D) = "white" {}
+        _MainTex ("_BlurTex", 2D) = "white" {}
+
         _StencilTex ("_StencilTex", 2D) = "white" {}
         _DepthTex ("_DepthTex", 2D) = "white" {}
         _DepthTh("_DepthTh",Range(0,1)) = 0.5
@@ -43,6 +45,8 @@
             sampler2D _MainTex;
             sampler2D _DepthTex;
             sampler2D _StencilTex;
+            sampler2D _BlurTex;
+            
             float _DepthTh;
             float _Detail;
             float _Invert;
@@ -70,6 +74,7 @@
 
 
                 fixed4 col0 = tex2D(_MainTex,i.uv);
+                fixed4 blur = tex2D(_BlurTex,i.uv);
 
                 //i.uv.x = 1 - i.uv.x;
                 float2 stencilUV = GetStencilUV( i.uv );
@@ -84,7 +89,7 @@
                 //depthr は 荒すぎる
                 //depth.r *= _DepthTh * 2;
 
-                float3 dd = col0.rgb;
+                float3 dd = blur.rgb;
                 dd += _Time.xxx * 0.1;
                 
                 //dd.x = 0.5 + 0.5 * sin( dd.x + _Time.x );

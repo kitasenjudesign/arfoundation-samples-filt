@@ -9,6 +9,8 @@ public class ProjFilter : FilterBase
     [SerializeField,Space(10)] public Material _fullBgMaterial;
     [SerializeField] private bool _invert = false;
     [SerializeField] private ProjObjs _projObjs;
+    [SerializeField] private ProjObjsKai _projObjs2;
+
 
     [SerializeField] private GameObject _fullQuad;
 
@@ -26,7 +28,9 @@ public class ProjFilter : FilterBase
         _texMaker.enabled=true;
         base.Show(main);
         //_main.SetImageEffect(_material);
-        _projObjs.Init( _main );
+        if(_projObjs!=null) _projObjs.Init( _main );
+        if(_projObjs2!=null) _projObjs2.Init( _main );
+
         UpdateFilter();
 
     }

@@ -1,4 +1,4 @@
-﻿Shader "effects/loop/LoopColorMask"
+﻿Shader "effects/loop/MonoLoop"
 {
     Properties
     {
@@ -50,6 +50,7 @@
             float _Detail;
             float _Invert;
             float4 _MainTex_ST;
+            float _GlobalIntensity;
 
             v2f vert (appdata v)
             {
@@ -84,8 +85,9 @@
                 fixed4 col = tex2D(_BlurTex,  i.uv );
 
                 //col = 0.5 + 0.5*sin( col * 50 * _DepthTh + _Time.z * 2.0 );
-                col = frac( col * 15 + _Time.z * 1.0 );
-                
+                float nn = frac( (length(col.rgb) + i.uv.y*5) * (1+8*_GlobalIntensity) + _Time.z * 1.5 );
+                col.rgb = step(0.5,nn);
+
                 //マスク
                 //col.rgb = lerp( col0.rgb, col.rgb, stencil.r);                
                 col.rgb = lerp(

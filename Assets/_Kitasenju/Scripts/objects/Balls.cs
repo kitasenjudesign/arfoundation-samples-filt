@@ -54,9 +54,15 @@ public class Balls : MonoBehaviour {
                 _data[_count].pos.x = pos.x + amp * Mathf.Cos(rad);
                 _data[_count].pos.y = pos.y + 2f * (Random.value - 0.5f);
                 _data[_count].pos.z = pos.z + amp * Mathf.Sin(rad);
+                
+                _data[_count].Init();
 
                 var s = 0.2f + 0.4f*Random.value;
-                _data[_count].rot = Quaternion.Euler(0,0,0);
+                _data[_count].rot = Quaternion.Euler(
+                    360f * Random.value,
+                    360f * Random.value,
+                    360f * Random.value
+                );
                 _data[_count].scale = new Vector3(s,s,s);
                 //_uvs[_count] = SpriteUV.GetUv(Mathf.FloorToInt(Random.value*6),4,4);
                 _colors[_count] = new Vector4(
@@ -80,8 +86,19 @@ public class Balls : MonoBehaviour {
         //transform.position = _camera.transform.position + _camera.transform.forward;
         if(!_isInit)return;
 
+
+        if( EffectControlMain.Instance ){
+
+            _mat.SetTexture("_MainTex", EffectControlMain.Instance.UpdateCamTex() );
+
+        }
+
+
         for (int i = 0; i < _count; i++)
         {
+            
+            _data[i].Update();
+
             _matrices[i].SetTRS( 
                 _data[i].pos,
                 _data[i].rot,

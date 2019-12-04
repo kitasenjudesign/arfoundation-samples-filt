@@ -9,6 +9,8 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
     protected ProjDrawData[] _data;
     public const int MAX = 1023;
 
+    protected Matrix4x4[] _modelMats2;
+
     protected RenderTexture _renderTexture;//これが２個あればいいのか
     
     protected Vector3[] _positions;
@@ -23,12 +25,9 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
 
         if(!_isInit){
 
-            //gameObject.SetActive(false);
-            //_mat = new Material(_shader);
-            //_mat.enableInstancing=true;  
-
             _propertyBlock = new MaterialPropertyBlock();        
             _modelMats = new Matrix4x4[MAX];
+            _modelMats2 = new Matrix4x4[MAX];
             _viewMats = new Matrix4x4[MAX];
             _projMats = new Matrix4x4[MAX];
             _data = new ProjDrawData[MAX];
@@ -50,6 +49,7 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
         for(int i=0;i<_count;i++){
 
             _modelMats[i] = Matrix4x4.identity;
+            _modelMats2[i] = Matrix4x4.identity;
             _viewMats[i] = viewMat;
             _projMats[i] = projMat;
 
@@ -97,11 +97,19 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
             //TRS
             _data[i].Update();
             _modelMats[i].SetTRS( 
+                _data[i].basePos,
+                Quaternion.identity,
+                //_data[i].rot,
+                _data[i].scale
+            );
+            _modelMats2[i].SetTRS( 
                 _data[i].pos,
                 _data[i].rot,
                 _data[i].scale
-            );
+            );            
             _modelMats[i] = transform.localToWorldMatrix * _modelMats[i];
+            _modelMats2[i] = transform.localToWorldMatrix * _modelMats2[i];
+
             
             scaleTotal += _data[i].scale.x;
 
@@ -115,13 +123,13 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
 		_propertyBlock.SetMatrixArray("_ModelMat", _modelMats);
 		_propertyBlock.SetMatrixArray("_ProjMat", 	_projMats);//_projectionCam.projectionMatrix );
 		_propertyBlock.SetMatrixArray("_ViewMat", 	_viewMats);
-        _propertyBlock.SetMatrixArray("_ModelMat", _modelMats);
+        //_propertyBlock.SetMatrixArray("_ModelMat", _modelMats);
 
         Graphics.DrawMeshInstanced(
                 _mesh, 
                 0, 
-                _mat, 
-                _modelMats, 
+                _mat, //material
+                _modelMats2, //matrix
                 _count, 
                 _propertyBlock, 
                 ShadowCastingMode.Off, 

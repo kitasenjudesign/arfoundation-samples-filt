@@ -9,6 +9,8 @@ public class BlurTexture : MonoBehaviour
     public Material postprocessMaterial;
 
     private bool _isInit = false;
+    [SerializeField] private bool usingBlur=false;
+
     void Start(){
     
         Init();
@@ -47,11 +49,13 @@ public class BlurTexture : MonoBehaviour
 		
         //draws the pixels from the source texture to the destination texture
 		//var temporaryTexture = RenderTexture.GetTemporary(blurTexture.width, blurTexture.height);
+        if(usingBlur){
+    		Graphics.Blit(inputTex, _tempTexture, postprocessMaterial, 0);
+	    	Graphics.Blit(_tempTexture, blurTexture, postprocessMaterial, 1);
+        }else{
+            Graphics.Blit(inputTex, blurTexture);//only copy and downscale
+        }
 
-		//Graphics.Blit(inputTex, _tempTexture, postprocessMaterial, 0);
-		//Graphics.Blit(_tempTexture, blurTexture, postprocessMaterial, 1);
-		
-        Graphics.Blit(inputTex, blurTexture);//only copy and downscale
         return blurTexture;
         //RenderTexture.ReleaseTemporary(temporaryTexture);
 

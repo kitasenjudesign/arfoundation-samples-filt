@@ -49,7 +49,7 @@ Shader "Custom/Balls" {
             //UNITY_TRANSFER_INSTANCE_ID (v, o);            
             fixed4 col = UNITY_ACCESS_INSTANCED_PROP(_Color_arr, _Color);
             
-            v.vertex.y = v.vertex.y + col.y * sin(col.x + _Time.y);
+            //v.vertex.y = v.vertex.y + col.y * sin(col.x + _Time.y);
 			//頂点をてきとうに、ごちゃごちゃする、ここではノーマル方向に値を足してる
 			//v.vertex.xyz += v.normal.xyz * _Amount;
 		}
@@ -61,7 +61,7 @@ Shader "Custom/Balls" {
             fixed4 col = UNITY_ACCESS_INSTANCED_PROP(_Color_arr, _Color);
 
 			// Albedo comes from a texture tinted by color
-			fixed4 c = fixed4(1,1,1,1);//tex2D (_MainTex, IN.uv_MainTex);
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
 			//o.Albedo = c.rgb;
 
             float _Emission = 0.5;

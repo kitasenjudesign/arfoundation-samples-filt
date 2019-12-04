@@ -33,6 +33,7 @@ public class EffectControlMain : MonoBehaviour
     private int _count = 0;
     
     private GUIStyle _style;
+    public static EffectControlMain Instance;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,8 @@ public class EffectControlMain : MonoBehaviour
         _filterMenu.Init( _filters );
         //_next();
         
+        Instance = this;
+
         //SetFilter(0);
         
         /*

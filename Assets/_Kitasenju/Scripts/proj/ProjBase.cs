@@ -5,6 +5,8 @@ using UnityEngine.Rendering;
 
 public class ProjBase : MonoBehaviour {
 
+    public bool updatingPos = true;
+
     public virtual void Init(Matrix4x4 projMat, Matrix4x4 viewMat, float baseScale, Vector3[] positions=null){
 
     }
