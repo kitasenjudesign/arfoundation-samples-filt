@@ -39,6 +39,7 @@
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _Invert;
+            float _GlobalIntensity;
             sampler2D _StencilTex;
 
             v2f vert (appdata v)
@@ -62,7 +63,8 @@
                 float amp = length( d * aspect );
                 float rad = atan2(d.y,d.x);
 
-                amp = 0.04*sin( amp * 30 - _Time.z*5 );// + 0.01*sin(rad*10+_Time.x);
+                float aa = 0.04 + 0.03 * _GlobalIntensity;
+                amp = aa*sin( amp * 30 - _Time.z*5 );// + 0.01*sin(rad*10+_Time.x);
                 //float amp2 = 0.03*cos( amp * 30 - _Time.z*3 );
 
                 float2 uvv = float2(

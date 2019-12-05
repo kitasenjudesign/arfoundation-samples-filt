@@ -39,6 +39,18 @@ public class MousePosition {
 
             #endif
 
+
+            for(int i=0;i<_positions.Count;i++){
+                if( MicFFT.Instance != null ){
+                    
+                    _positions[i] += new Vector3(
+                        0.5f * (Random.value - 0.5f),
+                        0.5f * (Random.value - 0.5f),
+                        0.01f * (Random.value - 0.5f)
+                    ) * MicFFT.Instance.subValues[i % MicFFT.Instance.subValues.Count];
+
+                }
+            }
             
             screen_point.z = 1.0f;
 

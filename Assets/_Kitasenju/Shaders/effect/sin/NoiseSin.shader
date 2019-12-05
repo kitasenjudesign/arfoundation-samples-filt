@@ -80,11 +80,11 @@
 
                 //sinを作る
                 float spd = 1;
-                if( _ScreenParams.x > _ScreenParams.y ) spd *= 0.5;
+                if( _ScreenParams.x > _ScreenParams.y ) spd *= 1;
 
                 float amp = 0.5 + 0.5 * sin( _Time.z * spd );
 
-                float2 uvv = i.uv + float2( 0.2 * amp * sin(i.uv.y * (20.0+20*amp) * spd + _Time.z),0 );
+                float2 uvv = i.uv + float2( 0.15 * amp * sin(i.uv.y * (20.0+20*amp) * spd + _Time.z),0 );
                 fixed4 col0 = tex2D(_MainTex,uvv);//sin curve
 
                 float2 stencilUV = GetStencilUV( _Invert==0 ? uvv : i.uv );

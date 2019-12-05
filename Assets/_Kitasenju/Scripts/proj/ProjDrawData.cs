@@ -24,8 +24,10 @@ public class ProjDrawData {
     public Vector3 velocity;
     public Vector3 basePos;
     private int count=0;
+    private float _pastTime;
+    private bool _isRot = false;
 
-    public void Init(){
+    public void Init(bool isRotAnim){
 
         count = Mathf.FloorToInt(Random.value * 100f);
         velocity = Vector3.zero;//
@@ -38,6 +40,11 @@ public class ProjDrawData {
             1f * (Random.value - 0.5f ),
             1f * (Random.value - 0.5f )
         );
+        if(isRotAnim){
+            degRandom = Vector3.zero;
+        }
+
+
         degSpeed = new Vector3();
 
         /* new Vector3(
@@ -61,10 +68,11 @@ public class ProjDrawData {
 
             if( MicFFT.Instance ){
 
-                //aresuru
-                if( MicFFT.Instance.subValues[3] > 0.05f){
-                    degSpeed += 20f * degRandom;
+                if( MicFFT.Instance.subValues[3] > 0.1f && Time.realtimeSinceStartup - _pastTime>0.33f ){
+                    _pastTime = Time.realtimeSinceStartup;
+                    degSpeed += 10f * degRandom;
                 }
+
                 degSpeed *= 0.99f; 
                 deg += degSpeed;
                 rot = Quaternion.Euler( deg );

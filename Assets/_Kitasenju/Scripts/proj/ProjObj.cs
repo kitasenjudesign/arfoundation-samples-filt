@@ -112,7 +112,8 @@ public class ProjObj : ProjBase {
 	}
 
     public override void Hide(){
-		transform.DOScale(Vector3.zero,1f).SetEase(Ease.Linear);
+		//transform.DOScale(Vector3.zero,1f).SetEase(Ease.Linear);
+		gameObject.SetActive(false);
 	}	
 
 	// Update is called once per frame

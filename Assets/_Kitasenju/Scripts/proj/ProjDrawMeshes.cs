@@ -37,14 +37,16 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
         _positions = positions;
 
         _isInit=true;
-        _count = 200;//Mathf.FloorToInt( 60+30*Random.value );
+        _count = Mathf.FloorToInt( 100f + 100f * Random.value );//Mathf.FloorToInt( 60+30*Random.value );
         
 
         int meshIndex = Mathf.FloorToInt(Random.value*_meshes.Length);
         _mesh = _meshes[meshIndex];
 
-        var scl = Random.value <0.75f ? 1f : 3f;//_scales[meshIndex];
+        var scl = Random.value <0.75f ? 1f : 4f;//_scales[meshIndex];
         var isRot = Random.value < 0.3f ? true : false;
+        var isRotAnim = Random.value < 0.5f ? true : false;
+
         //_count = 300;
         for(int i=0;i<_count;i++){
 
@@ -54,7 +56,7 @@ public class ProjDrawMeshes : DrawMeshInstancedBase {
             _projMats[i] = projMat;
 
             _data[i] = new ProjDrawData();
-            _data[i].Init();
+            _data[i].Init(isRotAnim);
 
             _data[i].pos.x = 1.4f * (Random.value - 0.5f);
             _data[i].pos.y = 1.4f * (Random.value - 0.5f);
