@@ -112,7 +112,8 @@
             cameraInput = new CameraInput(videoRecorder, recordingClock, cam);//Camera.main);
             if (recordMicrophone) {
                 
-                Invoke("StartMicrophone",0.3f);
+                //Invoke("StartMicrophone",0.3f);
+                Invoke("StartMicrophone",0.1f);
 
             }
             

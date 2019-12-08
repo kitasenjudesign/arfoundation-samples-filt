@@ -1,0 +1,9 @@
+# General
+-keepattributes Signature
+-keepattributes Exceptions
+-keepattributes *Annotation*
+-keepattributes EnclosingMethod
+
+
+# Instagram Kit
+-keep public class com.voxelbusters.instagramkitandroid.InstagramKitHandler {*; }

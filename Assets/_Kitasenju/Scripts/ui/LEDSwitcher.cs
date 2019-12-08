@@ -18,8 +18,9 @@ public class LEDSwitcher : MonoBehaviour
 
     private void _onClick(){
         
-        _isLight = !_isLight;
+        VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
 
+        _isLight = !_isLight;
         _controller.ChangeBrightness( 1f );
 
         if(_isLight) _controller.TurnOn();

@@ -79,7 +79,7 @@
 				//分割した座標から輝度を取得する
 				fixed4 srcPixel = tex2D(_MainTex, roundedUv);
 				float mean = ( srcPixel.x + srcPixel.y + srcPixel.z ) / 3.0;//1.0にしないため
-                mean = floor( frac(mean+_Time.x+_GlobalIntensity*0.3) * 10) / 10 * 0.999;
+                mean = floor( frac(mean+_Time.x*0.5+_GlobalIntensity*0.3) * 16) / 16 * 0.999;
 
 				//分割内の座標の比率
 				float2 uvRatio = ( uv - roundedUv ) / (1/mosaicSize);

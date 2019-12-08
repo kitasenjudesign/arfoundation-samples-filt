@@ -54,8 +54,8 @@
             {
 
                 float2 offset = float2(
-                    0.14*snoise(float3(i.uv*2, 2.0 + _Time.y*0.3)),
-                    0.14*snoise(float3(i.uv*2, 2.0 + _Time.y*0.4))
+                    0.1*snoise(float3(i.uv*2, 2.0 + _Time.y*0.3)),
+                    0.1*snoise(float3(i.uv*2, 2.0 + _Time.y*0.4))
                 );
                 i.uv += offset;
 

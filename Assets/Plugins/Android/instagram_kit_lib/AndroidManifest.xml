@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--AUTO GENERATED MANIFEST FILE FROM AndroidManifestGenerator. DONT MODIFY HERE.-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.voxelbusters.instagramkitplugin" android:versionCode="1" android:versionName="1.0">
+  <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="26" />
+  <application>
+    <!--Custom File Provider. Sharing from internal folders-->
+    <provider android:name="com.voxelbusters.instagramkit.extensions.FileProviderExtended" android:authorities="com.kitasenjudesign.mesai.instagramkit.fileprovider" android:exported="false" android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+    </provider>
+  </application>
+  <!--Permissions-->
+  <!--Required for internet access-->
+  <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

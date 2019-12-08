@@ -10,13 +10,17 @@ using UnityEngine.Video;
 using DG.Tweening;
 using TMPro;
 using NatCorder.Examples;
+using VoxelBusters.InstagramKit;
+
 
 public class ReplayPlayer : MonoBehaviour
 {
     [SerializeField] private MyReplayCam _replayCam;
     [SerializeField] private MyRecordBtn _recordBtn;
-    [SerializeField] private Button _saveBtn;
+    [SerializeField,Space(10)] private Button _saveBtn;
     [SerializeField] private Button _closeBtn;
+    [SerializeField] private Button _instaBtn;
+
     [SerializeField] private ReplayVideoScreen _videoScreen;
 
     [SerializeField,Space(10)] private ARSession _arSession;
@@ -36,6 +40,7 @@ public class ReplayPlayer : MonoBehaviour
         
         _saveBtn.onClick.AddListener( _onClickSave );
         _closeBtn.onClick.AddListener( _onClickClose );
+        _instaBtn.onClick.AddListener( _onClickInsta );
         gameObject.SetActive(false);
         _savedTxt.gameObject.SetActive(false);
         //_recordBtn._staticImageCaptureCallback = ShowImage;
@@ -44,8 +49,10 @@ public class ReplayPlayer : MonoBehaviour
 
     }
 
-
-
+    private void _onClickInsta(){
+        StoryContent content = new StoryContent (_path, true);
+        InstagramKitManager.Share(content, null);
+    }
 
     public void ShowReplay(string path){
 
@@ -138,10 +145,12 @@ public class ReplayPlayer : MonoBehaviour
                 //.SetEase(Ease.Linear);
 
         var saveBtnRect = _saveBtn.GetComponent<RectTransform>();
-        var closeBtnRect = _closeBtn.GetComponent<RectTransform>();        
+        var closeBtnRect = _closeBtn.GetComponent<RectTransform>();
+        var instaBtnRect = _instaBtn.GetComponent<RectTransform>();
         saveBtnRect.DOScale(Vector3.zero,0.5f);
         closeBtnRect.DOScale(Vector3.zero,0.5f);
-
+        instaBtnRect.DOScale(Vector3.zero,0.5f);
+        
     }
 
     private void _hideVideo(){
