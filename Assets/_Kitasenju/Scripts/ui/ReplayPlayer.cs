@@ -50,6 +50,7 @@ public class ReplayPlayer : MonoBehaviour
     }
 
     private void _onClickInsta(){
+        VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
         StoryContent content = new StoryContent (_path, true);
         InstagramKitManager.Share(content, null);
     }
@@ -207,10 +208,13 @@ public class ReplayPlayer : MonoBehaviour
 
         var saveBtnRect = _saveBtn.GetComponent<RectTransform>();
         var closeBtnRect = _closeBtn.GetComponent<RectTransform>();
+        var instaBtnRect = _instaBtn.GetComponent<RectTransform>();
         saveBtnRect.localScale=Vector3.zero;
         closeBtnRect.localScale=Vector3.zero;
+        instaBtnRect.localScale=Vector3.zero;
         saveBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.3f);
         closeBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.4f);
+        instaBtnRect.DOScale(Vector3.one,0.5f).SetDelay(0.4f);
 
         _videoPlayer.enabled=true;
         _videoPlayer.Play();
