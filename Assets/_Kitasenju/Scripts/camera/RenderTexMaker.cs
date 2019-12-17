@@ -8,7 +8,9 @@ public class RenderTexMaker : MonoBehaviour
     [SerializeField] private Shader _shader;
     private Material _mat;
     void Start(){
+
         _mat = new Material(_shader);
+
     }
 
     private void OnGUI()
@@ -26,7 +28,7 @@ public class RenderTexMaker : MonoBehaviour
    
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        Graphics.Blit(source, _tex);
+        Graphics.Blit(source, _tex);//srcをtexにコピー
         Graphics.Blit(source, destination);
     }
 
