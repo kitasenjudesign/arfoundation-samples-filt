@@ -23,8 +23,8 @@ public class BlurTexture : MonoBehaviour
         _isInit=true;
 
         blurTexture = new RenderTexture(
-            Mathf.FloorToInt(Screen.width*0.2f),//0.2f),
-            Mathf.FloorToInt(Screen.height*0.2f),
+            Mathf.FloorToInt(Screen.width*0.5f),//0.2f),
+            Mathf.FloorToInt(Screen.height*0.5f),
             0
         );
         blurTexture.antiAliasing=4;

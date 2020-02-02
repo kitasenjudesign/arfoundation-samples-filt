@@ -30,31 +30,35 @@ public class ImageParticleInitializer : MonoBehaviour
 
     }
 
-    /*
+    
     private void OnGUI(){
-            
-        GUI.DrawTexture(
-            new Rect(0, 0, 300, 200), 
-            _main._camTex, 
-            ScaleMode.StretchToFill,
-            false
-        );
-        GUI.DrawTexture(
-            new Rect(0, 200, 300, 200), 
-            _main._humanBodyManager.humanDepthTexture,
-            //_main._camTex, 
-            ScaleMode.StretchToFill,
-            false
-        );
-        GUI.DrawTexture(
-            new Rect(0, 400, 300, 200), 
-            _main._humanBodyManager.humanStencilTexture,
-            //_main._camTex, 
-            ScaleMode.StretchToFill,
-            false
-        );        
+        
+        if( Params.isDebug ){
 
-    }*/
+            GUI.DrawTexture(
+                new Rect(0, 0, 300, 200), 
+                _main._camTex, 
+                ScaleMode.StretchToFill,
+                false
+            );
+            GUI.DrawTexture(
+                new Rect(0, 200, 300, 200), 
+                _main._humanBodyManager.humanDepthTexture,
+                //_main._camTex, 
+                ScaleMode.StretchToFill,
+                false
+            );
+            GUI.DrawTexture(
+                new Rect(0, 400, 300, 200), 
+                _main._humanBodyManager.humanStencilTexture,
+                //_main._camTex, 
+                ScaleMode.StretchToFill,
+                false
+            );
+
+        }
+
+    }
 
 
     // Update is called once per frame

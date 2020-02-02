@@ -49,6 +49,7 @@
             sampler2D _MainTex;
             sampler2D _StencilTex;
             float _Invert;
+					
             //simple
             fixed4 frag (v2f i) : SV_Target
             {

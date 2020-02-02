@@ -39,7 +39,13 @@ public class SettingPage : MonoBehaviour
         var callbacks = new System.Action<SettingToggleBtn>[]{
             _onClickMic,
             _onClickVideoQualty,
-            _onClickResoluation
+            _onClickDebug//saveしない
+        };
+
+        var isSaves = new bool[]{
+            true,
+            true,
+            false
         };
 
         for(int i=0;i<_list.Count;i++){
@@ -54,7 +60,7 @@ public class SettingPage : MonoBehaviour
 
             var aa = _list[i].Split(',');
             
-            n.Init( aa, callbacks[i] );
+            n.Init( aa, callbacks[i], isSaves[i] );
 
         }
 
@@ -71,6 +77,13 @@ public class SettingPage : MonoBehaviour
             Debug.Log("the settings url is:" + url);
             Application.OpenURL(url);
         #endif
+
+    }
+
+    void _onClickDebug(SettingToggleBtn btn){
+        
+        Debug.Log("onClickDebug" + btn.selected );
+        Params.isDebug = btn.selected==0 ? false : true;
 
     }
 
@@ -100,12 +113,10 @@ public class SettingPage : MonoBehaviour
 
     }
 
-    void _onClickResoluation(SettingToggleBtn btn){
-    
-        Debug.Log("onClick appsolu");
-        Params.videoQuality = btn.selected;
-
-    }
+    //void _onClickResoluation(SettingToggleBtn btn){
+    //    Debug.Log("onClick appsolu");
+    //    Params.videoQuality = btn.selected;
+    //}
 
     // Update is called once per frame
     void Update()

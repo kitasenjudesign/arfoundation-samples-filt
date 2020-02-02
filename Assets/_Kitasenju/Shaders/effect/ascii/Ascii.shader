@@ -109,7 +109,11 @@
                 fixed4 colNoise = tex2D(_MainTex, abs( frac( roundedUv+mosaicUV ) ) );                
                 
                 fixed4 ascii = tex2D(_AsciiTex, uvv);
-                ascii = lerp( srcPixel*0.8, srcPixel+fixed4(0.6,0.6,0.6,1), step(0.5,ascii.x) );
+                ascii = lerp( 
+                    fixed4(0,0,0,1),//srcPixel*0.8, 
+                    srcPixel*1.2,//+fixed4(0.6,0.6,0.6,1), 
+                    step(0.5,ascii.x)
+                );
                 //ascii = lerp( colNoise, srcPixel+fixed4(0.6,0.6,0.6,1), step(0.5,ascii.x) );
 
                 if(_Invert==1) stencil.r = 1 - stencil.r;

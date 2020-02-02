@@ -18,7 +18,7 @@ public class SettingToggleBtn : MonoBehaviour
 //PlayerPrefs.SetInt("Data", 10);
 //PlayerPrefs.SetFloat("Data", 3.14f);    
 
-    public void Init( string[] list, System.Action<SettingToggleBtn> callback){
+    public void Init( string[] list, System.Action<SettingToggleBtn> callback, bool isSave=true){
 
         _callback = callback;
         _title = list[0];
@@ -26,13 +26,11 @@ public class SettingToggleBtn : MonoBehaviour
         _choices = new List<string>();
 
         for(int i=1;i<list.Length;i++){
-            
             _choices.Add( list[i] );
-
         }
 
         
-       if( PlayerPrefs.HasKey(_title) ){
+       if( PlayerPrefs.HasKey(_title) && isSave){
            selected=PlayerPrefs.GetInt(_title);
        }else{
            selected=0;

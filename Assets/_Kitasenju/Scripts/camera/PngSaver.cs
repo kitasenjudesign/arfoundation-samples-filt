@@ -12,6 +12,7 @@ public class PngSaver : MonoBehaviour
     private Texture2D _output2;
     private System.Action<Texture2D> _callback;
     [SerializeField] private string filename;
+    private bool _isCap = false;
     //[SerializeField] private bool enabled = false;
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,12 @@ public class PngSaver : MonoBehaviour
            
     }
 
-    public void Capture(System.Action<Texture2D> callback){
-        enabled = true;
 
+    void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        
+        Graphics.Blit(source, destination);
+        
         if(_output==null){
             _output = new RenderTexture( 
                 Mathf.FloorToInt(size.x),
@@ -33,23 +37,18 @@ public class PngSaver : MonoBehaviour
                 Mathf.FloorToInt(size.y)
             );
         }
-        _callback = callback;
 
-    }
-
-    void OnRenderImage(RenderTexture source, RenderTexture destination)
-    {
-        
-        Graphics.Blit(source, destination);
-        
-        if(_output2){
+        if(_output2!=null & _isCap){
             Graphics.Blit(source,_output);
             _output2.ReadPixels(new Rect(0, 0, _output.width, _output.height), 0, 0);
             _output2.Apply();
+            _save(_output2);
+            _isCap=false;
         }
-        if(_callback!=null){
-            _callback(_output2);
-        }
+
+        //if(_callback!=null){
+        //    _callback(_output2);
+        //}
          //enabled = false;
     }
 
@@ -61,21 +60,21 @@ public class PngSaver : MonoBehaviour
         //手動でキャプチャしたいとき
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             Debug.Log("capture");
-            Capture(_save);
-            
+            _isCap=true;
         }
 
     }
 
     void _save(Texture2D tex){
             //byte[] bytes = _output2.EncodeToPNG();
-            //byte[] bytes = _output2.EncodeToPNG();
-            byte[] bytes = _output2.EncodeToJPG(95);
+            byte[] bytes = _output2.EncodeToPNG();
+            //byte[] bytes = _output2.EncodeToJPG(95);
 
             //Object.Destroy(_output2);
 
             //Write to a file in the project folder
-            File.WriteAllBytes(Application.dataPath + "/"+filename, bytes);
+            var d = System.DateTime.Now.ToString("MMddHHmmss");
+            File.WriteAllBytes(Application.dataPath + "/../texTest/"+filename + d +".png", bytes);
     }
 
 }

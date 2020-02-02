@@ -6,6 +6,7 @@ public class Params
 
     public static float _stencilAscpect = 1.62433f;
 
+    public static bool isDebug = false;
     public static bool usingMicrophone = false;
     public static float microphoneVolume = 3f;
     public static int videoQuality = 0;

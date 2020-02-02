@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UnityMatPerlin
-  m_Shader: {fileID: 4800000, guid: 6e14f4dc7e25a41c2872f232da6df3f5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6b05a6c871309456e86fd9d5a882e14b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

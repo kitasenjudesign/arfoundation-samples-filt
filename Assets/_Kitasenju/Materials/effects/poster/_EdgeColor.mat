@@ -83,11 +83,11 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Revert: 0
-    - _Sensitivity: 0.8
+    - _Sensitivity: 0.28
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Threshold: 0.6
+    - _Threshold: 0.08
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

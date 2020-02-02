@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 1249495183}
   - component: {fileID: 1249495182}
   - component: {fileID: 1249495181}
-  - component: {fileID: 1249495185}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -262,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e976b199b56be4264890fa781aba880b, type: 2}
+  - {fileID: 2100000, guid: ae8ca81fccaa84234b53fe7c840dc1b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,21 +303,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1249495185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249495180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf5ccd628d444cc2addaa509bb48a82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Width: 1920
-  Height: 1080
-  FPS: 30
 --- !u!1 &1580755407
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +348,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.72
+  orthographic size: 3.93
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -406,8 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82fcf7f5f626f4853aadc30bae586d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 512, y: 512}
-  filename: ascii.jpg
+  size: {x: 2048, y: 2048}
+  filename: ascii
 --- !u!1 &1657146146
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,8 +64,6 @@ public class ImageParticle : MonoBehaviour{
         _isInit = true;
 
 
-
-
         if(_camera==null){
             _camera = Camera.main;
         }

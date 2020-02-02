@@ -16,13 +16,13 @@ public class RDFilter : FilterBase
 
     private void OnGUI()
     {
-            
+            /*
             GUI.DrawTexture(
                 new Rect(0, 0, 562/2, 1218/2), 
                 _main._camTex, 
                 ScaleMode.StretchToFill,
                 false
-            );
+            );*/
     }
 
 
@@ -59,7 +59,7 @@ public class RDFilter : FilterBase
         _material.SetTexture("_StencilTex", humanStencil );
         _rdUpdaterMat.SetTexture("_CamTex", _main._camTex );
         _rdUpdaterMat.SetTexture("_StencilTex", humanStencil );
-
+        _rdUpdaterMat.SetFloat("_Invert", _invert?1f:0);
     }
 
     public override Material GetMaterial(){

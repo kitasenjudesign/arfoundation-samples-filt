@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _texture: {fileID: 8600000, guid: c6f239abfbba84c7c87b69e5648a100d, type: 2}
   _stepsPerFrame: 8
+  _isDebug: 1
 --- !u!4 &940307804
 Transform:
   m_ObjectHideFlags: 0

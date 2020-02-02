@@ -86,9 +86,11 @@
                 float sine1 = 3 + 1 * sin(_Time.y);
                 float sine2 = 3 + 1 * cos(_Time.y);
 
+                fixed4 col = tex2D(_MainTex, i.uv);
+
                 float2 mosaicUV = i.uv + float2(
-                    0.004*snoise(float3(i.uv * sine1 * aspect, 11 + _Time.x * 1.1 )),
-                    0.004*snoise(float3(i.uv * sine2 * aspect, 99 + _Time.x * 1.2 ))
+                    (col.x-0.5) * 0.02 + 0.001 * snoise(float3(i.uv * sine1 * aspect, 11 + _Time.x * 1.1 )),
+                    (col.y-0.5) * 0.02 + 0.001 * snoise(float3(i.uv * sine2 * aspect, 99 + _Time.x * 1.2 ))
                 );
 
                 /*
@@ -97,7 +99,7 @@
                     snoise(float3(i.uv*8*aspect, 999 + _Time.x * 1.3 ))
                 );*/
 
-                fixed4 col = tex2D(_MainTex, i.uv);
+                
                 fixed4 col0 = tex2D(_MainTex2,mosaicUV);
 
                 //i.uv.x = 1 - i.uv.x;
@@ -112,7 +114,7 @@
                 if(_Invert == 1) stencil.r = 1 - stencil.r;    
 
                 col.rgb = lerp( col0.rgb, col.rgb, stencil.r);
-
+                col.rgb *= 0.9999;
 
 
                 return col;

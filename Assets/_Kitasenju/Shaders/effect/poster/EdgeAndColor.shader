@@ -63,18 +63,17 @@
             
             fixed4 frag (v2f i) : SV_Target
             {
-                //float2 duv = _MainTex_TexelSize.xy;
-                float2 duv = _BlurTex_TexelSize.xy;
+                float2 duv = _MainTex_TexelSize.xy;
+                half3 cg = GetEdge(_MainTex,i.uv,duv);
 
-
-                //half3 cg = GetEdge(_MainTex,i.uv,duv);
-                half3 cg = GetEdge(_BlurTex,i.uv,duv);
+                //float2 duv = _BlurTex_TexelSize.xy;
+                //half3 cg = GetEdge(_BlurTex,i.uv,duv);
 
                 half3 edge = cg * _Sensitivity;
 
                 fixed4 col0 = tex2D(_MainTex, i.uv);
 
-                fixed4 col = fixed4( frac(edge*3+_Time.yyy) ,1) * step( _Threshold,length(edge.rgb) );
+                fixed4 col = fixed4( frac(col0*8+_Time.yyy) ,1) * step( _Threshold,length(edge.rgb) );
                 //fixed4 col = fixed4(edge,1);//_EdgeColor * step(0.5,edge - _Threshold);
 
                 //col = 1-col;

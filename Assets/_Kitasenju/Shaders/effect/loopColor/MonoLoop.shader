@@ -85,7 +85,7 @@
                 fixed4 col = tex2D(_BlurTex,  i.uv );
 
                 //col = 0.5 + 0.5*sin( col * 50 * _DepthTh + _Time.z * 2.0 );
-                float nn = frac( (length(col.rgb) + i.uv.y) * (3+8*_GlobalIntensity) + _Time.z * 1 );
+                float nn = frac( (length(col.rgb) + i.uv.y) * (10+8*_GlobalIntensity) + _Time.z * 1 );
                 col.rgb = step(0.5,nn);
 
                 //マスク
