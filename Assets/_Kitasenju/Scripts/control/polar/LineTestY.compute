@@ -1,0 +1,74 @@
+﻿#pragma kernel CSMain
+
+RWTexture2D<float4> tex;
+Texture2D<float4> baseTex;
+//Texture2D<float4> maskTex;
+
+float w, h;
+float isInvert;
+
+float rand(float2 co) {
+    float a = frac(dot(co, float2(2.067390879775102, 12.451168662908249))) - 0.5;
+    float s = a * (6.182785114200511 + a * a * (-38.026512460676566 + a * a * 53.392573080032137));
+    float t = frac(s * 43758.5453);
+    return t;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID)
+{
+    w=w-1;
+    h=h-1;
+    float2 p = float2(id.x / w, id.y / h);
+    float4 baseCol = baseTex[id];
+
+
+
+    //if( baseCol.a > 0.5 ){
+        
+    //    tex[id] = baseCol;//baseTex[id];
+
+    //}else{
+        
+        
+        float2 uv = float2(0,0);
+        float4 col = float4(0,0,0,1);
+        float prev = 1;
+        int lim = 99999;
+        int yy = floor(id.y/h*100);
+        int count = 0;
+        for(float i=0; i<yy; i++){
+
+            float n = i/100.0;
+
+            uv.x = id.x;
+            uv.y = n;
+            uv.y *= h;
+
+            if( baseTex[uv].a > 0.95 && rand(uv)>0.7 ){
+              
+                col = baseTex[uv];//座標
+                col.a = 1;
+                count++;
+                break;
+                //if(count>5) break;
+
+            }else{
+                //if(count<=5) col = baseCol;
+                col = baseCol;
+            }
+
+        }
+
+        if(isInvert == 1 && baseTex[id].a<0.2){
+            col = baseCol;
+        }        
+
+        tex[id] = col;
+
+    //}
+
+    
+
+
+}

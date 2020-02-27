@@ -8,11 +8,15 @@ public class PolarFilter : SimpleFilter
     private Material _texMakeMat;//テクスチャ生成用
     private RenderTexture _inputTex;
     private RenderTexture _outputTex;
-    [SerializeField] ComputeShader _computeShader;
+    [SerializeField,Space(10)] ComputeShader _computeShader1;
+    [SerializeField] ComputeShader _computeShader2;
+    private bool flag = false;
+    private ComputeShader _computeShader;
+
 
     public override void Show(EffectControlMain main){
         
-        
+        _computeShader = _computeShader1;
 
         base.Show(main);
         _main.SetImageEffect(_material);
@@ -25,29 +29,6 @@ public class PolarFilter : SimpleFilter
         _main.HideInfo();        
     }
     
-    //onguiを描く
-
-    /*
-    private void OnGUI()
-    {
-        if(_inputTex==null) return;
-
-        
-        GUI.DrawTexture(
-            new Rect(0, 0, 200, 200), 
-            _inputTex, 
-            ScaleMode.StretchToFill,
-            false
-        );
-        GUI.DrawTexture(
-            new Rect(0, 200, 200, 200), 
-            _outputTex, 
-            ScaleMode.StretchToFill,
-            false
-        );
-        
-    }*/
-
 
     public override void UpdateFilter(){
 
@@ -67,6 +48,22 @@ public class PolarFilter : SimpleFilter
             _texMakeMat = new Material(_texMaker);
 
         }
+
+        //istouch
+
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if( touch.position.y > Screen.height*0.333f){
+
+                if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
+                {
+                    _change();
+                }
+            }
+        }
+
+
 
 
         //Debug.Log("----1");
@@ -95,15 +92,23 @@ public class PolarFilter : SimpleFilter
         _computeShader.Dispatch(0, _outputTex.width/8, _outputTex.height/8, 1);
 
 
-
-
-        //invertをセット
-        //_material.SetFloat("_Invert",_invert?1f:0);
-        //main texture
-        //_main.SetCamToMainTex(_material,_hasBlur);
-        //_material.SetTexture("_DepthTex", humanDepth );
-        //_material.SetTexture("_StencilTex", humanStencil );
-
     }
+
+    private void _change(){
+
+        flag = !flag;
+        
+        if(_computeShader2!=null){
+            
+            if(flag){
+                _computeShader = _computeShader2;
+            }else{
+                _computeShader = _computeShader1;
+            }
+
+        }
+        
+    }
+
 
 }

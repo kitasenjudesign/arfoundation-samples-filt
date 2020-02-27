@@ -16,7 +16,7 @@
 		private bool pressed;
 		//private bool isRecording = false;
         private bool _isRecording = false;
-		private const float MaxRecordingTime = 30f;//15f; // seconds
+		private const float MaxRecordingTime = 60f;//30f;//15f; // seconds
 		//public System.Action _staticImageCaptureCallback;
 		private float _startTime = 0;
         [SerializeField] private MyReplayCam _replayCam;
