@@ -87,17 +87,20 @@
                 //fixed4 col = fixed4( nml.xyz, 1 );
                 fixed4 col = tex2D(_MainTex, i.uv + 0.05*(nml.xy - float2(0.5,0.5)) );
                 
-                if(stencil.x >= 0.5 ){
+                if(stencil.x > 0.5 ){
 
                     col.rgb *= colRd.rgb;
                     col.rgb = lerp( 
-                        col0.rgb*0.3, 
+                        float3(0,0,0),
+                        //col0.rgb, 
                         col.rgb, 
                         smoothstep(0.3,0.7,(colRd.r +  colRd.g + colRd.b)/3 ) 
                     );
 
                 }else{
-                    col.rgb *= colRd.rgb;
+                    
+                    //col.rgb *= colRd.rgb;
+                    col.rgb = col0.rgb;
                 }
                 //}else{
                 //    col.rgb *= 1 - colRd.rgb;

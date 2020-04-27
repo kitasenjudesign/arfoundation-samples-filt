@@ -61,6 +61,7 @@ public class Main : MonoBehaviour
     void Update()
     {
         
+        Params.SetRotation();
         
         /*if (Input.touchCount >= 2){
             

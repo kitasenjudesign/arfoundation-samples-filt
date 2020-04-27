@@ -54,9 +54,12 @@
 
         float4 cam = tex2D(_CamTex, uv);  
         float nn = (cam.r+cam.g+cam.b)*0.333;
-        nn += _Time.x + col.x;
+        
+        nn = col.x;
+        nn += _Time.x;// + col.x;
         nn = frac(nn);
         nn = floor(nn*8)/8;
+        nn += col.x*0.2;
 
         float dvv = _Dv + 0.6*nn;
         float feed = _Feed + 0.005*nn;

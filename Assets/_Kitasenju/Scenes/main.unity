@@ -3349,7 +3349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: -4450387318986695996, guid: 44d394470064846debd929eb52f04f8f, type: 3}
-  _hasInvert: 0
+  _hasInvert: 1
   _hasBloom: 0
   _hasBlur: 0
   info: 

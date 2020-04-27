@@ -115,7 +115,7 @@ public class ImageParticle : MonoBehaviour{
         //----------初期値をコンピュートバッファに入れる
         _cubeDataBuffer.SetData(dataArr);
         
-
+        //_cubeDataBuffer.GetData()
 
         //GetComponent<MeshRenderer>().enabled=false;
 
