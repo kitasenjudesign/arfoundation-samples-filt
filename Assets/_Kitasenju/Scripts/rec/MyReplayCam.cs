@@ -113,7 +113,8 @@
             if (recordMicrophone) {
                 
                 //Invoke("StartMicrophone",0.3f);
-                Invoke("StartMicrophone",0.1f);
+                //Invoke("StartMicrophone",0.1f);
+                StartMicrophone();
 
             }
             

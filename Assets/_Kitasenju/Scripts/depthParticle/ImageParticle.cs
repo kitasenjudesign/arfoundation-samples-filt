@@ -17,6 +17,7 @@ public class ImageParticle : MonoBehaviour{
 
     //[SerializeField] private Mesh[] _meshes;
     [SerializeField] private Mesh _mesh;
+    [SerializeField] private Mesh[] _meshes;
     //[SerializeField] int _maxNum = 10000;
     [SerializeField]private int _num = 10000;
     [SerializeField,Range(0.001f,1f)] float _size;//_Size ("_Size", Range(0.04,0.1)) = 0.04
@@ -41,6 +42,7 @@ public class ImageParticle : MonoBehaviour{
     [SerializeField] private float _duration = 4f;
 
     private bool _isInit = false;
+    private int _meshIndex=0;
 
     void Start(){
 
@@ -135,6 +137,22 @@ public class ImageParticle : MonoBehaviour{
     void Update(){
         
         //computeShaderに値を渡す
+
+        //tap
+        if(_meshes !=null && _meshes.Length>0){
+            if (Input.touchCount == 1)
+            {
+                Touch touch = Input.GetTouch(0);
+                if( touch.position.y > Screen.height*0.333f){
+
+                    if (touch.phase == TouchPhase.Began)// || touch.phase==TouchPhase.Stationary)
+                    {
+                        _meshIndex++;
+                        _mesh = _meshes[_meshIndex%_meshes.Length];
+                    }
+                }
+            }
+        }
 
         // ComputeShader
         _time += Time.deltaTime;

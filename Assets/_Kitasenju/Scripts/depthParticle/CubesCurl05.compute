@@ -1,0 +1,168 @@
+#pragma kernel MainCS
+
+#include "UnityCG.cginc"
+#include "./CGINC/SimplexNoise3Db.cginc"
+#include "../../Shaders/effect/util/StencilUV.hlsl"
+
+
+//stay suru
+// スレッドグループのスレッドサイズ
+#define ThreadBlockSize 64//256
+
+#define EPSILON 1e-3
+
+// data
+struct CubeData
+{
+    // 座標
+    float3 position;
+    float3 velocity;
+    float4 color;
+    float3 basePos;
+    float2 uv;
+    float time;
+};
+
+RWStructuredBuffer<CubeData> _CubeDataBuffer;//_DokabenDataBuffer;
+//float _Time;
+
+Texture2D<float4> _DepthTex;
+Texture2D<float4> _StencilTex;
+Texture2D<float4> _ColorTex;
+float4 _DepthTexSize;
+float4 _StencilTexSize;
+float4 _ColorTexSize;
+
+//float4  _Positions[1000];
+float _Near;
+float _Far;
+float4x4 _InvProjMat;
+float4x4 _InvViewMat;
+
+float _VelocityRatio;
+
+float _Duration;
+float _GlobalIntensity;
+
+float rand(float3 co)
+{
+    return frac(sin(dot(co.xyz, float3(12.9898, 78.233, 45.5432))) * 43758.5453);
+}
+
+float3 curlNoise(float3 coord)
+{
+    float3 dx = float3(EPSILON, 0.0, 0.0);
+    float3 dy = float3(0.0, EPSILON, 0.0);
+    float3 dz = float3(0.0, 0.0, EPSILON);
+
+    float3 dpdx0 = simplexNoise(coord - dx);
+    float3 dpdx1 = simplexNoise(coord + dx);
+    float3 dpdy0 = simplexNoise(coord - dy);
+    float3 dpdy1 = simplexNoise(coord + dy);
+    float3 dpdz0 = simplexNoise(coord - dz);
+    float3 dpdz1 = simplexNoise(coord + dz);
+
+    float x = dpdy1.z - dpdy0.z + dpdz1.y - dpdz0.y;
+    float y = dpdz1.x - dpdz0.x + dpdx1.z - dpdx0.z;
+    float z = dpdx1.y - dpdx0.y + dpdy1.x - dpdy0.x;
+
+    return float3(x, y, z) / EPSILON * 2.0;
+}
+			
+float rand(float2 co)
+{
+    return frac(sin(dot(co.xy, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+
+//色を渡して、発生させる
+
+[numthreads(ThreadBlockSize, 1, 1)]
+void MainCS(uint3 id : SV_DispatchThreadID)
+{
+    const unsigned int index = id.x;
+
+    float3 pos = _CubeDataBuffer[index].position;
+    CubeData data =_CubeDataBuffer[index];
+
+    if( data.time > _Duration ){
+
+        float2 uvv = float2(0,0);
+        float2 pp = data.basePos.xy;
+        float hasPixel = 0.0;
+        //randomに座標を探す
+        //data.color = float4(1,0,0,1);
+        
+        for( int i = 0; i<100; i++ ){
+
+            uvv.x = rand(pp + i);
+            uvv.y = rand(pp + i + 100);
+
+            //発生する場所を探す
+            if( _StencilTex[ GetStencilUV(uvv) * _StencilTexSize.xy ].x > 0.5 ){
+                data.uv.x = uvv.x;
+                data.uv.y = uvv.y;
+                hasPixel += 1.0;
+                break;
+            }
+
+        }
+
+        if( hasPixel > 0){
+
+            data.time = -data.basePos.x*_Duration;
+
+            float3 vv = float3(
+                0 * ( rand(data.basePos.xy + index) - 0.5 ),
+                rand(data.basePos.xy + index + 100.0),
+                0 * (rand(data.basePos.xy + index + 200.0) - 0.5 )
+            );
+            data.velocity = vv * 0.005 * (1+_GlobalIntensity);
+
+            data.color = _ColorTex[ data.uv.xy * _ColorTexSize.xy  ];
+
+
+            float depthCol = (_DepthTex[ GetStencilUV(uvv) * _DepthTexSize.xy ].x);
+            
+            //発生位置
+            float3 ScreenPos = float3(
+                data.uv.x,
+                data.uv.y,
+                depthCol
+                //0.5 + _Near + (_Far-_Near) * depthCol
+                //0.5 + saturate(depthCol) * 1.0 + data.basePos.y * 0.1
+                //0.5
+            );
+
+            float n = _Near;//near
+            float f = _Far;//far
+            
+            float w = ScreenPos.z;
+            float z = w * (2*(w-n)/(f-n)-1);
+            float2 xy = w * (2*ScreenPos.xy-1);
+            float4 clipPos = float4(xy,z,w);
+
+            float4 camPos = mul( _InvProjMat, clipPos );//カメラ座標
+            camPos.w = 1;
+            float4 worldPos = mul(_InvViewMat, camPos);//ワールド座標
+
+            data.position = worldPos.xyz;//_CubeDataBuffer[index].basePos;
+
+        }
+        //data.color = _ColorTex[ data.uv.xy * _ColorTexSize.xy  ];
+        
+
+    }
+
+    
+    float3 force = curlNoise( pos * 3.0 + _Time.x ) - data.velocity.xyz;
+    
+    data.time += 1.0/60.0;//_Time - data.basePos.x * 3;
+    data.velocity += force * 0.000001;
+    //data.velocity.y += data.basePos.y * 0.00002;
+    data.velocity *= 0.99 * _VelocityRatio;//force * 0.001;
+    //data.position += data.velocity;
+        
+
+    _CubeDataBuffer[index]=data;
+}

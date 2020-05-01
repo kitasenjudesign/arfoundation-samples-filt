@@ -50,7 +50,7 @@ public class DeviceChecker {
 
         bool isAvailable = false;
 
-        //iPhone11
+        //iPhone11, iPhoneSE2(iPhone12,8
         if( SystemInfo.deviceModel.IndexOf("iPhone12") >= 0){
             isAvailable=true;
         }
