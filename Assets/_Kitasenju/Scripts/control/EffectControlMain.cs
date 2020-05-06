@@ -146,6 +146,11 @@ public class EffectControlMain : MonoBehaviour
 
     }
 
+    public void SetPause(bool b){
+
+        
+
+    }
 
 
     public void SetInvert(bool b){

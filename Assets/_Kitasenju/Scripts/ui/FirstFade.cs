@@ -7,11 +7,22 @@ using DG.Tweening;
 public class FirstFade : MonoBehaviour
 {
     private Image _image;
+    private Tween _tween;
     // Start is called before the first frame update
     void Start()
     {
+        FadeIn(0.4f);
+    }
+
+    public void FadeIn(float delay){
+        
+        _tween?.Kill();
+
+        gameObject.SetActive(true);
         _image = GetComponent<Image>();
-        _image.DOFade(0,0.5f).SetDelay(0.4f).SetEase(Ease.Linear).OnComplete(_onHoge);
+        _image.color = new Color(0,0,0,1f);
+        _tween = _image.DOFade(0,0.5f).SetDelay(delay).SetEase(Ease.Linear).OnComplete(_onHoge);
+        
     }
 
     void _onHoge(){

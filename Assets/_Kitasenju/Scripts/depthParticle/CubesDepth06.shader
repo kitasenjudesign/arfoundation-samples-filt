@@ -97,7 +97,9 @@ Shader "CubesDepth06"
 			float ss = saturate(_Amount);
 			//float3 scl = float3(_Size-ss*0.02,_Size-ss*0.02,_Size-ss*0.02);//_ObjectScale;          // Boidのスケールを取得
 
-			float scaleRatio = 1.0 - cubeData.time/_Duration;
+			float tt = saturate( cubeData.time/_Duration );
+
+			float scaleRatio = 1.0 - tt;
 			scaleRatio = sin(scaleRatio*3.1415);//max(scaleRatio,0);
 			//角度を計算するようにしよう
 
@@ -120,7 +122,7 @@ Shader "CubesDepth06"
 			//float4x4(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)
 
 			// スケール値を代入
-			float size = cubeData.basePos.z*4.0+0.5;
+			float size = cubeData.basePos.z*3.0+1.5;
 			object2world._11_22_33_44 = float4(scl.xyz * float3(size,size,size), 1.0);
 
 			// 速度からY軸についての回転を算出

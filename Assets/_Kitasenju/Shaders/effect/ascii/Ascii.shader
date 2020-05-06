@@ -103,8 +103,8 @@
 
                 //noise col
                 float2 mosaicUV = float2(
-                    snoise(float3(col0.r,col0.g, 2.0 + _Time.y*0.3 )),
-                    snoise(float3(col0.g,col0.b, 2.0 + _Time.y*0.4 ))
+                    snoise(float3(col0.r,col0.g, 2.0 + _Time.y*0.6 )),
+                    snoise(float3(col0.g,col0.b, 2.0 + _Time.y*0.8 ))
                 );
                 fixed4 colNoise = tex2D(_MainTex, abs( frac( roundedUv+mosaicUV ) ) );                
                 

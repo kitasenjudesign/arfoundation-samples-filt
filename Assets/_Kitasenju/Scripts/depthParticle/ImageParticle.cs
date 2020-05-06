@@ -100,7 +100,7 @@ public class ImageParticle : MonoBehaviour{
                 0.01f * ( Random.value - 0.5f ),
                 0.01f * ( Random.value - 0.5f )
             );
-            dataArr[i].time = Random.value*4f;
+            dataArr[i].time = _duration*Random.value;
             dataArr[i].color = new Vector4(
                 Random.value,
                 Random.value,

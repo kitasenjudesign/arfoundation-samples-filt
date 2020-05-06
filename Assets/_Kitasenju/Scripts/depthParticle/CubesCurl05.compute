@@ -85,7 +85,7 @@ void MainCS(uint3 id : SV_DispatchThreadID)
     float3 pos = _CubeDataBuffer[index].position;
     CubeData data =_CubeDataBuffer[index];
 
-    if( data.time > _Duration ){
+    if( data.time > _Duration + data.basePos.y*_Duration ){
 
         float2 uvv = float2(0,0);
         float2 pp = data.basePos.xy;
@@ -95,9 +95,6 @@ void MainCS(uint3 id : SV_DispatchThreadID)
         
         for( int i = 0; i<100; i++ ){
 
-            uvv.x = rand(pp + i);
-            uvv.y = rand(pp + i + 100);
-
             //発生する場所を探す
             if( _StencilTex[ GetStencilUV(uvv) * _StencilTexSize.xy ].x > 0.5 ){
                 data.uv.x = uvv.x;
@@ -106,11 +103,14 @@ void MainCS(uint3 id : SV_DispatchThreadID)
                 break;
             }
 
+            uvv.x = rand(pp + i);
+            uvv.y = rand(pp + i + 100);
+
         }
 
         if( hasPixel > 0){
 
-            data.time = -data.basePos.x*_Duration;
+            data.time = 0;//- data.basePos.x * _Duration * 2;
 
             float3 vv = float3(
                 0 * ( rand(data.basePos.xy + index) - 0.5 ),
@@ -155,11 +155,12 @@ void MainCS(uint3 id : SV_DispatchThreadID)
     }
 
     
-    float3 force = curlNoise( pos * 3.0 + _Time.x ) - data.velocity.xyz;
+    //float3 force = curlNoise( pos * 3.0 + _Time.x ) - data.velocity.xyz;
     
     data.time += 1.0/60.0;//_Time - data.basePos.x * 3;
-    data.velocity += force * 0.000001;
+    //data.velocity += force * 0.000001;
     //data.velocity.y += data.basePos.y * 0.00002;
+    data.velocity = float3(0.1,0.1,0.1);
     data.velocity *= 0.99 * _VelocityRatio;//force * 0.001;
     //data.position += data.velocity;
         
