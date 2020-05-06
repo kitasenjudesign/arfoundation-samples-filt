@@ -10,12 +10,12 @@ public class TestDepthImage6depth : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("The ARHumanBodyManager which will produce frame events.")]
-    ARHumanBodyManager m_HumanBodyManager;
+    AROcclusionManager m_HumanBodyManager;
 
      /// <summary>
     /// Get or set the <c>ARHumanBodyManager</c>.
     /// </summary>
-    public ARHumanBodyManager humanBodyManager
+    public AROcclusionManager humanBodyManager
     {
         get { return m_HumanBodyManager; }
         set { m_HumanBodyManager = value; }

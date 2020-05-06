@@ -9,7 +9,7 @@ using UnityEngine.XR.ARFoundation;
 public class FullScreenMaskTest : MonoBehaviour
 {
 
-    [SerializeField] private ARHumanBodyManager _humanBodyManager;
+    [SerializeField] private AROcclusionManager _humanBodyManager;
     [SerializeField] private Material _quadMat;
     [SerializeField] private ARCameraBackground _arBackground;
     [SerializeField] private ARCameraManager _cameraManager;
@@ -33,7 +33,7 @@ public class FullScreenMaskTest : MonoBehaviour
         //Debug.Log(_humanBodyManager);
         
         if(_cameraManager){
-            _name = _cameraManager.shaderName;
+            //_name = _cameraManager.shaderName;
         }
 
         //書き込む

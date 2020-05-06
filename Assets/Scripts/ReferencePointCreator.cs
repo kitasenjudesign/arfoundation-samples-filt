@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-[RequireComponent(typeof(ARReferencePointManager))]
+[RequireComponent(typeof(ARAnchorManager))]
 [RequireComponent(typeof(ARRaycastManager))]
 public class ReferencePointCreator : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class ReferencePointCreator : MonoBehaviour
     {
         foreach (var referencePoint in m_ReferencePoints)
         {
-            m_ReferencePointManager.RemoveReferencePoint(referencePoint);
+            m_ReferencePointManager.RemoveAnchor(referencePoint);
         }
         m_ReferencePoints.Clear();
     }
@@ -19,8 +19,8 @@ public class ReferencePointCreator : MonoBehaviour
     void Awake()
     {
         m_RaycastManager = GetComponent<ARRaycastManager>();
-        m_ReferencePointManager = GetComponent<ARReferencePointManager>();
-        m_ReferencePoints = new List<ARReferencePoint>();
+        m_ReferencePointManager = GetComponent<ARAnchorManager>();
+        m_ReferencePoints = new List<ARAnchor>();
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class ReferencePointCreator : MonoBehaviour
             // Raycast hits are sorted by distance, so the first one
             // will be the closest hit.
             var hitPose = s_Hits[0].pose;
-            var referencePoint = m_ReferencePointManager.AddReferencePoint(hitPose);
+            var referencePoint = m_ReferencePointManager.AddAnchor(hitPose);
             if (referencePoint == null)
             {
                 Logger.Log("Error creating reference point");
@@ -51,9 +51,9 @@ public class ReferencePointCreator : MonoBehaviour
 
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
-    List<ARReferencePoint> m_ReferencePoints;
+    List<ARAnchor> m_ReferencePoints;
 
     ARRaycastManager m_RaycastManager;
 
-    ARReferencePointManager m_ReferencePointManager;
+    ARAnchorManager m_ReferencePointManager;
 }

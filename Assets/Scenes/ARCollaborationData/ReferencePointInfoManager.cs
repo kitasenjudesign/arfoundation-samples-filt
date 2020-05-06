@@ -11,7 +11,7 @@ using UnityEngine.XR.ARFoundation;
 /// which can be colored to indicate which session created it.
 /// </summary>
 [RequireComponent(typeof(ARSessionOrigin))]
-[RequireComponent(typeof(ARReferencePointManager))]
+[RequireComponent(typeof(ARAnchorManager))]
 public class ReferencePointInfoManager : MonoBehaviour
 {
     [SerializeField]
@@ -25,15 +25,15 @@ public class ReferencePointInfoManager : MonoBehaviour
 
     void OnEnable()
     {
-        GetComponent<ARReferencePointManager>().referencePointsChanged += OnReferencePointsChanged;
+        GetComponent<ARAnchorManager>().anchorsChanged += OnReferencePointsChanged;
     }
 
     void OnDisable()
     {
-        GetComponent<ARReferencePointManager>().referencePointsChanged -= OnReferencePointsChanged;
+        GetComponent<ARAnchorManager>().anchorsChanged -= OnReferencePointsChanged;
     }
 
-    void OnReferencePointsChanged(ARReferencePointsChangedEventArgs eventArgs)
+    void OnReferencePointsChanged(ARAnchorsChangedEventArgs eventArgs)
     {
         foreach (var referencePoint in eventArgs.added)
         {
@@ -51,7 +51,7 @@ public class ReferencePointInfoManager : MonoBehaviour
         public fixed byte data[16];
     }
 
-    void UpdateReferencePoint(ARReferencePoint referencePoint)
+    void UpdateReferencePoint(ARAnchor referencePoint)
     {
         var canvas = referencePoint.GetComponentInChildren<Canvas>();
         if (canvas == null)

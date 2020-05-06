@@ -14,8 +14,8 @@ using TMPro;
 public class EffectControlMain : MonoBehaviour
 {
     [SerializeField] public ARCameraBackground _arBackground;
-    [SerializeField] public ARHumanBodyManager _humanBodyManager;
-    [SerializeField,Space(10)] private ImageEffectBase _imageEffect;
+    [SerializeField] public AROcclusionManager _humanBodyManager;
+    //[SerializeField,Space(10)] private ImageEffectBase _imageEffect;
     [SerializeField] private FullScreenQuad _fullScreenQuad;
     [SerializeField] private UnityEngine.Rendering.PostProcessing.PostProcessLayer _postEffect;
 
@@ -38,7 +38,9 @@ public class EffectControlMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _camTex=new RenderTexture( Screen.width, Screen.height, 0);
+        _camTex=new RenderTexture( 
+            Screen.width, Screen.height, 16
+        );
         //_camTex.enableRandomWrite = true;
 
         _filters = new List<FilterBase>();
@@ -68,23 +70,14 @@ public class EffectControlMain : MonoBehaviour
     }
 
     
-    /*
+    
     void OnGUI(){
 
-        if(_style==null){
-            _style = new GUIStyle();
-            _style.fontSize = 40;
-            _style.normal.textColor = Color.red; 
+        if(_camTex){
+        GUI.DrawTexture(new Rect(0,0,200,100),_camTex);
         }
 
-            GUI.Label(
-                new Rect(100, 100, 500, 100), 
-                ""+_count,
-                _style
-            );
-        //GUI.DrawTexture(new Rect(0,0,100,100),_webcamTex);
-        //GUI.DrawTexture(new Rect(0,0,200,100),_data[0].renderTexture);
-    }*/
+    }
 
 
     public void SetFilter(int idx){

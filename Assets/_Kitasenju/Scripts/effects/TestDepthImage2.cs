@@ -8,9 +8,9 @@ using UnityEngine.XR.ARSubsystems;
 
 public class TestDepthImage2 : MonoBehaviour
 {
-    [SerializeField] ARHumanBodyManager m_HumanBodyManager;
+    [SerializeField] AROcclusionManager m_HumanBodyManager;
 
-    public ARHumanBodyManager humanBodyManager
+    public AROcclusionManager humanBodyManager
     {
         get { return m_HumanBodyManager; }
         set { m_HumanBodyManager = value; }
