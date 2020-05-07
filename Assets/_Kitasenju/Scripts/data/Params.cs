@@ -1,6 +1,6 @@
 using UnityEngine;
-using NatSuite.Devices;
-//using NatMic;
+//using NatSuite.Devices;
+using NatMic;
 
 public class Params
 {
@@ -18,7 +18,7 @@ public class Params
     public static int baseWidth =0;
     public static int baseHeight =0;
 
-    public static IAudioDevice audioDevice;
+    public static AudioDevice audioDevice;
 
 
 
@@ -31,13 +31,13 @@ public class Params
         
     }
 
-    public static IAudioDevice SetMic(){
+    public static AudioDevice SetMic(){
         
         if(audioDevice==null){
             if( DeviceChecker.GetAvailable() ){
-                var query = new MediaDeviceQuery(MediaDeviceQuery.Criteria.AudioDevice);
-                audioDevice = query.currentDevice as IAudioDevice;
-                //audioDevice = AudioDevice.GetDevices()[0];
+                //var query = new MediaDeviceQuery(MediaDeviceQuery.Criteria.AudioDevice);
+                //audioDevice = query.currentDevice as IAudioDevice;
+                audioDevice = AudioDevice.GetDevices()[0];
             }
         }
         return audioDevice;

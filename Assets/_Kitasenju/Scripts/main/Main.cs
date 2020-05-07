@@ -56,6 +56,20 @@ public class Main : MonoBehaviour
     }
     */
 
+    #if DEMO
+    
+    void OnApplicationPause (bool pauseStatus)
+    {
+        if (pauseStatus) {
+            //Debug.Log("applicationWillResignActive or onPause");
+            Application.Quit();
+        } else {
+            //Debug.Log("applicationDidBecomeActive or onResume");
+        }
+    }
+
+    #endif
+
 
     // Update is called once per frame
     void Update()
@@ -81,4 +95,7 @@ public class Main : MonoBehaviour
         }*/
 
     }
+
+
+
 }

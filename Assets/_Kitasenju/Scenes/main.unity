@@ -13351,7 +13351,8 @@ MonoBehaviour:
   recordMicrophone: 1
   microphoneSource: {fileID: 2017182822}
   _player: {fileID: 626852235}
-  _camera: {fileID: 1886177310}
+  rawImage: {fileID: 0}
+  cam: {fileID: 1886177310}
 --- !u!4 &2017182824
 Transform:
   m_ObjectHideFlags: 0

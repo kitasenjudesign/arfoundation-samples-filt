@@ -86,6 +86,7 @@
 		}
 
         private void _stopRec(){
+			Debug.Log("stop from btn");
 
 			VibeManager.Instance.PlaySystemSound(VibeManager.Vibe02);
 

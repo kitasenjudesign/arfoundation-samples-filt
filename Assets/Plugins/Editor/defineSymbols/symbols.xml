@@ -2,4 +2,5 @@
 <root>
     <symbol name="PRODUCTION"   comment="製品版" />
     <symbol name="VJ"   comment="VJモード" />
+    <symbol name="DEMO"   comment="DEMO" />    
 </root>

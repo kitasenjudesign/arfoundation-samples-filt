@@ -70,14 +70,14 @@ public class EffectControlMain : MonoBehaviour
     }
 
     
-    
+    /*
     void OnGUI(){
 
         if(_camTex){
         GUI.DrawTexture(new Rect(0,0,200,100),_camTex);
         }
 
-    }
+    }*/
 
 
     public void SetFilter(int idx){
