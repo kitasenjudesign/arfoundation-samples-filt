@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.ARFoundation;
-using NatCorder.Examples;
 using DG.Tweening;
 
 public class GrabFilter : FilterBase

@@ -1,5 +1,6 @@
 using UnityEngine;
-using NatMic;
+using NatSuite.Devices;
+//using NatMic;
 
 public class Params
 {
@@ -17,7 +18,7 @@ public class Params
     public static int baseWidth =0;
     public static int baseHeight =0;
 
-    public static AudioDevice audioDevice;
+    public static IAudioDevice audioDevice;
 
 
 
@@ -30,13 +31,17 @@ public class Params
         
     }
 
-    public static AudioDevice SetMic(){
+    public static IAudioDevice SetMic(){
+        
         if(audioDevice==null){
             if( DeviceChecker.GetAvailable() ){
-                audioDevice = AudioDevice.GetDevices()[0];
+                var query = new MediaDeviceQuery(MediaDeviceQuery.Criteria.AudioDevice);
+                audioDevice = query.currentDevice as IAudioDevice;
+                //audioDevice = AudioDevice.GetDevices()[0];
             }
         }
         return audioDevice;
+        
     }
 
     public static void SetStencilAspect(float w, float h){

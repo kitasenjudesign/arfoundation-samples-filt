@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_IOS
-using NatShareU;
+//using NatShareU;
 #endif
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Video;
 using DG.Tweening;
 using TMPro;
-using NatCorder.Examples;
+//using NatCorder.Examples;
 using VoxelBusters.InstagramKit;
-
+using NatSuite.Sharing;
 
 public class ReplayPlayer : MonoBehaviour
 {
@@ -29,6 +29,7 @@ public class ReplayPlayer : MonoBehaviour
     [SerializeField] private ImageCapture _imageCapture;
     [SerializeField] private AudioSource _videoAudio;    
     private string _path = "";
+    private string _path2 = "";
     private bool _isMoving = false;
     private bool _isImageMode = false;
     private Texture2D _capturedImage;
@@ -51,17 +52,18 @@ public class ReplayPlayer : MonoBehaviour
 
     private void _onClickInsta(){
         VibeManager.Instance.PlaySystemSound(VibeManager.Vibe01);
-        StoryContent content = new StoryContent (_path, true);
+        StoryContent content = new StoryContent (_path2, true);
         InstagramKitManager.Share(content, null);
     }
 
-    public void ShowReplay(string path){
+    public void ShowReplay(string path, string path2){
 
         //多き目の振動
         VibeManager.Instance.PlaySystemSound(VibeManager.Vibe02);
 
         //replayを開始する
         _path = path;
+        _path2 = path2;
         gameObject.SetActive(true);
         _isImageMode=false;
         
@@ -110,9 +112,13 @@ public class ReplayPlayer : MonoBehaviour
         
         #if UNITY_IOS
             if(_isImageMode){
-                NatShare.SaveToCameraRoll(_capturedImage);
+                //NatShare.SaveToCameraRoll(_capturedImage);
             }else{
-                NatShare.SaveToCameraRoll(_path);
+                
+                //NatShare.SaveToCameraRoll(_path);
+                var payload = new SavePayload();
+                payload.AddMedia(_path2);
+                payload.Commit();
                 
             }
         #endif
