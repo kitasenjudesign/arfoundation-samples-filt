@@ -95,8 +95,8 @@
                 videoHeight,
                 30,
                 _sampleRate,
-                _channelCount
-                //Params.GetVideoBitrate()
+                _channelCount,
+                Params.GetVideoBitrate()                
             );
 
             // Create recording inputs
@@ -167,7 +167,7 @@
             $"{prefix}{path}",
             path
         );        
-        
+
     }
 
     /*

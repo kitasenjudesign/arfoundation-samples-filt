@@ -135,6 +135,18 @@ public class SymbolWindow : EditorWindow
                 str
             );
 
+            if(str.IndexOf("DEMO")>=0){
+
+                PlayerSettings.SplashScreen.show = true;
+                PlayerSettings.applicationIdentifier = "com.kitasenjudesign.meisai.retaildemo";
+
+            }else{
+
+                PlayerSettings.SplashScreen.show = false;
+                PlayerSettings.applicationIdentifier = "com.kitasenjudesign.mesai";
+            }
+
+
             //追記
             if(str.IndexOf("VJ")>=0){
                 

@@ -68,6 +68,16 @@ public class Main : MonoBehaviour
         }
     }
 
+    void OnApplicationFocus (bool focusStatus)
+    {
+        if (focusStatus) {
+
+        }else{
+
+        }
+
+    }
+
     #endif
 
 
