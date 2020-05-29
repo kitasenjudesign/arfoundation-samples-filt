@@ -136,7 +136,7 @@ public class SymbolWindow : EditorWindow
             );
 
             if(str.IndexOf("DEMO")>=0){
-
+                Debug.Log("SetDemo");
                 PlayerSettings.SplashScreen.show = true;
                 PlayerSettings.applicationIdentifier = "com.kitasenjudesign.meisai.retaildemo";
 
@@ -170,7 +170,7 @@ public class SymbolWindow : EditorWindow
                 //    GameViewSizeHelper.GameViewSizeType.FixedResolution, 2224, 1668, "2224x1668"
                 //);
 
-            }else{
+            }else if(str.IndexOf("DEMO")<0){
                 
                 PlayerSettings.productName = "MEISAI";
                                 

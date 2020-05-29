@@ -73,7 +73,7 @@ public class Main : MonoBehaviour
         if (focusStatus) {
 
         }else{
-
+            Application.Quit();
         }
 
     }
